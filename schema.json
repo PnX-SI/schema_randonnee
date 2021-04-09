@@ -4,8 +4,8 @@
    "title":"Schéma des itinéraires de randonnée",
    "description":"Spécification du fichier d'échange relatif aux itinéraires de randonnée.",
    "keywords":[
-      "objets",
-      "autre-tag"
+      "geotrek",
+      "randonnées"
    ],
    "countryCode":"FR",
    "homepage":"https://github.com/mon-orga/schema-randonnee",
