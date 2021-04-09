@@ -1,0 +1,346 @@
+{
+   "$schema":"https://specs.frictionlessdata.io/schemas/table-schema.json",
+   "name":"randonnee",
+   "title":"Schéma des itinéraires de randonnée",
+   "description":"Spécification du fichier d'échange relatif aux itinéraires de randonnée.",
+   "keywords":[
+      "objets",
+      "autre-tag"
+   ],
+   "countryCode":"FR",
+   "homepage":"https://github.com/mon-orga/schema-randonnee",
+   "path":"https://github.com/mon-orga/schema-randonnee/raw/v0.1.1/schema.json",
+   "image":"https://github.com/mon-orga/schema-randonnee/raw/v0.1.1/irve.png",
+   "licenses":[
+      {
+         "title":"Etalab Licence Ouverte 2.0",
+         "name":"etalab-2.0",
+         "path":"https://spdx.org/licenses/etalab-2.0.html"
+      }
+   ],
+   "resources":[
+      {
+         "title":"Fichier valide (CSV)",
+         "name":"exemple-valide-csv",
+         "path":"https://github.com/mon-orga/schema-randonnee/raw/v0.1.1/exemple-valide.csv"
+      }
+   ],
+   "sources":[
+      {
+         "title":"",
+         "path":""
+      }
+   ],
+   "created":"2021-04-08",
+   "lastModified":"2021-04-08",
+   "version":"0.1.1",
+   "contributors":[
+      {
+         "title":"Idrissa Djepa",
+         "email":"idrissa.djepa@cevennes-parcnational.fr",
+         "organisation":"Parc National des Cévennes",
+         "role":"author"
+      },
+      {
+         "title":"",
+         "email":"",
+         "organisation":"",
+         "role":""
+      }
+   ],
+   "fields":[
+      {
+         "name":"id_source",
+         "description":"Identifiant de l’objet dans sa BDD source",
+         "example":"42",
+         "type":"integer",
+         "constraints":{
+            "minimum":1
+         }
+      },
+      {
+         "name":"source",
+         "description":"Nom de la source de la donnée",
+         "example":"Parc National des Cévennes",
+         "type":"string",
+         "constraints":{
+            "required":true
+         }
+      },
+      {
+         "name":"information",
+         "description":"Contact d'information",
+         "example":"contact@cevennes-parcnational.fr",
+         "type":"string",
+         "format":"email"
+      },
+      {
+         "name":"url",
+         "description":"URL de la fiche source de la randonnée",
+         "example":"https://destination.cevennes-parcnational.fr/sentiers-de-decouverte/mas-cevenol-de-la-roquette/",
+         "type":"string",
+         "format":"uri"
+      },
+      {
+         "name":"uuid",
+         "description":"Identifiant unique généré par la BDD source",
+         "example":"",
+         "type":"string",
+         "format":"uuid"
+      },
+      {
+         "name":"nom",
+         "description":"Nom de la randonnée",
+         "example":"Mas cévenol de la Roquette",
+         "type":"string",
+         "constraints":{
+            "required":true
+         }
+      },
+      {
+         "name":"pratique",
+         "description":"Pratique de la randonnée",
+         "example":"pedestre",
+         "type":"string",
+         "constraints":{
+            "required":true,
+             "enum":[
+                    "pedestre",
+                    "VTT",
+                    "equestre",
+                    "ski",
+                    "velo",
+                    "autre"
+                ]
+         }
+      },
+      {
+         "name":"type",
+         "description":"Type de randonnée",
+         "example":"boucle",
+         "type":"string",
+         "constraints":{
+               "enum": ["Aller-retour",
+                        "Boucle",
+                        "Aller simple"]
+         }
+      },
+      {
+         "name":"communes",
+         "description":"Liste des communes traversées par la randonnée",
+         "example":"[{'nom': 'Molezon', 'code_INSEE': '48098'}]",
+         "type":"array",
+         "items":{
+         	"type":"object",
+         	"properties":{
+         		"nom": {
+         			"type":"string"
+         		},
+         		"code_INSEE":{
+         			"type":"integer"
+         		}
+         	}
+         }
+      },
+      {
+         "name":"depart",
+         "description":"Nom du point de départ",
+         "example":"Parking du sentier",
+         "type":"string",
+         "constraints":{
+               "required":true
+         }
+      },
+      {
+         "name":"arrivee",
+         "description":"Nom du point d'arrivée",
+         "example":"Parking du sentier",
+         "type":"string",
+         "constraints":{
+               "required":true
+         }
+      },
+      {
+         "name":"duree",
+         "description":"Durée de la randonnée en heures",
+         "example":"2",
+         "type":"number"
+      },
+      {
+         "name":"balisage",
+         "description":"Informations sur le balisage",
+         "example":"Au parking, prendre la route sur 300 m pour trouver la première balise • Après la balise n° 2 , quitter la route à gauche par le sentier (étroit, pouvant être glissant après la pluie)",
+         "type":"string"
+      },
+      {
+         "name":"longueur",
+         "description":"Longueur de la randonnée (en km)",
+         "example":"2,3",
+         "type":"number"
+      },
+      {
+         "name":"difficulte",
+         "description":"Difficulté de la randonnée (échelles Club Alpin Suisse pour randonnée, ski de randonnée et raquettes, échelle FFVélo pour VTT)",
+         "example":"T1",
+         "type":"string",
+         "constraints":{
+               "enum": ["T1",
+                        "T2",
+                        "T3",
+                        "T4",
+                        "T5",
+                        "T6",
+                        "F",
+                        "PD",
+                        "AD",
+                        "D",
+                        "TD",
+                        "ED",
+                        "EX",
+                        "WT1",
+                        "WT2",
+                        "WT3",
+                        "WT4",
+                        "WT5",
+                        "WT6",
+                        "Vert",
+                        "Bleu",
+                        "Rouge",
+                        "Noir",
+                        "Double noir"
+                    ]
+         }
+      },
+      {
+         "name":"altitude_max",
+         "description":"Altitude maximum de la randonnée",
+         "example":"638",
+         "type":"integer"
+      },
+      {
+         "name":"altitude_min",
+         "description":"Altitude minimum de la randonnée",
+         "example":"504",
+         "type":"integer"
+      },
+      {
+         "name":"denivele_positif",
+         "description":"Dénivelé positif de la randonnée",
+         "example":"159",
+         "type":"integer"
+      },
+      {
+         "name":"denivele_negatif",
+         "description":"Dénivelé négatif de la randonnée",
+         "example":"159",
+         "type":"integer"
+      },
+      {
+         "name":"description_courte",
+         "description":"Description courte ou résumé de la randonnée",
+         "example":"Ce sentier, niché au creux d'une vallée au charme préservé, est idéal pour imaginer le passé et mieux comprendre la vie d'aujourd'hui en Cévennes.",
+         "type":"string"
+      },
+      {
+         "name":"description",
+         "description":"Description complète de la randonnée",
+         "example":"Ce sentier permet de découvrir un vallon à l’écart des grands axes de circulation, très évocateur de l’ambiance particulière des hautes vallées cévenoles du versant méditerranéen. Du moulin jusqu'à l'ensemble des habitations à mi-versant, le sentier grimpe à l'ombre des chênes verts et des châtaigniers, dans la fraîcheur du valat. Cette promenade est l'occasion de comprendre comment les Cévenols ont géré et valorisé cet environnement. De l'art de bâtir aux aménagements hydrauliques, toutes les composantes de l'organisation traditionnelle de l'espace sont évoquées dans un site au caractère préservé.",
+         "type":"string",
+         "constraints":{
+         	"required":true
+         }
+      },
+      {
+         "name":"themes",
+         "description":"Thèmes ou mots-clefs caractérisant la randonnée",
+         "example":"['Architecture et village', 'Causses et Cévennes / UNESCO', 'Eau et géologie']",
+         "type":"array",
+         "items":{
+         	"type":"string"
+         }
+      },
+      {
+         "name":"recommandations",
+         "description":"Recommandations sur la randonnée",
+         "example":"En été, sentier à réaliser de préférence le matin. Passages glissants par temps pluvieux. L’itinéraire que vous allez suivre chemine à travers plusieurs propriétés privées. Ne vous écartez pas de l’itinéraire balisé. Sa mise à disposition repose sur votre discrétion. Les randonnées équestre et à VTT ne sont pas autorisées ou adaptées sur les sentiers d'interprétation.",
+         "type":"string"
+      },
+      {
+         "name":"accessibilite",
+         "description":"Accessibilité à des publics particuliers de la randonnée",
+         "example":"Aménagements PMR",
+         "type":"string"
+      },
+      {
+         "name":"acces_routier",
+         "description":"Informations sur les accès routiers",
+         "example":"D 983 jusqu'à Pont-Ravagers, (à 12 km de Barre-des-Cévennes et 2 km de Sainte-Croix-Vallée-Française). À Pont-Ravagers, prendre la voie communale (panneau route étroite et sinueuse) qui mène au hameau de Trabassac. Environ 10 minutes de voiture depuis Pont-Ravagers",
+         "type":"string"
+      },
+      {
+         "name":"transports",
+         "description":"Informations sur les accès en transports en commun",
+         "example":"Navettes en juillet et août depuis tel village, informations sur le site de l'Office du Tourisme",
+         "type":"string"
+      },
+      {
+         "name":"geometrie",
+         "description":"Tracé de la randonnée (format GeoJSON)",
+         "example":"{'type': 'MultiLineString', 'coordinates': [ [ [ 3.7157, 44.2222, 508.0 ], [ 3.7157, 44.2222, 508.0 ], [ 3.7157, 44.2222, 508.0 ], [ 3.7157, 44.2222, 507.0 ], [ 3.7158, 44.2222, 506.0 ], [ 3.7158, 44.2222, 506.0 ], [ 3.7158, 44.2221, 505.0 ], [ 3.7159, 44.2221, 504.0 ], [ 3.7159, 44.2221, 504.0 ], [ 3.7159, 44.222, 504.0 ], [ 3.7159, 44.222, 504.0 ], [ 3.7159, 44.222, 504.0 ], [ 3.7159, 44.2219, 504.0 ], [ 3.7158, 44.2219, 504.0 ], [ 3.7158, 44.2218, 504.0 ], [ 3.7158, 44.2218, 504.0 ], [ 3.7158, 44.2218, 504.0 ], [ 3.7158, 44.2217, 504.0 ], [ 3.7158, 44.2216, 504.0 ], [ 3.7158, 44.2215, 505.0 ], [ 3.7158, 44.2214, 505.0 ], [ 3.7158, 44.2214, 506.0 ], [ 3.7158, 44.2213, 508.0 ], [ 3.716, 44.2213, 511.0 ], [ 3.7161, 44.2211, 514.0 ], [ 3.7162, 44.221, 519.0 ], [ 3.7163, 44.2209, 524.0 ], [ 3.7163, 44.221, 527.0 ], [ 3.7163, 44.2211, 528.0 ], [ 3.7163, 44.2211, 528.0 ], [ 3.7163, 44.2212, 526.0 ], [ 3.7163, 44.2213, 524.0 ], [ 3.7163, 44.2214, 523.0 ], [ 3.7163, 44.2215, 524.0 ], [ 3.7164, 44.2216, 525.0 ], [ 3.7164, 44.2216, 527.0 ], [ 3.7165, 44.2216, 528.0 ], [ 3.7166, 44.2217, 530.0 ], [ 3.7167, 44.2217, 531.0 ], [ 3.7168, 44.2218, 533.0 ], [ 3.7168, 44.2218, 534.0 ], [ 3.7169, 44.2219, 535.0 ], [ 3.7169, 44.222, 536.0 ], [ 3.717, 44.222, 538.0 ], [ 3.7171, 44.2221, 539.0 ], [ 3.7171, 44.2221, 543.0 ], [ 3.7172, 44.2221, 545.0 ], [ 3.7173, 44.2222, 547.0 ], [ 3.7173, 44.2222, 549.0 ], [ 3.7174, 44.2222, 551.0 ], [ 3.7174, 44.2223, 551.0 ], [ 3.7175, 44.2223, 552.0 ], [ 3.7175, 44.2223, 553.0 ], [ 3.7175, 44.2223, 555.0 ], [ 3.7176, 44.2223, 558.0 ], [ 3.7176, 44.2224, 560.0 ], [ 3.7176, 44.2224, 562.0 ], [ 3.7176, 44.2224, 563.0 ], [ 3.7177, 44.2224, 563.0 ], [ 3.7177, 44.2224, 563.0 ], [ 3.7177, 44.2223, 563.0 ], [ 3.7176, 44.2223, 562.0 ], [ 3.7176, 44.2222, 561.0 ], [ 3.7176, 44.2222, 561.0 ], [ 3.7175, 44.222, 561.0 ], [ 3.7174, 44.2219, 563.0 ], [ 3.7173, 44.2218, 565.0 ], [ 3.7173, 44.2217, 568.0 ], [ 3.7173, 44.2217, 569.0 ], [ 3.7174, 44.2218, 570.0 ], [ 3.7175, 44.2219, 570.0 ], [ 3.7176, 44.2219, 570.0 ], [ 3.7177, 44.222, 570.0 ], [ 3.7178, 44.222, 570.0 ], [ 3.7178, 44.2221, 571.0 ], [ 3.7179, 44.2221, 571.0 ], [ 3.7179, 44.2222, 572.0 ], [ 3.718, 44.2222, 573.0 ], [ 3.718, 44.2222, 574.0 ], [ 3.7181, 44.2222, 573.0 ], [ 3.7181, 44.2222, 573.0 ], [ 3.7181, 44.2223, 573.0 ], [ 3.7181, 44.2223, 573.0 ], [ 3.7181, 44.2223, 574.0 ], [ 3.7182, 44.2224, 575.0 ], [ 3.7183, 44.2224, 576.0 ], [ 3.7183, 44.2225, 577.0 ], [ 3.7184, 44.2225, 578.0 ], [ 3.7184, 44.2226, 580.0 ], [ 3.7185, 44.2226, 582.0 ], [ 3.7186, 44.2227, 584.0 ], [ 3.7188, 44.2227, 587.0 ], [ 3.7189, 44.2228, 590.0 ], [ 3.719, 44.2228, 594.0 ], [ 3.7191, 44.2228, 597.0 ], [ 3.7191, 44.2229, 599.0 ], [ 3.7192, 44.2229, 601.0 ], [ 3.7192, 44.2229, 602.0 ], [ 3.7191, 44.223, 603.0 ], [ 3.7189, 44.223, 603.0 ], [ 3.7187, 44.2231, 604.0 ], [ 3.7186, 44.2232, 605.0 ], [ 3.7184, 44.2232, 607.0 ], [ 3.7184, 44.2233, 609.0 ], [ 3.7184, 44.2233, 612.0 ], [ 3.7182, 44.2234, 614.0 ], [ 3.7182, 44.2234, 617.0 ], [ 3.7183, 44.2235, 618.0 ], [ 3.7184, 44.2235, 619.0 ], [ 3.7184, 44.2235, 619.0 ], [ 3.7185, 44.2235, 620.0 ], [ 3.7187, 44.2234, 619.0 ], [ 3.7189, 44.2234, 618.0 ], [ 3.7191, 44.2233, 617.0 ], [ 3.7192, 44.2233, 617.0 ], [ 3.7193, 44.2233, 617.0 ], [ 3.7193, 44.2233, 618.0 ], [ 3.7194, 44.2233, 620.0 ], [ 3.7196, 44.2234, 621.0 ], [ 3.7198, 44.2234, 623.0 ], [ 3.7199, 44.2235, 627.0 ], [ 3.7201, 44.2236, 630.0 ], [ 3.7203, 44.2237, 633.0 ], [ 3.7203, 44.2237, 636.0 ], [ 3.7204, 44.2236, 638.0 ], [ 3.7204, 44.2236, 638.0 ], [ 3.7204, 44.2235, 637.0 ], [ 3.7204, 44.2234, 637.0 ], [ 3.7204, 44.2234, 635.0 ], [ 3.7203, 44.2233, 634.0 ], [ 3.7203, 44.2232, 634.0 ], [ 3.7203, 44.2231, 634.0 ], [ 3.7202, 44.2231, 632.0 ], [ 3.7201, 44.223, 631.0 ], [ 3.72, 44.2229, 630.0 ], [ 3.7199, 44.2228, 629.0 ], [ 3.7199, 44.2227, 627.0 ], [ 3.7198, 44.2227, 626.0 ], [ 3.7197, 44.2226, 624.0 ], [ 3.7195, 44.2225, 623.0 ], [ 3.7193, 44.2224, 621.0 ], [ 3.7192, 44.2224, 618.0 ], [ 3.7192, 44.2223, 616.0 ], [ 3.7191, 44.2223, 614.0 ], [ 3.7189, 44.2222, 611.0 ], [ 3.7187, 44.222, 609.0 ], [ 3.7186, 44.222, 607.0 ], [ 3.7185, 44.2219, 605.0 ], [ 3.7185, 44.2219, 604.0 ], [ 3.7184, 44.2219, 602.0 ], [ 3.7183, 44.2218, 601.0 ], [ 3.7183, 44.2218, 601.0 ], [ 3.7182, 44.2217, 601.0 ], [ 3.7181, 44.2217, 600.0 ], [ 3.718, 44.2217, 600.0 ], [ 3.718, 44.2216, 598.0 ], [ 3.7179, 44.2216, 596.0 ], [ 3.7179, 44.2216, 595.0 ], [ 3.7178, 44.2216, 595.0 ], [ 3.7178, 44.2216, 595.0 ], [ 3.7179, 44.2216, 595.0 ], [ 3.718, 44.2217, 594.0 ], [ 3.718, 44.2217, 594.0 ], [ 3.718, 44.2218, 592.0 ], [ 3.7181, 44.2218, 591.0 ], [ 3.7181, 44.2219, 591.0 ], [ 3.7182, 44.222, 591.0 ], [ 3.7183, 44.222, 591.0 ], [ 3.7183, 44.2221, 591.0 ], [ 3.7182, 44.2221, 589.0 ], [ 3.7182, 44.2221, 587.0 ], [ 3.7182, 44.2221, 585.0 ], [ 3.7181, 44.222, 583.0 ], [ 3.718, 44.222, 580.0 ], [ 3.718, 44.222, 578.0 ], [ 3.7179, 44.222, 577.0 ], [ 3.7179, 44.222, 576.0 ], [ 3.7178, 44.2219, 575.0 ], [ 3.7177, 44.2219, 573.0 ], [ 3.7176, 44.2219, 572.0 ], [ 3.7175, 44.2218, 571.0 ], [ 3.7174, 44.2218, 571.0 ], [ 3.7174, 44.2217, 572.0 ], [ 3.7174, 44.2217, 574.0 ], [ 3.7173, 44.2217, 573.0 ], [ 3.7173, 44.2217, 571.0 ], [ 3.7173, 44.2218, 568.0 ], [ 3.7174, 44.2219, 564.0 ], [ 3.7175, 44.222, 561.0 ], [ 3.7176, 44.2222, 561.0 ], [ 3.7176, 44.2222, 561.0 ], [ 3.7176, 44.2223, 562.0 ], [ 3.7177, 44.2223, 563.0 ], [ 3.7177, 44.2224, 563.0 ], [ 3.7177, 44.2224, 563.0 ], [ 3.7176, 44.2224, 562.0 ], [ 3.7176, 44.2224, 560.0 ], [ 3.7176, 44.2223, 558.0 ], [ 3.7175, 44.2223, 556.0 ], [ 3.7175, 44.2223, 554.0 ], [ 3.7175, 44.2222, 554.0 ], [ 3.7174, 44.2222, 554.0 ], [ 3.7173, 44.2221, 553.0 ], [ 3.7173, 44.2221, 552.0 ], [ 3.7172, 44.222, 551.0 ], [ 3.7171, 44.222, 549.0 ], [ 3.7171, 44.222, 548.0 ], [ 3.717, 44.2219, 548.0 ], [ 3.717, 44.2219, 547.0 ], [ 3.717, 44.2218, 547.0 ], [ 3.7169, 44.2217, 546.0 ], [ 3.7168, 44.2217, 545.0 ], [ 3.7168, 44.2216, 544.0 ], [ 3.7168, 44.2216, 545.0 ], [ 3.7167, 44.2215, 546.0 ], [ 3.7167, 44.2215, 547.0 ], [ 3.7167, 44.2215, 547.0 ], [ 3.7166, 44.2214, 546.0 ], [ 3.7166, 44.2213, 547.0 ], [ 3.7166, 44.2212, 548.0 ], [ 3.7166, 44.221, 549.0 ], [ 3.7167, 44.2209, 551.0 ], [ 3.7168, 44.2208, 554.0 ], [ 3.7169, 44.2206, 555.0 ], [ 3.7169, 44.2205, 556.0 ], [ 3.7169, 44.2204, 555.0 ], [ 3.7169, 44.2202, 555.0 ], [ 3.7169, 44.2201, 555.0 ], [ 3.7169, 44.22, 553.0 ], [ 3.7169, 44.2199, 551.0 ], [ 3.7169, 44.2198, 550.0 ], [ 3.7169, 44.2197, 547.0 ], [ 3.7169, 44.2197, 545.0 ], [ 3.7169, 44.2196, 543.0 ], [ 3.7169, 44.2196, 541.0 ], [ 3.7169, 44.2196, 538.0 ], [ 3.7169, 44.2195, 537.0 ], [ 3.7169, 44.2194, 535.0 ], [ 3.7169, 44.2194, 535.0 ], [ 3.7169, 44.2193, 534.0 ], [ 3.7168, 44.2193, 534.0 ], [ 3.7168, 44.2192, 535.0 ], [ 3.7168, 44.2192, 535.0 ], [ 3.7167, 44.2192, 535.0 ], [ 3.7167, 44.2191, 535.0 ], [ 3.7167, 44.2192, 535.0 ], [ 3.7167, 44.2193, 534.0 ], [ 3.7168, 44.2193, 534.0 ], [ 3.7168, 44.2193, 534.0 ], [ 3.7168, 44.2194, 534.0 ], [ 3.7168, 44.2194, 534.0 ], [ 3.7168, 44.2195, 535.0 ], [ 3.7168, 44.2196, 535.0 ], [ 3.7167, 44.2196, 535.0 ], [ 3.7167, 44.2197, 535.0 ], [ 3.7167, 44.2197, 534.0 ], [ 3.7167, 44.2198, 532.0 ], [ 3.7166, 44.2199, 531.0 ], [ 3.7166, 44.2199, 529.0 ], [ 3.7165, 44.22, 528.0 ], [ 3.7165, 44.22, 527.0 ], [ 3.7164, 44.2201, 526.0 ], [ 3.7164, 44.2202, 525.0 ], [ 3.7163, 44.2202, 523.0 ], [ 3.7163, 44.2203, 522.0 ], [ 3.7163, 44.2204, 521.0 ], [ 3.7163, 44.2204, 520.0 ], [ 3.7163, 44.2205, 521.0 ], [ 3.7163, 44.2206, 522.0 ], [ 3.7163, 44.2207, 521.0 ], [ 3.7163, 44.2209, 520.0 ], [ 3.7162, 44.221, 518.0 ], [ 3.7161, 44.2211, 515.0 ], [ 3.716, 44.2213, 512.0 ], [ 3.7158, 44.2213, 510.0 ], [ 3.7158, 44.2212, 509.0 ], [ 3.7158, 44.2211, 509.0 ], [ 3.7158, 44.2211, 509.0 ], [ 3.7158, 44.221, 509.0 ], [ 3.7159, 44.2209, 509.0 ], [ 3.7159, 44.2209, 509.0 ], [ 3.7159, 44.2208, 509.0 ], [ 3.7159, 44.2208, 509.0 ] ] ] }",
+         "type":"object"
+      },
+      {
+         "name":"parking",
+         "description":"Informations sur le parking",
+         "example":"Parking du sentier, sur la voie communale qui mène de Pont-Ravagers à Trabassac ",
+         "type":"string"
+      },
+      {
+         "name":"geometrie_parking",
+         "description":"Coordonnées du parking ('lon, lat')",
+         "example":"3.71589, 44.22073",
+         "type":"geopoint"
+      },
+      {
+         "name":"date_creation",
+         "description":"Date de création de la randonnée dans sa BDD source",
+         "example":"2015-09-24",
+         "type":"date"
+      },
+      {
+         "name":"date_modification",
+         "description":"Date de dernière modification de la randonnée dans sa BDD source",
+         "example":"2018_06_18",
+         "type":"date"
+      },
+      {
+         "name":"medias",
+         "description":"Liste des médias associés à la randonnée",
+         "example":"",
+         "type":"array",
+         "items":{
+         	"type":"object",
+         	"properties":{
+         		"url": {
+         			"type":"uri"
+         		},
+         		"titre":{
+         			"type":"string"
+         		},
+         		"auteur":{
+         			"type":"string"
+         		},
+         		"licence":{
+         			"type":"string"
+         		}
+         	}
+         }
+      },
+      {
+         "name":"rando_parent",
+         "description":"id_source dans la BDD source de l'éventuel itinéraire de randonnée parent de l'itinéraire présent",
+         "example":"256",
+         "type":"integer"
+      }
+   ]
+}
