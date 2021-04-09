@@ -11,7 +11,7 @@ Afin d'apporter une valeur ajoutée à ce projet, le Parc national souhaite trav
 
 
 ## Schéma
-Schéma au format [TableSchema](https://frictionlessdata.io/specs/table-schema) disponible [ici (insérer url)]().
+Schéma au format [TableSchema](https://frictionlessdata.io/specs/table-schema) disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/schema.json).
 
 
 Nous tenons à remercier les membres du groupe de travail pour leur investissement dans l'élaboration de ce schéma :
