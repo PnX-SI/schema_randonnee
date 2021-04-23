@@ -12,7 +12,7 @@ Afin d'apporter une valeur ajoutée à ce projet, le Parc national souhaite trav
 
 ## Schéma
 
-Schéma au format [TableSchema](https://frictionlessdata.io/specs/table-schema) disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/schema.json).
+Schéma au format [Table Schema](https://frictionlessdata.io/specs/table-schema) disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/schema.json).
 
 Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/exemple-valide.csv), le premier itinéraire ayant l'intégralité de ses champs remplis pour un exemple exhaustif.
 
