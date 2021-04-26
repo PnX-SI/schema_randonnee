@@ -11,7 +11,7 @@
    ],
    "countryCode":"FR",
    "homepage":"https://github.com/PnX-SI/schema-randonnee",
-   "path":"https://raw.githubusercontent.com/PnX-SI/schema_randonnee/master/schema.json",
+   "path":"https://github.com/PnX-SI/schema_randonnee/raw/v0.1.2/schema.json",
    "image":"",
    "licenses":[
       {
@@ -24,7 +24,7 @@
       {
          "title":"Fichier valide (CSV)",
          "name":"exemple-valide.csv",
-         "path":"https://raw.githubusercontent.com/PnX-SI/schema_randonnee/master/exemple-valide.csv"
+         "path":"https://github.com/PnX-SI/schema_randonnee/raw/v0.1.2/exemple-valide.csv"
       }
    ],
    "sources":[
