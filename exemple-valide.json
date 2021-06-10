@@ -1,0 +1,47 @@
+{
+	"type": "FeatureCollection",
+	"crs": {
+		"type": "name",
+		"properties": {
+			"name": "urn:ogc:def:crs:EPSG::2154"
+		}
+	},
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"eid":275,
+				"proprietaire":"PNC",
+		    	"nom_itineraire":"Mas de la Roquette",
+			    "pratique":"pédestre",
+			    "depart":"Office de tourisme de Molezon",
+			    "arrivee":"Office de tourisme de Molezon",
+			    "instructions":"Prendre la première à gauche et la cinquième à droite",
+			    "parking": {
+			    	"type": "Feature",
+			    	"properties": {
+			    		"infos_parking":"Le parking est ici"
+			    	},
+			    	"geometry": {
+			    		"type": "Point",
+			    		"coordinates": [973032, 6409775]
+			    	}
+			    },
+				"medias": {
+					"type_media": "image",
+			        "url":"paperclip/trekking_trek/37037/image.jpg",
+			        "titre":"La Roquette",
+			        "auteur":"John Doe",
+			        "licence":"CC-BY-ND"
+			    }
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[973032.352242656983435, 6409775.480393646284938],
+					[973028.312500001280569, 6409772.0]
+				]
+			}
+		}
+	]
+}

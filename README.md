@@ -8,11 +8,11 @@ Dans le cadre du programme européen [Alcotra](https://www.interreg-alcotra.eu/f
 
 Afin d'apporter une valeur ajoutée à ce projet, le Parc national souhaite travailler à partir de ce socle commun à la création d'un "schéma de données" concernant les itinéraires de randonnée. À terme, il est envisagé que ce schéma vienne enrichir les schémas disponibles sur le site https://schema.data.gouv.fr/, ce qui permettait de publier facilement des données standardisées et interopérables en open data, notamment sur le site data.gouv.fr.
 
-
+# Partie ci-dessous non mise à jour avec le JSON Schema
 
 ## Schéma
 
-Schéma au format [Table Schema](https://frictionlessdata.io/specs/table-schema) disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/schema.json).
+Schéma au format [JSON Schema](https://json-schema.org/) disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/schema.json).
 
 Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/exemple-valide.csv), le premier itinéraire ayant l'intégralité de ses champs remplis pour un exemple exhaustif.
 

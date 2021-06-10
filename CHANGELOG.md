@@ -2,6 +2,33 @@
 
 Ce fichier répertorie les changements entre différentes versions d'un schéma.
 
+## version 0.2.0 - (unrelease)
+
+Passage au format JSON Schema
+
+Champs modifiés :
+	- id_source : nom
+	• sources : nom, passage en chaîne de caractères
+	- pratique : ajout de valeurs
+	- type : nom, ajout de valeurs
+	- communes : passage en chaîne de caractères
+	• balisage : passage en chaîne de caractères
+	• difficulté : changement de la définition
+	- description_courte : presentation_courte
+	- description : presentation
+	- themes : passage en chaîne de caractères
+	- parking : passage en feature GeoJSON avec une propriété infos_parking, une géométrie
+	• medias : ajout d'une propriété type_media
+	- rando_parent : itineraire_parent
+	• type_sol : passage en chaîne de caractères
+
+Champs ajoutés :
+	- cotation : cotation technique (ex-difficulté)
+
+Champs supprimés :
+	- structure
+
+
 ## version 0.1.2 - (unrelease)
 
 Complétion des métadonnées

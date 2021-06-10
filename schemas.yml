@@ -1,0 +1,7 @@
+title: "Schéma des itinéraires de randonnée"
+description : "Spécification du fichier d'échange relatif aux itinéraires de randonnée"
+homepage: "https://github.com/PnX-SI/schema-randonnee"
+schemas:
+  -
+    path: "schema.json"
+    title: "Schéma principal"

@@ -1,218 +1,186 @@
 {
-   "$schema":"https://specs.frictionlessdata.io/schemas/table-schema.json",
-   "name":"randonnee",
-   "title":"Schéma des itinéraires de randonnée",
-   "description":"Spécification du fichier d'échange relatif aux itinéraires de randonnée.",
-   "keywords":[
+  "$id": "https://github.com/PnX-SI/schema_randonnee/raw/v0.2.0/schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schéma des itinéraires de randonnée",
+  "description": "Spécification du fichier d'échange relatif aux itinéraires de randonnée",
+  "type": "object",
+  "keywords":[
       "randonnées",
       "geotrek",
       "etalab",
       "rando"
    ],
-   "countryCode":"FR",
-   "homepage":"https://github.com/PnX-SI/schema-randonnee",
-   "path":"https://github.com/PnX-SI/schema_randonnee/raw/v0.1.2/schema.json",
-   "image":"",
-   "licenses":[
+  "countryCode":"FR",
+  "homepage":"https://github.com/PnX-SI/schema-randonnee",
+  "licenses":[
+    {
+      "title":"Etalab Licence Ouverte 2.0",
+      "name":"etalab-2.0",
+      "path":"https://spdx.org/licenses/etalab-2.0.html"
+    }
+  ],
+  "resources":[
+    {
+      "title":"Fichier valide (JSON)",
+      "name":"exemple-valide.json",
+      "path":"https://github.com/PnX-SI/schema_randonnee/raw/v0.2.0/exemple-valide.json"
+    }
+  ],
+  "sources":[
       {
-         "title":"Etalab Licence Ouverte 2.0",
-         "name":"etalab-2.0",
-         "path":"https://spdx.org/licenses/etalab-2.0.html"
+         "title":"GeoJSON Schema",
+         "path":"https://github.com/geojson/schema"
       }
    ],
-   "resources":[
-      {
-         "title":"Fichier valide (CSV)",
-         "name":"exemple-valide.csv",
-         "path":"https://github.com/PnX-SI/schema_randonnee/raw/v0.1.2/exemple-valide.csv"
-      }
-   ],
-   "sources":[
-      {
-         "title":"",
-         "path":""
-      }
-   ],
-   "created":"2021-04-08",
-   "lastModified":"2021-04-23",
-   "version":"0.1.2",
-   "contributors":[
-      {
-         "title":"Idrissa Djepa Creutz",
-         "email":"idrissa.djepa@cevennes-parcnational.fr",
-         "organisation":"Parc National des Cévennes",
-         "role":"author"
+  "created":"2021-04-08",
+  "lastModified":"2021-06-08",
+  "version":"0.2.0",
+  "$defs": {
+    "GeoJSON_LineString" : {
+      "$id": "linestring",
+      "$ref": "https://geojson.org/schema/LineString.json"
+    },
+    "GeoJSON_Point" : {
+      "$id": "point",
+      "$ref": "https://geojson.org/schema/Point.json"
+    },
+    "GeoJSON_MultiLineString" : {
+      "$id": "multilinestring",
+      "$ref": "https://geojson.org/schema/MultiLineString.json"
+    },
+    "properties_randonnee" : {
+      "$id": "properties_randonnee",
+      "type": "object",
+      "required": [
+        "eid",
+        "proprietaire",
+        "nom_itineraire",
+        "pratique",
+        "depart",
+        "arrivee",
+        "instructions"
+      ],
+      "properties": {
+        "eid": {
+         "type":"integer",
+         "title":"Identifiant de l’objet dans sa BDD source",
+         "examples":[37037]
       },
-      {
-         "title":"Cendrine Hoarau",
-         "email":"cendrine.hoarau@ecrins-parcnational.fr",
-         "organisation":"Parc National des Écrins",
-         "role":"contributor"
-      }
-   ],
-   "fields":[
-      {
-         "name":"id_source",
-         "description":"Identifiant de l’objet dans sa BDD source",
-         "example":"37037",
+      "proprietaire": {
          "type":"string",
-         "constraints":{
-            "required":true
-         }
+         "title":"Structure(s) productrice(s) de l'itinéraire",
+         "examples":[
+         "Parc national des Cévennes",
+         "Parc national des Ecrins, Communauté d'Agglomération Gap-Tallard-Durance"
+         ]
       },
-      {
-         "name":"structure",
-         "description":"Structure productrice du jeu de données",
-         "example":{"nom" : "Parc National des Cévennes", "contact" : "contact@cevennes-parcnational.fr"},
-         "type":"object",
-         "properties":{
-            "nom": {
-               "type":"string"
-            },
-            "contact":{
-               "type":"string"
-            }
-         }
-         ,
-         "constraints":{
-            "required":true
-         }
-      },
-      {
-         "name":"sources",
-         "description":"Nom des sources originelles de la randonnée, peut être similaire à la structure productrice du jeu de données",
-         "example":[{"nom" : "Parc National des Cévennes", "contact" : "contact@cevennes-parcnational.fr"}, {"nom" : "CC des Cévennes", "contact" : "www.CCdesCevennes.fr"}],
-         "type":"array",
-         "items":{
-            "type":"object",
-            "properties":{
-               "nom": {
-                  "type":"string"
-               },
-               "contact":{
-                  "type":"string"
-               }
-            }
-         },
-         "constraints":{
-            "required":true
-         }
-      },
-      {
-         "name":"url",
-         "description":"URL de la fiche source de la randonnée",
-         "example":"https://destination.cevennes-parcnational.fr/sentiers-de-decouverte/mas-cevenol-de-la-roquette/",
+      "contact": {
          "type":"string",
-         "format":"uri"
+         "format":"email",
+         "title":"Contact de la structure publicatrice du jeu de données",
+         "examples":["contact@cevennes-parcnational.fr"]
       },
-      {
-         "name":"uuid",
-         "description":"Identifiant unique généré par la BDD source",
-         "example":"123e4567-e89b-12d3-a456-426614174000",
+      "uuid": {
          "type":"string",
-         "format":"uuid"
+         "format":"uuid",
+         "title":"Identifiant unique généré par la BDD source",
+         "examples":["123e4567-e89b-12d3-a456-426614174000"]
       },
-      {
-         "name":"nom",
-         "description":"Nom de la randonnée",
-         "example":"Mas cévenol de la Roquette",
+      "url": {
          "type":"string",
-         "constraints":{
-            "required":true
+         "format":"uri",
+         "title":"URL de la fiche source de l'itinéraire",
+         "examples": ["https://destination.cevennes-parcnational.fr/sentiers-de-decouverte/mas-cevenol-de-la-roquette/"]
+      },
+      "id_osm": {
+         "type":"integer",
+         "title":"Identifiant de la relation OSM correspondante",
+         "examples":[1913426]
+      },
+      "nom_itineraire": {
+         "type":"string",
+         "title":"Nom de l'itinéraire",
+         "examples":["Mas cévenol de la Roquette"]
+      },
+      "pratique": {
+         "type":"string",
+         "title":"Pratique de l'itinéraire",
+         "enum":[
+            "pédestre",
+            "trail",
+            "VTT",
+            "cyclo",
+            "gravel",
+            "équestre",
+            "ski de fond",
+            "ski de rando",
+            "raquettes",
+            "autre"
+         ],
+         "examples":["pédestre"]
          }
       },
-      {
-         "name":"pratique",
-         "description":"Pratique de la randonnée",
-         "example":"pedestre",
+      "type_itineraire": {
          "type":"string",
-         "constraints":{
-            "required":true,
-             "enum":[
-                    "pedestre",
-                    "VTT",
-                    "equestre",
-                    "ski",
-                    "velo",
-                    "raquettes",
-                    "autre"
-                ]
-         }
+         "title":"Type d'itinéraire",
+         "description":"Selon que l'itinéraire ait le même point de départ ou d'arrivée, que le chemin de retour soit le même que celui de l'aller, ou que l'itinéraire soit une itinérance ou part d'une itinérance",
+         "enum": [
+            "aller-retour",
+            "boucle",
+            "aller simple",
+            "itinérance",
+            "étape"
+         ],
+         "examples":["boucle"]
       },
-      {
-         "name":"type",
-         "description":"Type de randonnée",
-         "example":"boucle",
+      "communes": {
          "type":"string",
-         "constraints":{
-               "enum": ["aller-retour",
-                        "boucle",
-                        "aller simple"]
-         }
+         "title":"Liste des communes traversées par la randonnée",
+         "examples":["Molezon, Florac, Cocurès"]
       },
-      {
-         "name":"communes",
-         "description":"Liste des communes traversées par la randonnée",
-         "example":[{"nom": "Molezon", "code_INSEE": "48098"}],
-         "type":"array",
-         "items":{
-         	"type":"object",
-         	"properties":{
-         		"nom": {
-         			"type":"string"
-         		},
-         		"code_INSEE":{
-         			"type":"integer"
-         		}
-         	}
-         }
-      },
-      {
-         "name":"depart",
-         "description":"Nom du point de départ",
-         "example":"Parking du sentier",
+      "depart": {
          "type":"string",
-         "constraints":{
-               "required":true
-         }
+         "title":"Nom du point de départ",
+         "examples":"Devant l'office de tourisme de Florac"
       },
-      {
-         "name":"arrivee",
-         "description":"Nom du point d'arrivée",
-         "example":"Parking du sentier",
+      "arrivee": {
          "type":"string",
-         "constraints":{
-               "required":true
-         }
+         "title":"Nom du point d'arrivée'",
+         "examples":"Devant l'office de tourisme de Florac"
       },
-      {
-         "name":"duree",
-         "description":"Durée de la randonnée en heures",
-         "example":"2",
-         "type":"number"
+      "duree": {
+         "type":"integer",
+         "title":"Durée de la randonnée en heures",
+         "examples":[2]
       },
-      {
-         "name":"balisage",
-         "description":"Balisage utilisé sur le trajet de la randonnée",
-         "example":"GR",
-         "type":"array",
-         "items":{
-            "type":"string"
-         }
-      },
-      {
-         "name":"longueur",
-         "description":"Longueur de la randonnée (en km)",
-         "example":"2,3",
-         "type":"number"
-      },
-      {
-         "name":"difficulte",
-         "description":"Difficulté de la randonnée (échelles Club Alpin Suisse pour randonnée, ski de randonnée et raquettes, échelle FFC pour VTT)",
-         "example":"T1",
+      "balisage": {
          "type":"string",
-         "constraints":{
-               "enum": ["T1",
+         "title":"Balisage(s) utilisé(s) sur l'itinéraire",
+         "examples":[
+            "GR, GRP, PNC",
+            "VTT rouge"
+         ]
+      },
+      "longueur": {
+         "type":"number",
+         "title":"Longueur de l'itinéraire (en mètres)",
+         "examples":[2300]
+      },
+      "difficulte": {
+         "type": "string",
+         "title": "Difficulté de l'itinéraire",
+         "description": "Selon l'échelle de la plateforme source des données, prend généralement en compte la longueur, le dénivelé et la cotation technique de l'itinéraire",
+         "examples": [
+            "Très facile",
+            "Difficile",
+            "Intermédiaire"
+         ]
+      },
+      "cotation": {
+         "type":"string",
+         "title":"Cotation technique de l'itinéraire",
+         "description":"Généralement égale à la cotation du segment le plus difficile de l'itinéraire (échelles Club Alpin Suisse pour randonnée, ski de randonnée et raquettes, échelle FFC pour VTT)",
+         "enum": ["T1",
                         "T2",
                         "T3",
                         "T4",
@@ -236,161 +204,224 @@
                         "rouge",
                         "noir",
                         "double noir"
-                    ]
-         }
+                    ],
+         "examples":[
+            "T1",
+            "AD",
+            "WT6"
+         ]
       },
-      {
-         "name":"altitude_max",
-         "description":"Altitude maximum de la randonnée",
-         "example":"638",
-         "type":"integer"
+      "altitude_max": {
+         "type":"integer",
+         "title":"Altitude maximum de la randonnée (en mètres)",
+         "examples":[638]
       },
-      {
-         "name":"altitude_min",
-         "description":"Altitude minimum de la randonnée",
-         "example":"504",
-         "type":"integer"
+      "altitude_min": {
+         "type":"integer",
+         "title":"Altitude minimum de la randonnée (en mètres)",
+         "examples":[504]
       },
-      {
-         "name":"denivele_positif",
-         "description":"Dénivelé positif de la randonnée",
-         "example":"159",
-         "type":"integer"
+      "denivele_positif": {
+         "type":"integer",
+         "title":"Dénivelé positif de la randonnée (en mètres)",
+         "examples":[159]
       },
-      {
-         "name":"denivele_negatif",
-         "description":"Dénivelé négatif de la randonnée",
-         "example":"159",
-         "type":"integer"
+       "denivele_negatif": {
+         "type":"integer",
+         "title":"Dénivelé négatif de la randonnée (en mètres)",
+         "examples":[159]
       },
-      {
-         "name":"description_courte",
-         "description":"Description courte ou résumé de la randonnée",
-         "example":"Ce sentier, niché au creux d'une vallée au charme préservé, est idéal pour imaginer le passé et mieux comprendre la vie d'aujourd'hui en Cévennes.",
-         "type":"string"
-      },
-      {
-         "name":"description",
-         "description":"Description complète de la randonnée",
-         "example":"Ce sentier permet de découvrir un vallon à l’écart des grands axes de circulation, très évocateur de l’ambiance particulière des hautes vallées cévenoles du versant méditerranéen. Du moulin jusqu'à l'ensemble des habitations à mi-versant, le sentier grimpe à l'ombre des chênes verts et des châtaigniers, dans la fraîcheur du valat. Cette promenade est l'occasion de comprendre comment les Cévenols ont géré et valorisé cet environnement. De l'art de bâtir aux aménagements hydrauliques, toutes les composantes de l'organisation traditionnelle de l'espace sont évoquées dans un site au caractère préservé.",
+      "instructions": {
          "type":"string",
-         "constraints":{
-         	"required":true
-         }
+         "title":"Instructions de direction",
+         "examples":["Au parking, prendre la route sur 300 m pour trouver la première balise. Après la balise numéro 2, quitter la route à gauche par le sentier étroit, pouvant être glissant après la pluie"]
       },
-      {
-         "name":"instructions",
-         "description":"Instructions de direction",
-         "example":"Au parking, prendre la route sur 300 m pour trouver la première balise. Après la balise numéro 2, quitter la route à gauche par le sentier étroit, pouvant être glissant après la pluie",
-         "type":"string"
-      },
-      {
-         "name":"themes",
-         "description":"Thèmes ou mots-clefs caractérisant la randonnée",
-         "example":["Architecture et village", "Causses et Cévennes / UNESCO", "Eau et géologie"],
-         "type":"array",
-         "items":{
-         	"type":"string"
-         }
-      },
-      {
-         "name":"recommandations",
-         "description":"Recommandations sur la randonnée",
-         "example":"En été, sentier à réaliser de préférence le matin. Passages glissants par temps pluvieux. L’itinéraire que vous allez suivre chemine à travers plusieurs propriétés privées. Ne vous écartez pas de l’itinéraire balisé. Sa mise à disposition repose sur votre discrétion. Les randonnées équestre et à VTT ne sont pas autorisées ou adaptées sur les sentiers d'interprétation.",
-         "type":"string"
-      },
-      {
-         "name":"accessibilite",
-         "description":"Accessibilité à des publics particuliers de la randonnée",
-         "example":"Aménagements PMR",
-         "type":"string"
-      },
-      {
-         "name":"acces_routier",
-         "description":"Informations sur les accès routiers",
-         "example":"D 983 jusqu'à Pont-Ravagers, (à 12 km de Barre-des-Cévennes et 2 km de Sainte-Croix-Vallée-Française). À Pont-Ravagers, prendre la voie communale (panneau route étroite et sinueuse) qui mène au hameau de Trabassac. Environ 10 minutes de voiture depuis Pont-Ravagers",
-         "type":"string"
-      },
-      {
-         "name":"transports",
-         "description":"Informations sur les accès en transports en commun",
-         "example":"Navettes en juillet et août depuis tel village, informations sur le site de l'Office du Tourisme",
-         "type":"string"
-      },
-      {
-         "name":"geometrie",
-         "description":"Tracé de la randonnée (format WKT, EPSG 4326)",
-         "example": "LINESTRING(3.71568895931237 44.2221955840876,3.71590329676163 44.2220681578736,3.71765827068152 44.2223708488798,3.71758183100601 44.222364147371,3.71749669883111 44.2222638884575,3.71629404039805 44.2202986436412,3.71629908753532 44.22089720061,3.71613326781367 44.2211476197451,3.71597963668485 44.2212728403412,3.71576792446636 44.221258918367,3.7158932799072 44.2207772489425)",
+      "presentation": {
          "type":"string",
-         "constraints":{
-            "required":true,
-            "pattern": ".+(STRING).+|.*(POLYGON).+"
-         }
+         "title":"Présentation de l'itinéraire",
+         "examples":["Ce sentier permet de découvrir un vallon à l’écart des grands axes de circulation, très évocateur de l’ambiance particulière des hautes vallées cévenoles du versant méditerranéen. Du moulin jusqu'à l'ensemble des habitations à mi-versant, le sentier grimpe à l'ombre des chênes verts et des châtaigniers, dans la fraîcheur du valat. Cette promenade est l'occasion de comprendre comment les Cévenols ont géré et valorisé cet environnement. De l'art de bâtir aux aménagements hydrauliques, toutes les composantes de l'organisation traditionnelle de l'espace sont évoquées dans un site au caractère préservé."]
       },
-      {
-         "name":"parking",
-         "description":"Informations sur le parking",
-         "example":"Parking du sentier, sur la voie communale qui mène de Pont-Ravagers à Trabassac ",
-         "type":"string"
-      },
-      {
-         "name":"geometrie_parking",
-         "description":"Coordonnées du parking (point au format WKT), EPSG 4326",
-         "example": "POINT(3.71589826143115 44.2207464775723)",
+      "presentation_courte": {
          "type":"string",
-         "constraints":{
-            "pattern": ".*(POINT).+"
+         "title":"Présentation courte de l'itinéraire",
+         "examples":["Ce sentier, niché au creux d'une vallée au charme préservé, est idéal pour imaginer le passé et mieux comprendre la vie d'aujourd'hui en Cévennes."]
+      }, 
+      "themes": {
+         "type":"string",
+         "title":"Thèmes ou mots-clefs caractérisant la randonnée",
+         "examples":[
+            "Architecture et village, Causses et Cévennes / UNESCO",
+            "Eau et géologie"
+         ]
+      },
+      "recommandations": {
+         "type":"string",
+         "title":"Recommandations sur la randonnée",
+         "examples":["En été, sentier à réaliser de préférence le matin. Passages glissants par temps pluvieux. L’itinéraire que vous allez suivre chemine à travers plusieurs propriétés privées. Ne vous écartez pas de l’itinéraire balisé. Sa mise à disposition repose sur votre discrétion. Les randonnées équestre et à VTT ne sont pas autorisées ou adaptées sur les sentiers d'interprétation."]
+      },
+      "accessibilite": {
+         "type":"string",
+         "title":"Accessibilité à des publics particuliers de la randonnée",
+         "examples":["Aménagements PMR"]
+      },
+      "acces_routier": {
+         "type":"string",
+         "title":"Informations sur les accès routiers",
+         "examples":["D 983 jusqu'à Pont-Ravagers, (à 12 km de Barre-des-Cévennes et 2 km de Sainte-Croix-Vallée-Française). À Pont-Ravagers, prendre la voie communale (panneau route étroite et sinueuse) qui mène au hameau de Trabassac. Environ 10 minutes de voiture depuis Pont-Ravagers"]
+      },
+      "transports_commun": {
+         "type":"string",
+         "title":"Informations sur les accès en transports en commun",
+         "examples":["Navettes en juillet et août depuis tel village, informations sur le site de l'Office du Tourisme"]
+      },
+      "parking": {
+         "type":"object",
+         "required": [
+            "type",
+            "properties",
+            "geometry"],
+         "properties": {
+            "type": {
+               "type": "string",
+               "enum": [
+                  "Feature"
+               ]
+            },
+            "properties": {
+               "infos_parking": {
+                  "type":"string",
+                  "title":"Informations sur le parking",
+                  "examples":["Parking du sentier, sur la voie communale qui mène de Pont-Ravagers à Trabassac"]
+               }
+            },
+            "geometry": {
+               "$ref": "point"
+            }
          }
       },
-      {
-         "name":"date_creation",
-         "description":"Date de création de la randonnée dans sa BDD source (AAAA-MM-JJ)",
-         "example":"2015-09-24",
-         "type":"date"
+      "date_creation": {
+         "type": "string",
+         "format":"date",
+         "title":"Date de création de l'itinéraire dans sa BDD source (AAAA-MM-JJ)",
+         "examples":["2015-09-24"],
+         "pattern":"[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])"
       },
-      {
-         "name":"date_modification",
-         "description":"Date de dernière modification de la randonnée dans sa BDD source (AAAA-MM-JJ)",
-         "example":"2018-06-18",
-         "type":"date"
+      "date_modification": {
+         "type":"string",
+         "format":"date",
+         "title":"Date de dernière modification de l'itinéraire dans sa BDD source (AAAA-MM-JJ)",
+         "examples":"2018-06-18",
+         "pattern":"[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])"
       },
-      {
-         "name":"medias",
-         "description":"Liste des médias associés à la randonnée",
-         "example": [{"url":"paperclip/trekking_trek/37037/08664.jpg", "titre":"La Roquette", "auteur":"© Olivier Prohin", "licence":"propriétaire"}, {"url":"paperclip/trekking_trek/37037/img_4832_sf.jpg", "titre":"Mas Chaptal, La Roquette", "auteur":"© Sandrine Forge", "licence":"propriétaire"}],
-         "type":"array",
-         "items":{
-         	"type":"object",
-         	"properties":{
-         		"url": {
-         			"type":"uri"
-         		},
-         		"titre":{
-         			"type":"string"
-         		},
-         		"auteur":{
-         			"type":"string"
-         		},
-         		"licence":{
-         			"type":"string"
-         		}
-         	}
+      "medias": {
+         "type": "object",
+         "properties": {
+            "type_media": {
+               "type":"string",
+               "title":"Type de média",
+               "enum":[
+                  "image",
+                  "video",
+                  "texte",
+                  "audio",
+                  "pdf",
+                  "autre"
+               ],
+               "examples":["audio"]
+            },
+            "url": {
+               "type":"string",
+               "title":"URL du média (absolue ou relative)",
+               "examples":["paperclip/trekking_trek/37037/08664.jpg"]
+            },
+            "titre": {
+               "type":"string",
+               "title":"Titre du média",
+               "examples":["La Roquette"]
+            },
+            "auteur": {
+               "type":"string",
+               "title":"Auteur du média",
+               "examples":["© Olivier Prohin"]
+            },
+            "licence": {
+               "type":"string",
+               "title":"Licence d'utilisation du média",
+               "examples":[
+                  "Propriétaire",
+                  "CC-BY-ND",
+                  null
+               ]
+            }
+
          }
       },
-      {
-         "name":"rando_parent",
-         "description":"id_source dans la BDD source de l'éventuel itinéraire de randonnée parent de l'itinéraire présent",
-         "example":"256",
-         "type":"string"
+      "itineraire_parent": {
+         "type":"integer",
+         "title":"eid de l'itinéraire parent dans sa BDD source",
+         "description":"Dans le cadre d'une itinérance, l'itinéraire parent est celui qui contient les itinéraires enfants, ou étapes",
+         "examples":[256]
       },
-      {
-         "name":"type_sol",
-         "description":"Types de sol sur lesquels se parcourt la randonnée",
-         "example":["Sente 40cm", "Piste 2.5m"],
-         "type":"array",
-         "items":{
-            "type":"string"
-         }
+      "type_sol": {
+         "type":"string",
+         "title":"Types de sol sur lesquels se parcourt l'itinéraire",
+         "examples":["bitume, terre"]
+      }  
+    }
+  },
+  "required": [
+    "type",
+    "features"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "FeatureCollection"
+      ]
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "title": "GeoJSON Feature",
+        "type": "object",
+        "required": [
+          "type",
+          "properties",
+          "geometry"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Feature"
+            ]
+          },
+          "properties": {
+            "$ref": "properties_randonnee"
+          },
+          "geometry": {
+            "oneOf": [
+              { "$ref": "linestring" },
+              { "$ref": "multilinestring" }
+            ]
+          },
+          "bbox": {
+            "type": "array",
+            "minItems": 4,
+            "items": {
+              "type": "number"
+            }
+          }
+        }
       }
-   ]
+    },
+    "bbox": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "number"
+      }
+    }
+  }
 }

@@ -1,5 +1,0 @@
-USER=""
-PASSWORD=""
-DB_HOST=""
-PORT=""
-DB=""
