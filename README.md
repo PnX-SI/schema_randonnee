@@ -14,7 +14,7 @@ Afin d'apporter une valeur ajoutée à ce projet, le Parc national souhaite trav
 
 Schéma au format [JSON Schema](https://json-schema.org/) disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/schema.json).
 
-Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/exemple-valide.csv), le premier itinéraire ayant l'intégralité de ses champs remplis pour un exemple exhaustif.
+Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/exemple-valide.csv). Le premier itinéraire a l'intégralité de ses champs remplis en guise d'exemple exhaustif.
 
 Un modèle de donnée csv est diponible, ainsi qu'une requête SQL de création d'une table conforme au schéma.
 
