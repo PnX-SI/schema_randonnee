@@ -2,48 +2,48 @@
 
 Ce fichier répertorie les changements entre différentes versions d'un schéma.
 
-## version 0.2.0 - (unrelease)
+## version 0.2.0 - (unreleased)
 
 Passage au format JSON Schema
 
 Champs modifiés :
-	- id_source : nom
-	• sources : nom, passage en chaîne de caractères
-	- pratique : ajout de valeurs
-	- type : nom, ajout de valeurs
-	- communes : passage en chaîne de caractères
-	• balisage : passage en chaîne de caractères
-	• difficulté : changement de la définition
-	- description_courte : presentation_courte
-	- description : presentation
-	- themes : passage en chaîne de caractères
-	- parking : passage en feature GeoJSON avec une propriété infos_parking, une géométrie
-	• medias : ajout d'une propriété type_media
-	- rando_parent : itineraire_parent
-	• type_sol : passage en chaîne de caractères
+- id_source : nom
+- sources : nom, passage en chaîne de caractères
+- pratique : ajout de valeurs
+- type : nom, ajout de valeurs
+- communes : passage en chaîne de caractères
+- balisage : passage en chaîne de caractères
+- difficulté : changement de la définition
+- description_courte : presentation_courte
+- description : presentation
+- themes : passage en chaîne de caractères
+- parking : passage en feature GeoJSON avec une propriété infos_parking, une géométrie
+- medias : ajout d'une propriété type_media
+- rando_parent : itineraire_parent
+- type_sol : passage en chaîne de caractères
 
 Champs ajoutés :
-	- cotation : cotation technique (ex-difficulté)
+- cotation : cotation technique (ex-difficulté)
 
 Champs supprimés :
-	- structure
+- structure
 
 
-## version 0.1.2 - (unrelease)
+## version 0.1.2 - (unreleased)
 
 Complétion des métadonnées
 
 Champs modifiés :
-	• sources : passage en array
-	• balisage : changement de la définition
-	• difficulté : complétion de l'échelle
-	• geometrie : passage en WKT
-	• geometrie_parking : passage en WKT
+- sources : passage en array
+- balisage : changement de la définition
+- difficulté : complétion de l'échelle
+- geometrie : passage en WKT
+- geometrie_parking : passage en WKT
 
 Champs ajoutés :
-	• instructions : ancien champ balisage
-	• type_sol : array des types de sol de la randonnée
+- instructions : ancien champ balisage
+- type_sol : array des types de sol de la randonnée
 
-## Version 0.1.1 - (unrelease)
+## Version 0.1.1 - (unreleased)
 
 Publication initiale.
