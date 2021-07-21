@@ -2,6 +2,13 @@
 
 Ce fichier répertorie les changements entre différentes versions d'un schéma.
 
+## version 0.2.1 - (unreleased)
+
+Correction du JSON Schema :
+- ajout des `"type": "null"` pour les champs non obligatoires
+- correction de `"oneOf": [{"$ref": "point"},"null"` en `"oneOf": [{"$ref": "point"},{"type": "null"}`
+- déplacement d'une accolade qui excluait la majorité des champs de l'objet `properties_randonnee`
+
 ## version 0.2.0 - (unreleased)
 
 Passage au format JSON Schema
