@@ -11,6 +11,8 @@ jobs:
   validate_json:
     runs-on: ubuntu-latest
     steps:
+      - name: checking out repo
+        uses: actions/checkout@v2
       - name: build the schema and validate the data
         uses: idrissad/jsonschema_validator@v1.0
         id: validation
