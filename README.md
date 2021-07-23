@@ -12,24 +12,44 @@ Afin d'apporter une valeur ajoutée à ce projet, le Parc national souhaite trav
 
 ## Schéma
 
-Schéma au format [JSON Schema](https://json-schema.org/), version `[draft-07](https://json-schema.org/specification-links.html#draft-7)` disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/schema.json).
+Schéma au format [JSON Schema](https://json-schema.org/), version `[draft-07](https://json-schema.org/specification-links.html#draft-7)` disponible [ici](https://github.com/PnX-SI/schema_randonnee/raw/v0.3.0/schema.json).
 
-Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/exemple-valide.csv). Le premier itinéraire a l'intégralité de ses champs remplis en guise d'exemple exhaustif.
+Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/raw/v0.3.0/exemple-valide.json). Le premier itinéraire a l'intégralité de ses champs remplis en guise d'exemple exhaustif.
 
-Un modèle de donnée csv est diponible, ainsi qu'une requête SQL de création d'une table conforme au schéma.
+## Validateur
 
+Un script Node.js utilisant [ajv](https://ajv.js.org/) permet de valider le fichier `exemple-valide.json` contre le schéma `schema.json` tout en utilisant les schémas GeoJSON stockés dans `GeoJSON_schemas/`.
+
+### Prérequis
+
+- Node.js
+- npm
+
+### Commandes
+```
+npm install ajv
+npm install ajv-formats
+```
+
+`node ajv-validator.js`
+
+Output:
+`Valide !`
+
+### GitHub Action workflow
+
+Un workflow permet, en cas de fork du dépôt, d'effectuer un essai de validation à chaque modification de `schema.json` ou `exemple-valide.json` sur le dépôt.
+(Pas encore fonctionnel)
 
 ## Geotrek
 
 Le Parc national des Écrins et le Parc national des Cévennes, entre autres, utilisent l'application [Geotrek](https://github.com/GeotrekCE) pour gérer leurs itinéraires de randonnée et les publier sur leur site internet. Une vue PostgreSQL est disponible dans le dossier `SQL`, elle permet de formater des itinéraires issus de Geotrek pour qu'ils soient compatibles avec le schéma de données.
 
-De nombreuses clauses `CASE WHEN` sont spécifiques aux données du Parc national des Cévennes à partir desquelles cette vue a été créée. Des choix arbitraires ont été faits, par exemple pour la conversion de l'échelle de difficultés du parc dans les échelles de difficulté du schéma. Il est nécessaire d'adapter cette vue selon la construction des données Geotrek de votre structure.
+Il est nécessaire d'adapter cette vue selon la construction des données Geotrek de votre structure.
 
 Vue compatible avec `PostgreSQL 10.16` / `PostGIS 2.4` / `Geotrek-admin 2.??`
 
-Un script shell `export_geojson.sh` permet :
-
-* d'exporter les données de la vue `v_treks_schema` au format GeoJSON avec `ogr2ogr v??`
+Un script shell `SQL/export_geojson.sh` permet d'exporter les données de la vue `SQL/v_treks_schema.sql` au format GeoJSON avec `ogr2ogr v ??`
 
 
 
