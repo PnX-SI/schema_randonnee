@@ -14,7 +14,7 @@ jobs:
       - name: checking out repo
         uses: actions/checkout@v2
       - name: build the schema and validate the data
-        uses: idrissad/jsonschema_validator@v1.0
+        uses: idrissad/jsonschema_validator@main
         id: validation
         with:
           main_schema_path: /home/runner/work/schema_randonnee/schema_randonnee/schema.json
