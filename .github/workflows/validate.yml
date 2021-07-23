@@ -18,7 +18,7 @@ jobs:
         id: validation
         with:
           main_schema_path: schema.json
-          additional_schemas_path: GeoJSON_schemas
+          additional_schemas_path: GeoJSON_schemas/
           data_path: exemple-valide.json
       - name: print the results
         run: echo "${{ steps.validation.outputs.validity }}"
