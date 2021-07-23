@@ -27,13 +27,15 @@
 			    		"coordinates": [973032, 6409775]
 			    	}
 			    },
-				"medias": {
-					"type_media": "image",
-			        "url":"paperclip/trekking_trek/37037/image.jpg",
-			        "titre":"La Roquette",
-			        "auteur":"John Doe",
-			        "licence":"CC-BY-ND"
-			    }
+				"medias": [
+					{
+						"type_media": "image",
+				        "url":"paperclip/trekking_trek/37037/image.jpg",
+				        "titre":"La Roquette",
+				        "auteur":"John Doe",
+				        "licence":"CC-BY-ND"
+			    	}
+				]
 			},
 			"geometry": {
 				"type": "LineString",
