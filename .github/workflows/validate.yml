@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'schema.json'
-      - 'data.json'
+      - 'exemple-valide.json'
 
 jobs:
   validate_json:
