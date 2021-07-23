@@ -16,7 +16,7 @@
 			    "pratique":"pédestre",
 			    "depart":"Office de tourisme de Molezon",
 			    "arrivee":"Office de tourisme de Molezon",
-			    "instructions":"Prendre la première à gauche et la cinquième à droite",
+			    "instructions":"Prendre la première à gauche puis la cinquième à droite",
 			    "parking": {
 			    	"type": "Feature",
 			    	"properties": {
