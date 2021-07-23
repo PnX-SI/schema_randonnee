@@ -15,8 +15,8 @@ jobs:
         uses: idrissad/jsonschema_validator@v1.0
         id: validation
         with:
-          main_schema_path: /../../schema.json
-          additional_schemas_path: /../../GeoJSON_schemas/
-          data_path: /../../exemple-valide.json
+          main_schema_path: schema.json
+          additional_schemas_path: GeoJSON_schemas/
+          data_path: exemple-valide.json
       - name: print the results
         run: echo "${{ steps.validation.outputs.validity }}"
