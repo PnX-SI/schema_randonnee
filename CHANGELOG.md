@@ -2,6 +2,10 @@
 
 Ce fichier répertorie les changements entre différentes versions d'un schéma.
 
+## version 0.3.0 - (unreleased)
+
+Rétrogradation du schéma en version `[draft-07](https://json-schema.org/specification-links.html#draft-7)`
+
 ## version 0.2.1 - (unreleased)
 
 Correction du JSON Schema :

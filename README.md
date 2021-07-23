@@ -12,7 +12,7 @@ Afin d'apporter une valeur ajoutée à ce projet, le Parc national souhaite trav
 
 ## Schéma
 
-Schéma au format [JSON Schema](https://json-schema.org/) disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/schema.json).
+Schéma au format [JSON Schema](https://json-schema.org/), version `[draft-07](https://json-schema.org/specification-links.html#draft-7)` disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/schema.json).
 
 Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/blob/master/exemple-valide.csv). Le premier itinéraire a l'intégralité de ses champs remplis en guise d'exemple exhaustif.
 
@@ -27,11 +27,9 @@ De nombreuses clauses `CASE WHEN` sont spécifiques aux données du Parc nationa
 
 Vue compatible avec `PostgreSQL 10.16` / `PostGIS 2.4` / `Geotrek-admin 2.??`
 
-Un script shell `export_csv.sh` permet :
+Un script shell `export_geojson.sh` permet :
 
-* d'exporter les données de la vue `v_treks_schema` au format CSV avec `csvkit 1.0.5`
-* de tester la validité du schéma présent dans le dossier avec `frictionlessdata`
-* de tester la conformité du fichier csv produit avec `frictionlessdata`
+* d'exporter les données de la vue `v_treks_schema` au format GeoJSON avec `ogr2ogr v??`
 
 
 
