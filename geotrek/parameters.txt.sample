@@ -1,0 +1,9 @@
+# Connexion à la base
+DB_HOST=monhote
+USER=monuser
+DB=mabase
+PASSWORD=monpass
+PORT=5432
+
+# Chemin d'export
+EXPORT_PATH=.
