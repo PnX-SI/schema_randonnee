@@ -1,6 +1,6 @@
-const schema_path = './schema.json'
-const schemas_path = './GeoJSON_schemas/'
-const data_path = './exemple-valide.json'
+const schema_path = '../schema.json'
+const schemas_path = '../GeoJSON_schemas/'
+const data_path = '../exemple-valide.json'
 
 const Ajv = require("ajv");
 const addFormats = require("ajv-formats");
@@ -23,5 +23,5 @@ test(require(data_path));
 function test(data) {
   const valid = validate(data);
   if (valid) console.log("Valide !")
-    else console.log("Invalide : " + ajv.errorsText(validate.errors))
+    else console.log("Invalide :\n" + ajv.errorsText(validate.errors, {separator: "\n"}))
 };

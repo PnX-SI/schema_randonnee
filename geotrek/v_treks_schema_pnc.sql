@@ -1,4 +1,4 @@
--- compatibilités : Schéma de données 0.3.0 / PostgreSQL 12 / PostGIS 2.4.3 / unaccent 1.1 / Geotrek-admin 2.62.0 / Geotrek-rando 2.30.1-ux
+-- compatibilités : Schéma de données 0.3.1 / PostgreSQL 10.17 / PostGIS 2.4.3 / unaccent 1.1 / Geotrek-admin 2.62.0
 
 -- CREATE EXTENSION IF NOT EXISTS unaccent;
 
@@ -9,12 +9,13 @@ WITH
     selected_t AS (
         SELECT *
         FROM trekking_trek t
-        WHERE t.published IS TRUE
+        WHERE t.published IS TRUE AND t."name" !~~ '%®%' -- filtrage des données copyrightées (FFR)
     ),
     sources AS (
         SELECT string_agg(c_1."name", ',')::text AS liste, t_1.trek_id -- création d'une chaîne de caractère de toutes les sources de l'itinéraire
         FROM common_recordsource c_1, trekking_trek_source t_1
         WHERE t_1.recordsource_id = c_1.id
+        AND c_1."name"::text !~~ '%randonnée pédestre%'::text -- filtrage des données dont la source est la FFR ou un de ses comités départementaux pour des raisons de droit
         GROUP BY t_1.trek_id
         ),
     handi AS (
@@ -39,7 +40,7 @@ WITH
                     ('type_media',
                         CASE
                             WHEN c_1.is_image IS TRUE THEN 'image'
-                            WHEN f."type" IN ('Vidéo', 'Audio') THEN lower(f."type")
+                            WHEN f."type" IN ('Vidéo', 'Audio') THEN unaccent(lower(f."type"))
                             WHEN c_1.attachment_file ILIKE '%.pdf' THEN 'pdf'
                             ELSE 'autre'
                         END,
@@ -76,16 +77,22 @@ WITH
 SELECT
     t.topo_object_id AS eid,
     string_agg(ats."name", ',') AS proprietaire,
-    NULL AS contact, -- adresse mail à renseigner
-    NULL AS uuid, -- pas d'uuid prévu dans Geotrek
-    -- construction de l'url valable pour Geotrek-rando V2
-    'https://urlduportailgeotrekrando/' || lower(unaccent(replace(tp.practice_name, ' ', '-'))) || '/'
+    'contact@cevennes-parcnational.fr' AS contact,
+    NULL::text AS uuid, -- pas d'uuid prévu dans Geotrek
+    'https://destination.cevennes-parcnational.fr/' || lower(unaccent(replace(tp.practice_name, ' ', '-'))) || '/'
     || lower(unaccent(replace(btrim(regexp_replace(t."name", '[^\w -]', '', 'g')), ' ', '-'))) || '/' AS url,
-    -- pour Geotrek-rando V3, essayer quelque chose comme : 'urlportail/trek/' || 't.topo_object_id' || '-' || unaccent(regexp_replace(btrim(regexp_replace(t."name", '[^- ()\w]', '', 'g')), '\W', '-'))  (non essayé)
-    NULL AS id_osm,
+    NULL::integer AS id_osm,
     t."name" AS nom_itineraire,
-    tp.practice_name AS pratique, -- uniquement valable si vos noms de pratiques correspondent déjà au schéma, sinon passer par quelque chose comme : CASE WHEN tp.practice_name ILIKE 'Randonnée Trail' THEN 'trail'::text END AS pratique
-    lower(route.route::text) AS type_itineraire,
+    CASE
+        WHEN tp.practice_name ILIKE 'Randonnée Trail' THEN 'trail'::text
+        WHEN tp.cirkwi_name ILIKE 'Marche' THEN 'pédestre'::text
+        WHEN tp.cirkwi_name ILIKE 'Cheval' THEN 'équestre'::text
+        WHEN tp.cirkwi_name ILIKE 'Vtt' THEN 'VTT'::text
+    END AS pratique,
+    CASE
+        WHEN route.route ILIKE 'Équestre' THEN 'boucle'::text
+        ELSE lower(route.route::text)
+    END AS type_itineraire,
     c.liste_noms::text AS communes_nom,
     c.liste_codes::text AS communes_code,
     btrim(t.departure) AS depart,
@@ -94,7 +101,19 @@ SELECT
     balisage.b::text AS balisage,
     top.length::integer AS longueur,
     difficulty.difficulty AS difficulte,
-    NULL AS cotation,
+    CASE -- choix de conversion de l'échelle de difficulté du PNC dans les échelles du CAS, de la FFC et de la FFVélo, à adapter à chaque structure
+        WHEN balisage.b::text ~~* '%VTT noir%' THEN 'noir'
+        WHEN balisage.b::text ~~* '%VTT rouge%' THEN 'rouge'
+        WHEN balisage.b::text ~~* '%VTT bleu%' THEN 'bleu'
+        WHEN balisage.b::text ~~* '%VTT vert%' THEN 'vert'
+        WHEN route.route ~~* 'Équestre' THEN ''
+        WHEN tp.practice_name ~~* 'Rando à VTT' AND difficulty.difficulty ~~* 'Très difficile' THEN 'noir'::text
+        WHEN tp.practice_name ~~* 'Rando à VTT' AND difficulty.difficulty ~~* ANY (ARRAY['Difficile', 'Moyen']) THEN 'rouge'::text
+        WHEN tp.practice_name ~~* 'Rando à VTT' AND difficulty.difficulty ~~* 'Facile' THEN 'bleu'::text
+        WHEN tp.practice_name ~~* 'Rando à VTT' AND difficulty.difficulty ~~* 'Très facile' THEN 'vert'::text
+        WHEN tp.cirkwi_name ~~* 'Marche' THEN 'T1'::text
+        ELSE NULL
+    END AS cotation,
     top.max_elevation AS altitude_max,
     top.min_elevation AS altitude_min,
     top.ascent AS denivele_positif,
@@ -107,7 +126,7 @@ SELECT
     handi.liste::text AS accessibilite,
     t.access AS acces_routier,
     t.public_transport AS transports,
-    jsonb_build_object( -- construction de l'objet GeoJSON parking, avec une géométrie correspondant au champ t.parking_location et une propriété infos_parking correspondant au champ t.advised_parking
+    jsonb_build_object(
         'type',       'Feature',
         'properties', jsonb_build_object('infos_parking', advised_parking),
         'geometry',   ST_AsGeoJSON(st_snaptogrid(st_transform(parking_location, 4326), 0.000027::double precision))::jsonb    
@@ -132,7 +151,7 @@ LEFT JOIN themes ON t.topo_object_id = themes.trek_id
 LEFT JOIN medias ON t.topo_object_id = medias.object_id
 LEFT JOIN balisage ON t.topo_object_id = balisage.trek_id
 LEFT JOIN sol ON t.topo_object_id = sol.topo_object_id
-LEFT JOIN LATERAL ( -- construction des listes des noms de commune et des codes INSEE
+LEFT JOIN LATERAL (
     SELECT string_agg(z."name", ',') AS liste_noms, string_agg(z.code, ',') AS liste_codes, c_1.id
     FROM core_topology c_1
     JOIN zoning_city z ON t.topo_object_id = c_1.id AND st_intersects(c_1.geom, z.geom)

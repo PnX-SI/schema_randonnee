@@ -1,6 +1,6 @@
 # Schéma itinéraires de randonnées
 
-Ce schéma permet de modéliser les itinéraires de randonnées afin de favoriser les échanges de données entre structures productrices et utilisatrices (communautés de communes, parcs naturels, départements...).
+Ce schéma permet de modéliser les itinéraires de randonnées afin de favoriser les échanges de données entre structures productrices et utilisatrices (communautés de communes, parcs naturels, départements...)
 
 ## Contexte
 
@@ -8,13 +8,12 @@ Dans le cadre du programme européen [Alcotra](https://www.interreg-alcotra.eu/f
 
 Afin d'apporter une valeur ajoutée à ce projet, le Parc national souhaite travailler à partir de ce socle commun à la création d'un "schéma de données" concernant les itinéraires de randonnée. À terme, il est envisagé que ce schéma vienne enrichir les schémas disponibles sur le site https://schema.data.gouv.fr/, ce qui permettait de publier facilement des données standardisées et interopérables en open data, notamment sur le site data.gouv.fr.
 
-# Partie ci-dessous non mise à jour avec le JSON Schema
 
 ## Schéma
 
-Schéma au format [JSON Schema](https://json-schema.org/), version `[draft-07](https://json-schema.org/specification-links.html#draft-7)` disponible [ici](https://github.com/PnX-SI/schema_randonnee/raw/v0.3.0/schema.json).
+Schéma au format [JSON Schema](https://json-schema.org/), version [`draft-07`](https://json-schema.org/specification-links.html#draft-7) disponible [ici](https://github.com/PnX-SI/schema_randonnee/raw/v0.3.1/schema.json).
 
-Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/raw/v0.3.0/exemple-valide.json). Le premier itinéraire a l'intégralité de ses champs remplis en guise d'exemple exhaustif.
+Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/raw/v0.3.1/exemple-valide.json). L'intégralité des champs du premier itinéraire sont renseignés en guise d'exemple exhaustif.
 
 ## Validateur
 
@@ -22,8 +21,8 @@ Un script Node.js utilisant [ajv](https://ajv.js.org/) permet de valider le fich
 
 ### Prérequis
 
-- Node.js
-- npm
+- `Node.js 16.5.0`
+- `npm 7.20.1`
 
 ### Commandes
 ```
@@ -31,25 +30,32 @@ npm install ajv
 npm install ajv-formats
 ```
 
-`node ajv-validator.js`
-
+```
+cd local_validator
+node ajv.js
+```
 Output:
 `Valide !`
 
 ### GitHub Action workflow
 
-Un workflow permet, en cas de fork du dépôt, d'effectuer un essai de validation à chaque modification de `schema.json` ou `exemple-valide.json` sur le dépôt.
-(Pas encore fonctionnel)
+Un workflow permet, par exemple en cas de fork du dépôt, d'effectuer un essai de validation à chaque push de `schema.json` ou `exemple-valide.geojson`.
 
 ## Geotrek
 
-Le Parc national des Écrins et le Parc national des Cévennes, entre autres, utilisent l'application [Geotrek](https://github.com/GeotrekCE) pour gérer leurs itinéraires de randonnée et les publier sur leur site internet. Une vue PostgreSQL est disponible dans le dossier `SQL`, elle permet de formater des itinéraires issus de Geotrek pour qu'ils soient compatibles avec le schéma de données.
+Le Parc national des Écrins et le Parc national des Cévennes, entre autres, utilisent l'application [Geotrek](https://github.com/GeotrekCE) pour gérer leurs itinéraires de randonnée et les publier sur leur site internet. Une vue PostgreSQL est disponible dans le dossier `geotrek`, elle permet de formater des itinéraires issus de Geotrek pour qu'ils soient directement compatibles avec le schéma de données.
 
 Il est nécessaire d'adapter cette vue selon la construction des données Geotrek de votre structure.
 
-Vue compatible avec `PostgreSQL 10.16` / `PostGIS 2.4` / `Geotrek-admin 2.??`
+Vue compatible avec `PostgreSQL 10.17` / `PostGIS 2.4.3` / `unaccent 1.1` / `Geotrek-admin 2.62.0`
 
-Un script shell `SQL/export_geojson.sh` permet d'exporter les données de la vue `SQL/v_treks_schema.sql` au format GeoJSON avec `ogr2ogr v ??`
+Un script shell `geotrek/export_geojson.sh` permet d'exporter les données de la vue `geotrek/v_treks_schema.sql` au format GeoJSON avec `ogr2ogr (GDAL v2.2.3)`.
+
+Pour des tests de validité plus fluides des données exportées de Geotrek, l'exécution du script `geotrek/test.sh` permet :
+- l'exécution de `geotrek/export_geojson.sh`
+- la copie du fichier `treks.geojson` produit dans le dossier racine
+- son renommage en `exemple-valide.json`
+- l'exécution du script `local_validator/ajv.js` et l'affichage du résultat dans la console.
 
 
 

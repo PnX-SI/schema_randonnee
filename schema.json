@@ -101,7 +101,7 @@
           ]
         },
         "id_osm": {
-          "type": "integer",
+          "type": ["integer", "null"],
           "title": "Identifiant de la relation OSM correspondante",
           "examples": [
             1913426
@@ -177,7 +177,7 @@
         ]
       },
       "duree": {
-        "type": "integer",
+        "type": "number",
         "title": "Durée de l'itinéraire en heures",
         "examples": [
           2
@@ -236,7 +236,8 @@
           "bleu",
           "rouge",
           "noir",
-          "double noir"
+          "double noir",
+          ""
         ],
         "examples": [
           "T1",
@@ -383,7 +384,7 @@
         "pattern": "[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])"
       },
       "medias": {
-        "type": "array",
+        "type": ["array", "null"],
         "items": {
           "type": "object",
           "properties": {
@@ -436,7 +437,7 @@
         }
       },
       "itineraire_parent": {
-        "type": "integer",
+        "type": ["integer", "null"],
         "title": "eid de l'itinéraire parent dans sa BDD source",
         "description": "Dans le cadre d'une itinérance, l'itinéraire parent est celui qui contient les itinéraires enfants, ou étapes",
         "examples": [
