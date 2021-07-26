@@ -5,7 +5,6 @@ on:
     paths:
       - 'schema.json'
       - 'exemple-valide.json'
-      - 'validate.yml'
 
 jobs:
   validate_json:
