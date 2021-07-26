@@ -2,6 +2,13 @@
 
 Ce fichier répertorie les changements entre différentes versions d'un schéma.
 
+## version 0.3.1 - (unreleased)
+
+Correction du JSON Schema :
+- duree : passage de `"integer"` à `"number"`
+- itineraire_parent : ajout de `"type": "null"`
+- cotation : ajout valeur `""`
+
 ## version 0.3.0 - (unreleased)
 
 Rétrogradation du schéma en version `[draft-07](https://json-schema.org/specification-links.html#draft-7)`
