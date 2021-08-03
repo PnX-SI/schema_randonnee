@@ -16,5 +16,5 @@ bash export_geojson.sh
 cp ${EXPORT_PATH}/treks.geojson treks.json
 
 # Lancement du validateur
-cd ../local_validator
+cd ../local_validator/
 node ajv.js

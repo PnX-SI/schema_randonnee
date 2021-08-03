@@ -1,4 +1,5 @@
 geotrek/parameters.txt
 geotrek/treks.json
+geotrek/treks.geojson
 
 node_modules

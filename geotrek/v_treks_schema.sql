@@ -117,6 +117,8 @@ SELECT
     medias.liste AS medias,
     parent.parent_id AS itineraire_parent,
     sol.liste::text AS type_sol,
+    NULL::boolean AS pdipr_inscription,
+    NULL::text AS pdipr_date_inscription,
     -- réduction de la précision des coordonnées à 5 décimales, simplification de la géométrie pour réduire le nombre de points. Poids de la géométrie divisé par 7.5
     st_simplifypreservetopology(st_snaptogrid(st_transform(top.geom, 4326), 0.000027::double precision), 0.000027::double precision) AS geom
 FROM selected_t t
