@@ -11,13 +11,13 @@ Afin d'apporter une valeur ajoutée à ce projet, le Parc national souhaite trav
 
 ## Schéma
 
-Schéma au format [JSON Schema](https://json-schema.org/), version [`draft-07`](https://json-schema.org/specification-links.html#draft-7) disponible [ici](https://github.com/PnX-SI/schema_randonnee/raw/v0.3.1/schema.json).
+Schéma au format [JSON Schema](https://json-schema.org/), version [`draft-07`](https://json-schema.org/specification-links.html#draft-7) disponible [ici](https://github.com/PnX-SI/schema_randonnee/raw/v1.0.0/schema.json).
 
-Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/raw/v0.3.1/exemple-valide.json). L'intégralité des champs du premier itinéraire sont renseignés en guise d'exemple exhaustif.
+Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://github.com/PnX-SI/schema_randonnee/raw/v1.0.0/exemple-valide.json). L'intégralité des champs du premier itinéraire sont renseignés en guise d'exemple exhaustif.
 
 ## Validateur
 
-Un script Node.js utilisant [ajv](https://ajv.js.org/) permet de valider le fichier `exemple-valide.json` contre le schéma `schema.json` tout en utilisant les schémas GeoJSON stockés dans `GeoJSON_schemas/`.
+Un script Node.js utilisant [ajv](https://ajv.js.org/) permet de valider le fichier `itineraires_rando.json` (à produire) contre le schéma `schema.json` tout en utilisant les schémas GeoJSON stockés dans `GeoJSON_schemas/`.
 
 ### Prérequis
 
@@ -51,11 +51,10 @@ Vue compatible avec `PostgreSQL 10.17` / `PostGIS 2.4.3` / `unaccent 1.1` / `Geo
 
 Un script shell `geotrek/export_geojson.sh` permet d'exporter les données de la vue `geotrek/v_treks_schema.sql` au format GeoJSON avec `ogr2ogr (GDAL v2.2.3)`.
 
-Pour des tests de validité plus fluides des données exportées de Geotrek, l'exécution du script `geotrek/test.sh` permet :
+Pour des tests de validité plus fluides des données exportées de Geotrek, l'exécution du script `geotrek/export_and_validate.sh` permet :
 - l'exécution de `geotrek/export_geojson.sh`
-- la copie du fichier `treks.geojson` produit dans le dossier racine
-- son renommage en `exemple-valide.json`
-- l'exécution du script `local_validator/ajv.js` et l'affichage du résultat dans la console.
+- la copie du fichier `itineraires_rando.geojson` et son renommage en `itineraires_rando.json`
+- l'exécution du script `local_validator/ajv.js` sur `itineraires_rando.json` et l'affichage du résultat dans la console.
 
 
 

@@ -1,6 +1,6 @@
 const schema_path = '../schema.json'
 const schemas_path = '../GeoJSON_schemas/'
-const data_path = '../geotrek/treks.json'
+const data_path = '../itineraires_rando.json'
 
 const Ajv = require("ajv");
 const addFormats = require("ajv-formats");

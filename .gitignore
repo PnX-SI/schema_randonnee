@@ -1,5 +1,5 @@
 geotrek/parameters.txt
-geotrek/treks.json
-geotrek/treks.geojson
+itineraires_rando.json
+geotrek/itineraires_rando.geojson
 
 node_modules

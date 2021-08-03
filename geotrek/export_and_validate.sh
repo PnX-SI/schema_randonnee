@@ -13,7 +13,7 @@ bash export_geojson.sh
 # Validation des données exportées
 
 # Changement d'exension en json car geojson n'est pas reconnu par ajv
-cp ${EXPORT_PATH}/treks.geojson treks.json
+cp ${EXPORT_PATH}/itineraires_rando.geojson ../itineraires_rando.json
 
 # Lancement du validateur
 cd ../local_validator/
