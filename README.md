@@ -17,7 +17,7 @@ Un fichier d'exemple valide avec 10 randonnées est disponible [ici](https://git
 
 ## Validateur
 
-Un script Node.js utilisant [ajv](https://ajv.js.org/) permet de valider le fichier `itineraires_rando.json` (à produire) contre le schéma `schema.json` tout en utilisant les schémas GeoJSON stockés dans `GeoJSON_schemas/`.
+Un script Node.js utilisant [ajv](https://ajv.js.org/) permet de valider le fichier `itineraires_rando.json` (à produire) contre le schéma `schema.json` tout en utilisant les schémas GeoJSON stockés dans `GeoJSON_schemas/`. Le validateur ne fonctionne pas avec les extensions `.geojson`, mais un simple changement d'extension en `.json` suffit.
 
 ### Prérequis
 
