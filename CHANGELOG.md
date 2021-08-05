@@ -2,6 +2,19 @@
 
 Ce fichier répertorie les changements entre différentes versions d'un schéma.
 
+## version 1.0.0
+Correction du JSON Schema :
+- itineraire_parent : type integer à string
+- parking : aplatissement de l'objet en deux parking_info et parking_geometrie (format WKT)
+- medias[url] : changement de l'exemple, ajout format uri et required
+- plusieurs champs : ajout de descriptions, changement de titres 
+- plusieurs champs : ajout de type "null" possible
+- eid : changement nom pour id_local et type int à string
+- cotation : champ supprimé
+- instructions : modification du titre
+- pdipr_inscription : ajout
+- pdipr_date_inscription : ajout
+
 ## version 0.3.1 - (unreleased)
 
 Correction du JSON Schema :
