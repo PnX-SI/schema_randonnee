@@ -17,4 +17,4 @@ cp ${EXPORT_PATH}/itineraires_rando.geojson ../itineraires_rando.json
 
 # Lancement du validateur
 cd ../local_validator/
-node ajv.js
+node validate_data_with_ajv
