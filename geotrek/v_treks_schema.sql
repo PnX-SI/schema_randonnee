@@ -1,4 +1,4 @@
--- compatibilités : Schéma de données 0.3.1 / PostgreSQL 10.17 / PostGIS 2.4.3 / unaccent 1.1 / Geotrek-admin 2.62.0
+-- compatibilités : Schéma de données 1.0.0 / PostgreSQL 10.17 / PostGIS 2.4.3 / unaccent 1.1 / Geotrek-admin 2.62.0
 
 -- CREATE EXTENSION IF NOT EXISTS unaccent;
 
