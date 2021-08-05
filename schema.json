@@ -306,7 +306,7 @@
         "parking_geometrie": {
           "type": ["string", "null"],
           "title": "Localisation du parking",
-          "description": "Coordonnées géographiques du parking au format WKT",
+          "description": "Coordonnées géographiques du parking au format WKT avec une projection EPSG:4326 (wgs84)",
           "examples": [
             "POINT(3.71589, 44.22073)"
           ]
@@ -387,11 +387,11 @@
           }
         },
         "itineraire_parent": {
-          "type": ["integer", "null"],
+          "type": ["string", "null"],
           "title": "id_local de l'itinéraire parent dans sa BDD source",
           "description": "Dans le cadre d'une itinérance, l'itinéraire parent est celui qui contient les itinéraires enfants, ou étapes",
           "examples": [
-            256
+            "256"
           ]
         },
         "type_sol": {
