@@ -6,6 +6,13 @@ DROP VIEW IF EXISTS v_treks_schema;
 
 CREATE VIEW v_treks_schema AS
 WITH
+    constants AS (
+        SELECT
+            'https://urlduportailgeotrekrando/' AS url_rando,
+            'https://urlduportailgeotrekadmin/' AS url_admin,
+            'contact@structure.fr' AS contact,
+            'CC-BY-SA-ND' AS default_licence
+    ),
     selected_t AS (
         SELECT *
         FROM trekking_trek t
@@ -43,10 +50,14 @@ WITH
                             WHEN c_1.attachment_file ILIKE '%.pdf' THEN 'pdf'
                             ELSE 'autre'
                         END,
-                    'url', c_1.attachment_file,
+                    'url', COALESCE(
+                        (SELECT url_admin FROM constants LIMIT 1) || '/media/' || NULLIF(c_1.attachment_file, ''),
+                        NULLIF(c_1.attachment_link, ''),
+                        c_1.attachment_video
+                    ),
                     'titre', c_1.legende,
                     'auteur', c_1.auteur,
-                    'licence', '')
+                    'licence', (SELECT default_licence FROM constants LIMIT 1))
                 )
             ) AS liste
         FROM trekking_trek t
@@ -74,12 +85,12 @@ WITH
         LEFT JOIN cirkwi_cirkwilocomotion cirkwi ON cirkwi.id = practice.cirkwi_id
         )
 SELECT
-    t.topo_object_id AS eid,
+    t.topo_object_id::varchar(250) AS id_local,
     string_agg(ats."name", ',') AS proprietaire,
-    NULL AS contact, -- adresse mail à renseigner
+    (SELECT contact FROM constants LIMIT 1) AS contact, -- adresse mail à renseigner dans les constantes
     NULL AS uuid, -- pas d'uuid prévu dans Geotrek
     -- construction de l'url valable pour Geotrek-rando V2
-    'https://urlduportailgeotrekrando/' || lower(unaccent(replace(tp.practice_name, ' ', '-'))) || '/'
+    (SELECT url_rando FROM constants LIMIT 1) || lower(unaccent(replace(tp.practice_name, ' ', '-'))) || '/'
     || lower(unaccent(replace(btrim(regexp_replace(t."name", '[^\w -]', '', 'g')), ' ', '-'))) || '/' AS url,
     -- pour Geotrek-rando V3, essayer quelque chose comme : 'urlportail/trek/' || 't.topo_object_id' || '-' || unaccent(regexp_replace(btrim(regexp_replace(t."name", '[^- ()\w]', '', 'g')), '\W', '-'))  (non essayé)
     NULL AS id_osm,
@@ -107,15 +118,12 @@ SELECT
     handi.liste::text AS accessibilite,
     t.access AS acces_routier,
     t.public_transport AS transports,
-    jsonb_build_object( -- construction de l'objet GeoJSON parking, avec une géométrie correspondant au champ t.parking_location et une propriété infos_parking correspondant au champ t.advised_parking
-        'type',       'Feature',
-        'properties', jsonb_build_object('infos_parking', advised_parking),
-        'geometry',   ST_AsGeoJSON(st_snaptogrid(st_transform(parking_location, 4326), 0.000027::double precision))::jsonb    
-        ) AS parking,
+    advised_parking AS parking_info,
+    ST_AsText(st_snaptogrid(st_transform(parking_location, 4326), 0.000027::double precision)) AS parking_geometrie,
     date(top.date_insert)::text AS date_creation,
     date(top.date_update)::text AS date_modification,
     medias.liste AS medias,
-    parent.parent_id AS itineraire_parent,
+    parent.parent_id::varchar AS itineraire_parent,
     sol.liste::text AS type_sol,
     NULL::boolean AS pdipr_inscription,
     NULL::text AS pdipr_date_inscription,
