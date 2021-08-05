@@ -52,7 +52,7 @@
       "$id": "properties_randonnee",
       "type": "object",
       "required": [
-        "eid",
+        "id_local",
         "proprietaire",
         "nom_itineraire",
         "pratique",
@@ -61,7 +61,7 @@
         "instructions"
       ],
       "properties": {
-        "eid": {
+        "id_local": {
           "type": "integer",
           "title": "Identifiant de l’objet dans sa BDD source",
           "examples": [
@@ -401,7 +401,7 @@
         },
         "itineraire_parent": {
           "type": ["integer", "null"],
-          "title": "eid de l'itinéraire parent dans sa BDD source",
+          "title": "id_local de l'itinéraire parent dans sa BDD source",
           "description": "Dans le cadre d'une itinérance, l'itinéraire parent est celui qui contient les itinéraires enfants, ou étapes",
           "examples": [
             256
