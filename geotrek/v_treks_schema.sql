@@ -1,4 +1,4 @@
--- compatibilités : Schéma de données 1.0.0 / PostgreSQL 10.17 / PostGIS 2.4.3 / unaccent 1.1 / Geotrek-admin 2.62.0
+-- testé avec : Schéma de données 1.0.0 / PostgreSQL 10.17 / PostGIS 2.4.3 / unaccent 1.1 / Geotrek-admin 2.62.0
 
 -- CREATE EXTENSION IF NOT EXISTS unaccent;
 
@@ -19,7 +19,7 @@ WITH
         WHERE t.published IS TRUE
     ),
     sources AS (
-        SELECT string_agg(c_1."name", ',')::text AS liste, t_1.trek_id -- création d'une chaîne de caractère de toutes les sources de l'itinéraire
+        SELECT string_agg(c_1."name", ',')::text AS noms_source, t_1.trek_id -- création d'une chaîne de caractère de toutes les sources de l'itinéraire
         FROM common_recordsource c_1, trekking_trek_source t_1
         WHERE t_1.recordsource_id = c_1.id
         GROUP BY t_1.trek_id
@@ -86,7 +86,7 @@ WITH
         )
 SELECT
     t.topo_object_id::varchar(250) AS id_local,
-    string_agg(ats."name", ',') AS proprietaire,
+    sources.noms_source AS proprietaire,
     (SELECT contact FROM constants LIMIT 1) AS contact, -- adresse mail à renseigner dans les constantes
     NULL AS uuid, -- pas d'uuid prévu dans Geotrek
     -- construction de l'url valable pour Geotrek-rando V2
@@ -105,7 +105,6 @@ SELECT
     balisage.b::text AS balisage,
     top.length::integer AS longueur,
     difficulty.difficulty AS difficulte,
-    NULL AS cotation,
     top.max_elevation AS altitude_max,
     top.min_elevation AS altitude_min,
     top.ascent AS denivele_positif,
@@ -132,7 +131,6 @@ SELECT
 FROM selected_t t
 LEFT JOIN core_topology top ON t.topo_object_id = top.id
 LEFT JOIN sources ON t.topo_object_id = sources.trek_id
-LEFT JOIN authent_structure ats ON ats.id = t.structure_id
 LEFT JOIN tp ON tp.id = t.practice_id
 LEFT JOIN trekking_route route ON t.route_id = route.id
 LEFT JOIN trekking_difficultylevel difficulty ON difficulty.id = t.difficulty_id
@@ -147,9 +145,4 @@ LEFT JOIN LATERAL ( -- construction des listes des noms de commune et des codes 
     FROM core_topology c_1
     JOIN zoning_city z ON t.topo_object_id = c_1.id AND st_intersects(c_1.geom, z.geom)
     GROUP BY c_1.id
-    ) c ON true
-GROUP BY t.topo_object_id, t."name", tp.practice_name, tp.cirkwi_name, route.route, c.liste_noms, c.liste_codes,
-t.departure, t.arrival, t.duration, balisage.b, top.length, difficulty.difficulty,
-top.max_elevation, top.min_elevation, top.ascent, top.descent, t.description, t.ambiance,
-t.description_teaser, themes.liste, handi.liste, t.advice, t."access", t.public_transport, medias.liste,
-t.parking_location, t.advised_parking, top.date_insert, top.date_update, parent.parent_id, sol.liste, top.geom;
+    ) c ON true;
