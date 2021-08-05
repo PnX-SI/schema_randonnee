@@ -32,14 +32,14 @@ npm install ajv-formats
 
 ```
 cd local_validator
-node ajv.js
+node validate_data_with_ajv.js
 ```
 Output:
-`Valide !`
+`Fichier de données valide !`
 
 ### GitHub Action workflow
 
-Un workflow permet, par exemple en cas de fork du dépôt, d'effectuer un essai de validation à chaque push de `schema.json` ou `exemple-valide.geojson`.
+Un workflow permet, par exemple en cas de fork du dépôt, d'effectuer un essai de validation à chaque push de `schema.json` ou `exemple-valide.json`.
 
 ## Geotrek
 
@@ -47,14 +47,14 @@ Le Parc national des Écrins et le Parc national des Cévennes, entre autres, ut
 
 Il est nécessaire d'adapter cette vue selon la construction des données Geotrek de votre structure.
 
-Vue compatible avec `PostgreSQL 10.17` / `PostGIS 2.4.3` / `unaccent 1.1` / `Geotrek-admin 2.62.0`
+Vue testée avec `PostgreSQL 10.17` / `PostGIS 2.4.3` / `unaccent 1.1` / `Geotrek-admin 2.62.0`
 
 Un script shell `geotrek/export_geojson.sh` permet d'exporter les données de la vue `geotrek/v_treks_schema.sql` au format GeoJSON avec `ogr2ogr (GDAL v2.2.3)`.
 
 Pour des tests de validité plus fluides des données exportées de Geotrek, l'exécution du script `geotrek/export_and_validate.sh` permet :
 - l'exécution de `geotrek/export_geojson.sh`
 - la copie du fichier `itineraires_rando.geojson` et son renommage en `itineraires_rando.json`
-- l'exécution du script `local_validator/ajv.js` sur `itineraires_rando.json` et l'affichage du résultat dans la console.
+- l'exécution du script `local_validator/validate_data_with_ajv.js` sur `itineraires_rando.json` et l'affichage du résultat dans la console.
 
 
 
