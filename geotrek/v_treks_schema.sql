@@ -46,7 +46,7 @@ WITH
                     ('type_media',
                         CASE
                             WHEN c_1.is_image IS TRUE THEN 'image'
-                            WHEN f."type" IN ('Vidéo', 'Audio') THEN lower(f."type")
+                            WHEN f."type" IN ('Vidéo', 'Audio') THEN unaccent(lower(f."type"))
                             WHEN c_1.attachment_file ILIKE '%.pdf' THEN 'pdf'
                             ELSE 'autre'
                         END,
@@ -129,9 +129,9 @@ SELECT
     -- réduction de la précision des coordonnées à 5 décimales, simplification de la géométrie pour réduire le nombre de points. Poids de la géométrie divisé par 7.5
     st_simplifypreservetopology(st_snaptogrid(st_transform(top.geom, 4326), 0.000027::double precision), 0.000027::double precision) AS geom
 FROM selected_t t
-LEFT JOIN core_topology top ON t.topo_object_id = top.id
-LEFT JOIN sources ON t.topo_object_id = sources.trek_id
-LEFT JOIN tp ON tp.id = t.practice_id
+JOIN core_topology top ON t.topo_object_id = top.id
+JOIN sources ON t.topo_object_id = sources.trek_id
+JOIN tp ON tp.id = t.practice_id
 LEFT JOIN trekking_route route ON t.route_id = route.id
 LEFT JOIN trekking_difficultylevel difficulty ON difficulty.id = t.difficulty_id
 LEFT JOIN handi ON t.topo_object_id = handi.trek_id
@@ -145,4 +145,5 @@ LEFT JOIN LATERAL ( -- construction des listes des noms de commune et des codes 
     FROM core_topology c_1
     JOIN zoning_city z ON t.topo_object_id = c_1.id AND st_intersects(c_1.geom, z.geom)
     GROUP BY c_1.id
-    ) c ON true;
+) c ON true;
+
