@@ -62,10 +62,10 @@
       ],
       "properties": {
         "id_local": {
-          "type": "integer",
+          "type": "string",
           "title": "Identifiant de l’objet dans sa BDD source",
           "examples": [
-            37037
+            "37037"
           ]
         },
         "proprietaire": {
@@ -87,7 +87,8 @@
         "uuid": {
           "type": ["string", "null"],
           "format": "uuid",
-          "title": "Identifiant unique généré par la BDD source",
+          "title": "Identifiant unique de type UUID",
+          "description": "Identifiant unique généré de préférence par la BDD source",
           "examples": [
             "123e4567-e89b-12d3-a456-426614174000"
           ]
@@ -136,7 +137,7 @@
         "type_itineraire": {
           "type": ["string", "null"],
           "title": "Type d'itinéraire",
-          "description": "Selon que l'itinéraire ait le même point de départ ou d'arrivée, que le chemin de retour soit le même que celui de l'aller, ou que l'itinéraire soit une itinérance ou part d'une itinérance",
+          "description": "Défini en fonction des points de départ et d'arrivée de l'itinéraire.",
           "enum": [
             "aller-retour",
             "boucle",
@@ -177,7 +178,7 @@
           ]
         },
         "duree": {
-          "type": "number",
+          "type": ["number", "null"],
           "title": "Durée de l'itinéraire en heures",
           "examples": [
             2
@@ -192,7 +193,7 @@
           ]
         },
         "longueur": {
-          "type": "number",
+          "type": ["number", "null"],
           "title": "Longueur de l'itinéraire (en mètres)",
           "examples": [
             2300
@@ -209,28 +210,28 @@
           ]
         },
         "altitude_max": {
-          "type": "integer",
+          "type": ["integer", "null"],
           "title": "Altitude maximum de l'itinéraire (en mètres)",
           "examples": [
             638
           ]
         },
         "altitude_min": {
-          "type": "integer",
+          "type": ["integer", "null"],
           "title": "Altitude minimum de l'itinéraire (en mètres)",
           "examples": [
             504
           ]
         },
         "denivele_positif": {
-          "type": "integer",
+          "type": ["integer", "null"],
           "title": "Dénivelé positif de l'itinéraire (en mètres)",
           "examples": [
             159
           ]
         },
         "denivele_negatif": {
-          "type": "integer",
+          "type": ["integer", "null"],
           "title": "Dénivelé négatif de l'itinéraire (en mètres)",
           "examples": [
             159
@@ -238,21 +239,22 @@
         },
         "instructions": {
           "type": "string",
-          "title": "Pas à pas, instructions de direction",
+          "title": "Description détaillée (pas à pas) du tracé de l'itinéraire",
           "examples": [
             "Au parking, prendre la route sur 300 m pour trouver la première balise. Après la balise numéro 2, quitter la route à gauche par le sentier étroit, pouvant être glissant après la pluie"
           ]
         },
         "presentation": {
           "type": ["string", "null"],
-          "title": "Présentation de l'itinéraire",
+          "title": "Présentation détaillée de l'itinéraire",
+          "description": "Description des particularités de l'itinéraire : paysages, patrimoines, ambiance...",
           "examples": [
             "Ce sentier permet de découvrir un vallon à l’écart des grands axes de circulation, très évocateur de l’ambiance particulière des hautes vallées cévenoles du versant méditerranéen. Du moulin jusqu'à l'ensemble des habitations à mi-versant, le sentier grimpe à l'ombre des chênes verts et des châtaigniers, dans la fraîcheur du valat. Cette promenade est l'occasion de comprendre comment les Cévenols ont géré et valorisé cet environnement. De l'art de bâtir aux aménagements hydrauliques, toutes les composantes de l'organisation traditionnelle de l'espace sont évoquées dans un site au caractère préservé."
           ]
         },
         "presentation_courte": {
           "type": ["string", "null"],
-          "title": "Présentation courte de l'itinéraire",
+          "title": "Présentation courte résumant l'itinéraire",
           "examples": [
             "Ce sentier, niché au creux d'une vallée au charme préservé, est idéal pour imaginer le passé et mieux comprendre la vie d'aujourd'hui en Cévennes."
           ]
@@ -268,6 +270,7 @@
         "recommandations": {
           "type": ["string", "null"],
           "title": "Recommandations sur l'itinéraire",
+          "description": "Information sur les passages difficiles, la sécurité, les points de vigilance et l'équipement nécessaire",
           "examples": [
             "En été, sentier à réaliser de préférence le matin. Passages glissants par temps pluvieux. L’itinéraire que vous allez suivre chemine à travers plusieurs propriétés privées. Ne vous écartez pas de l’itinéraire balisé. Sa mise à disposition repose sur votre discrétion. Les randonnées équestre et à VTT ne sont pas autorisées ou adaptées sur les sentiers d'interprétation."
           ]
@@ -293,40 +296,20 @@
             "Navettes en juillet et août depuis tel village, informations sur le site de l'Office du Tourisme"
           ]
         },
-        "parking": {
-          "type": "object",
-          "required": [
-            "type",
-            "properties",
-            "geometry"
-          ],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "Feature"
-              ]
-            },
-            "properties": {
-              "infos_parking": {
-                "type": ["string", "null"],
-                "title": "Informations sur le parking",
-                "examples": [
-                  "Parking du sentier, sur la voie communale qui mène de Pont-Ravagers à Trabassac"
-                ]
-              }
-            },
-            "geometry": {
-              "oneOf": [
-                {
-                  "$ref": "point"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            }
-          }
+       "parking_info": {
+          "type": ["string", "null"],
+          "title": "Informations sur le parking",
+          "examples": [
+            "Parking du sentier, sur la voie communale qui mène de Pont-Ravagers à Trabassac"
+          ]
+        },
+        "parking_geometrie": {
+          "type": ["string", "null"],
+          "title": "Localisation du parking",
+          "description": "Coordonnées géographiques du parking au format WKT",
+          "examples": [
+            "POINT(3.71589, 44.22073)"
+          ]
         },
         "date_creation": {
           "type": ["string", "null"],
@@ -348,6 +331,9 @@
         },
         "medias": {
           "type": ["array", "null"],
+          "required": [
+            "url"
+          ],
           "items": {
             "type": "object",
             "properties": {
@@ -367,10 +353,11 @@
                 ]
               },
               "url": {
-                "type": ["string", "null"],
-                "title": "URL du média (absolue ou relative)",
+                "type": ["string"],
+                "format": "uri",
+                "title": "URL du média",
                 "examples": [
-                  "paperclip/trekking_trek/37037/08664.jpg"
+                  "https://geotrek-admin.cevennes-parcnational.net/media/paperclip/trekking_trek/37037/08664.jpg"
                 ]
               },
               "titre": {
