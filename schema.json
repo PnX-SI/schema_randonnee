@@ -40,10 +40,6 @@
       "$id": "linestring",
       "$ref": "https://geojson.org/schema/LineString.json"
     },
-    "GeoJSON_Point": {
-      "$id": "point",
-      "$ref": "https://geojson.org/schema/Point.json"
-    },
     "GeoJSON_MultiLineString": {
       "$id": "multilinestring",
       "$ref": "https://geojson.org/schema/MultiLineString.json"
