@@ -39,7 +39,7 @@ Output:
 
 ### GitHub Action workflow
 
-Un workflow permet, par exemple en cas de fork du dépôt, d'effectuer un essai de validation à chaque push de `schema.json` ou `exemple-valide.json`.
+Un workflow permet d'effectuer un essai de validation à chaque push de `schema.json` ou `exemple-valide.json`. C'est un dernier test qui assure de manière publique que la dernière version du schéma ou d'un exemple soient bien valides. Une GitHub Action a été créée pour l'occasion à partir du script de validation ajv, elle permet contrairement aux actions existantes de gérer des sous-schémas : [jsonschema_validator](https://github.com/pnx-si/jsonschema_validator).
 
 ## Geotrek
 
