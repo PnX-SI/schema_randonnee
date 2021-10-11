@@ -2,6 +2,9 @@
 
 Ce fichier répertorie les changements entre différentes versions d'un schéma.
 
+## version 1.0.2
+Changement du nom du schéma en "Itinéraires de randonnées"
+
 ## version 1.0.1
 Suppression du schéma externe `https://geojson.org/schema/Point.json`, plus utilisé depuis l'aplatissement de l'objet parking
 
