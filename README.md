@@ -8,7 +8,7 @@ Dans le cadre du programme européen [Alcotra](https://www.interreg-alcotra.eu/f
 
 Afin d'apporter une valeur ajoutée à ce projet, début 2021, le Parc national a proposé à différents acteurs de travailler à partir de ce socle commun à la création d'un "schéma de données" concernant les itinéraires de randonnée. Ce schéma vient enrichir les schémas disponibles sur le site [schema.data.gouv.fr](https://schema.data.gouv.fr), pour permettre de publier facilement des données standardisées et interopérables en open data, notamment sur le site [data.gouv.fr](https://data.gouv.fr).
 
-Les différents documents et compte-rendus des ateliers du groupe de travail sont disponibles dans le [dossier partagé](https://geotrek.ecrins-parcnational.fr/ressources/gt/10-schema-donnees-randonnees/).
+Les différents documents et compte-rendus des ateliers du groupe de travail sont disponibles dans son [dossier partagé](https://geotrek.ecrins-parcnational.fr/ressources/gt/10-schema-donnees-randonnees/).
 
 ## Périmètre
 
