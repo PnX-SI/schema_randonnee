@@ -3,7 +3,10 @@
 Ce fichier répertorie les changements entre différentes versions d'un schéma.
 
 ## version 1.0.2
-Changement du nom du schéma en "Itinéraires de randonnées"
+
+- Changement du nom du schéma en "Itinéraires de randonnées"
+- Changement du nom de la propriété `proprietaire` en `producteur`
+- Réorganisation de la documentation
 
 ## version 1.0.1
 Suppression du schéma externe `https://geojson.org/schema/Point.json`, plus utilisé depuis l'aplatissement de l'objet parking
@@ -13,7 +16,7 @@ Correction du JSON Schema :
 - itineraire_parent : type integer à string
 - parking : aplatissement de l'objet en deux parking_info et parking_geometrie (format WKT)
 - medias[url] : changement de l'exemple, ajout format uri et required
-- plusieurs champs : ajout de descriptions, changement de titres 
+- plusieurs champs : ajout de descriptions, changement de titres
 - plusieurs champs : ajout de type "null" possible
 - eid : changement nom pour id_local et type int à string
 - cotation : champ supprimé
