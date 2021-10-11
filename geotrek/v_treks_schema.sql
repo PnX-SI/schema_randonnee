@@ -86,7 +86,7 @@ WITH
         )
 SELECT
     t.topo_object_id::varchar(250) AS id_local,
-    sources.noms_source AS proprietaire,
+    sources.noms_source AS producteur,
     (SELECT contact FROM constants LIMIT 1) AS contact, -- adresse mail à renseigner dans les constantes
     NULL AS uuid, -- pas d'uuid prévu dans Geotrek
     -- construction de l'url valable pour Geotrek-rando V2
