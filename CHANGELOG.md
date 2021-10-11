@@ -6,6 +6,7 @@ Ce fichier répertorie les changements entre différentes versions d'un schéma.
 
 - Changement du nom du schéma en "Itinéraires de randonnées"
 - Changement du nom de la propriété `proprietaire` en `producteur`
+- Réorganisation de la documentation
 
 ## version 1.0.1
 Suppression du schéma externe `https://geojson.org/schema/Point.json`, plus utilisé depuis l'aplatissement de l'objet parking
