@@ -168,7 +168,7 @@
         },
         "arrivee": {
           "type": "string",
-          "title": "Nom du point d'arrivée'",
+          "title": "Nom du point d'arrivée",
           "examples": [
             "Devant l'office de tourisme de Florac"
           ]
