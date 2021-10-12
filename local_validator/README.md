@@ -9,17 +9,20 @@ Un script Node.js utilisant [ajv](https://ajv.js.org/) permet de valider le fich
 
 ### Commandes
 
+Pour une installation automatique en utilisant le fichier `package-lock.json`, exécuter la commande  `npm install` dans le dossier `local_validator`.
+
+Pour une installation manuelle :
 ```
 npm install ajv
 npm install ajv-formats
 ```
 
+Exécution du script :
 ```
-cd local_validator
 node validate_data_with_ajv.js
 ```
 
-Output:
+Sortie :
 
 `Fichier de données valide !`
 

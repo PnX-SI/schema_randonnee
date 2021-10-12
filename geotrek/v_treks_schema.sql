@@ -19,7 +19,7 @@ WITH
         WHERE t.published IS TRUE
     ),
     sources AS (
-        SELECT string_agg(c_1."name", ',')::text AS noms_source, t_1.trek_id -- création d'une chaîne de caractère de toutes les sources de l'itinéraire
+        SELECT string_agg(c_1."name", ',')::text AS noms_source, t_1.trek_id -- création d'une chaîne de caractères de toutes les sources de l'itinéraire
         FROM common_recordsource c_1, trekking_trek_source t_1
         WHERE t_1.recordsource_id = c_1.id
         GROUP BY t_1.trek_id
