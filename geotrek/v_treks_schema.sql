@@ -19,7 +19,7 @@ WITH
         WHERE t.published IS TRUE
     ),
     sources AS (
-        SELECT string_agg(c_1."name", ',')::text AS noms_source, t_1.trek_id -- création d'une chaîne de caractère de toutes les sources de l'itinéraire
+        SELECT string_agg(c_1."name", ',')::text AS noms_source, t_1.trek_id -- création d'une chaîne de caractères de toutes les sources de l'itinéraire
         FROM common_recordsource c_1, trekking_trek_source t_1
         WHERE t_1.recordsource_id = c_1.id
         GROUP BY t_1.trek_id
@@ -89,10 +89,11 @@ SELECT
     sources.noms_source AS producteur,
     (SELECT contact FROM constants LIMIT 1) AS contact, -- adresse mail à renseigner dans les constantes
     NULL AS uuid, -- pas d'uuid prévu dans Geotrek
-    -- construction de l'url valable pour Geotrek-rando V2
+    -- construction de l'url valable pour Geotrek-rando V2 (voir juste en-dessous pour l'url V3)
     (SELECT url_rando FROM constants LIMIT 1) || lower(unaccent(replace(tp.practice_name, ' ', '-'))) || '/'
     || lower(unaccent(replace(btrim(regexp_replace(t."name", '[^\w -]', '', 'g')), ' ', '-'))) || '/' AS url,
-    -- pour Geotrek-rando V3, essayer quelque chose comme : 'urlportail/trek/' || 't.topo_object_id' || '-' || unaccent(regexp_replace(btrim(regexp_replace(t."name", '[^- ()\w]', '', 'g')), '\W', '-'))  (non essayé)
+    -- construction de l'url valable pour Geotrek-rando V3 :
+    -- (SELECT url_rando FROM constants LIMIT 1) || 'trek/' || t.topo_object_id || '-' || unaccent(replace(btrim(regexp_replace(t."name", '[^\w -]', '', 'g')), ' ', '-')) AS url
     NULL AS id_osm,
     t."name" AS nom_itineraire,
     tp.practice_name AS pratique, -- uniquement valable si vos noms de pratiques correspondent déjà au schéma, sinon passer par quelque chose comme : CASE WHEN tp.practice_name ILIKE 'Randonnée Trail' THEN 'trail'::text END AS pratique
