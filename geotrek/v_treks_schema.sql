@@ -1,4 +1,4 @@
--- testé avec : Schéma de données 1.0.0 / PostgreSQL 10.17 / PostGIS 2.4.3 / unaccent 1.1 / Geotrek-admin 2.62.0
+-- testé avec : Schéma de données 1.0.2 / PostgreSQL 10.17 / PostGIS 2.4.3 / unaccent 1.1 / Geotrek-admin 2.62.0
 
 -- CREATE EXTENSION IF NOT EXISTS unaccent;
 
@@ -93,7 +93,7 @@ SELECT
     (SELECT url_rando FROM constants LIMIT 1) || lower(unaccent(replace(tp.practice_name, ' ', '-'))) || '/'
     || lower(unaccent(replace(btrim(regexp_replace(t."name", '[^\w -]', '', 'g')), ' ', '-'))) || '/' AS url,
     -- construction de l'url valable pour Geotrek-rando V3 :
-    -- (SELECT url_rando FROM constants LIMIT 1) || 'trek/' || t.topo_object_id || '-' || unaccent(replace(btrim(regexp_replace(t."name", '[^\w -]', '', 'g')), ' ', '-')) AS url
+    -- (SELECT url_rando FROM constants LIMIT 1) || 'trek/' || t.topo_object_id || '-' || replace(btrim(regexp_replace(t."name", '[^\w -]', '', 'g')), ' ', '-') AS url,
     NULL AS id_osm,
     t."name" AS nom_itineraire,
     tp.practice_name AS pratique, -- uniquement valable si vos noms de pratiques correspondent déjà au schéma, sinon passer par quelque chose comme : CASE WHEN tp.practice_name ILIKE 'Randonnée Trail' THEN 'trail'::text END AS pratique
