@@ -18,7 +18,7 @@ WITH
     osm AS (
         SELECT * FROM (VALUES 
           --(904197,12076664), -- Exemple d'une randonnée et sa relation dans OSM
-          (null,null)
+          (null::int,null::int)
           ) AS liste (trek_id,id_osm)
     ),
     -- Liste des itinéraires, à adapter à votre contexte si vous souhaitez les filtrer
