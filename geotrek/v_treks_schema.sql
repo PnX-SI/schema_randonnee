@@ -25,7 +25,8 @@ WITH
     selected_t AS (
         SELECT *
         FROM trekking_trek t
-        WHERE t.published IS true
+        JOIN core_topology ct ON ct.id = t.topo_object_id 
+        WHERE t.published IS true and ct.deleted = false;
     ),
     sources AS (
         SELECT string_agg(c_1."name", ',')::text AS noms_source, t_1.trek_id -- création d'une chaîne de caractères de toutes les sources de l'itinéraire
