@@ -148,7 +148,7 @@ SELECT
     st_transform(top.geom, 4326) AS geom
 FROM selected_t t
 JOIN core_topology top ON t.topo_object_id = top.id
-JOIN sources ON t.topo_object_id = sources.trek_id
+LEFT JOIN sources ON t.topo_object_id = sources.trek_id
 JOIN tp ON tp.id = t.practice_id
 LEFT JOIN osm ON t.topo_object_id = osm.trek_id
 LEFT JOIN trekking_route route ON t.route_id = route.id
