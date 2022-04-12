@@ -109,7 +109,7 @@ SELECT
     (SELECT url_rando FROM constants LIMIT 1) || lower(unaccent(replace(tp.practice_name, ' ', '-'))) || '/'
     || lower(unaccent(replace(btrim(regexp_replace(t."name", '[^\w -]', '', 'g')), ' ', '-'))) || '/' AS url,
     -- Construction de l'url valable pour Geotrek-rando V3 :
-    -- (SELECT url_rando FROM constants LIMIT 1) || 'trek/' || t.topo_object_id || '-' || replace(btrim(regexp_replace(t."name", '[^\w -]', '', 'g')), ' ', '-') AS url,
+    -- (SELECT url_rando FROM constants LIMIT 1) || 'trek/' || t.topo_object_id || '-' || replace(btrim(regexp_replace(t."name", '[^\d\w,()]', '', 'g')), ' ', '-') AS url,
     osm.id_osm,
     t."name" AS nom_itineraire,
     tp.practice_name AS pratique, -- uniquement valable si vos noms de pratiques correspondent déjà au schéma, sinon passer par quelque chose comme : CASE WHEN tp.practice_name ILIKE 'Randonnée Trail' THEN 'trail'::text END AS pratique
