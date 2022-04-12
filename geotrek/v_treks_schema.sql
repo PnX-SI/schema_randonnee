@@ -113,7 +113,7 @@ SELECT
     osm.id_osm,
     t."name" AS nom_itineraire,
     tp.practice_name AS pratique, -- uniquement valable si vos noms de pratiques correspondent déjà au schéma, sinon passer par quelque chose comme : CASE WHEN tp.practice_name ILIKE 'Randonnée Trail' THEN 'trail'::text END AS pratique
-    lower(route.route::text) AS type_itineraire,
+    lower(route.route::text) AS type_itineraire, -- idem que pour les pratiques, uniquement valable si vos noms de types d'itinéraires correspondent déjà au schéma, sinon passer par un CASE WHEN
     c.liste_noms::text AS communes_nom,
     c.liste_codes::text AS communes_code,
     btrim(t.departure) AS depart,
