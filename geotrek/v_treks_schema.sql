@@ -16,7 +16,7 @@ WITH
     ),
     -- Liste des identifiants des relations OpenStreetMap des randonnées si elles existent
     osm AS (
-        SELECT * FROM (VALUES 
+        SELECT * FROM (VALUES
           --(904197,12076664), -- Exemple d'une randonnée et sa relation dans OSM
           (null::int,null::int)
           ) AS liste (trek_id,id_osm)
@@ -25,7 +25,7 @@ WITH
     selected_t AS (
         SELECT *
         FROM trekking_trek t
-        JOIN core_topology ct ON ct.id = t.topo_object_id 
+        JOIN core_topology ct ON ct.id = t.topo_object_id
         WHERE t.published IS true and ct.deleted = false
     ),
     sources AS (
@@ -82,13 +82,6 @@ WITH
         JOIN selected_t t ON t.topo_object_id = tnet.trek_id
         GROUP BY tnet.trek_id
         ),
-    sol AS (
-        SELECT string_agg(t_1."name", ',') AS liste, e.topo_object_id
-        FROM land_physicaledge e
-        JOIN land_physicaltype t_1 ON e.physical_type_id = t_1.id
-        JOIN selected_t t ON t.topo_object_id =  e.topo_object_id
-        GROUP BY e.topo_object_id
-        ),
     tp AS (
         SELECT practice."name" as practice_name, cirkwi."name" as cirkwi_name, practice.id
         FROM trekking_practice practice
@@ -141,7 +134,7 @@ SELECT
     date(top.date_update)::text AS date_modification,
     medias.liste AS medias,
     parent.liste::text AS itineraire_parent,
-    sol.liste::text AS type_sol,
+    NULL::text AS type_sol,
     NULL::boolean AS pdipr_inscription,
     NULL::text AS pdipr_date_inscription,
     -- Reprojection des géométries en 4326
@@ -158,7 +151,6 @@ LEFT JOIN parent ON t.topo_object_id = parent.topo_object_id
 LEFT JOIN themes ON t.topo_object_id = themes.trek_id
 LEFT JOIN medias ON t.topo_object_id = medias.object_id
 LEFT JOIN balisage ON t.topo_object_id = balisage.trek_id
-LEFT JOIN sol ON t.topo_object_id = sol.topo_object_id
 LEFT JOIN LATERAL ( -- construction des listes des noms de commune et des codes INSEE
     SELECT string_agg(z."name", ',') AS liste_noms, string_agg(z.code, ',') AS liste_codes, c_1.id
     FROM core_topology c_1
