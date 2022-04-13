@@ -1,4 +1,4 @@
--- testé avec : Schéma de données 1.0.2 / PostgreSQL 10.17 / PostGIS 2.4.3 / unaccent 1.1 / Geotrek-admin 2.74.0
+-- testé avec : Schéma de données 1.0.2 / PostgreSQL 12.9 / PostGIS 3.0.0 / unaccent 1.1 / Geotrek-admin 2.81.0
 
 -- CREATE EXTENSION IF NOT EXISTS unaccent;
 
@@ -65,8 +65,8 @@ WITH
                         NULLIF(c_1.attachment_link, ''),
                         c_1.attachment_video
                     ),
-                    'titre', c_1.legende,
-                    'auteur', c_1.auteur,
+                    'titre', c_1.legend,
+                    'auteur', c_1.author,
                     'licence', (SELECT default_licence FROM constants LIMIT 1))
                 )
             ) AS liste

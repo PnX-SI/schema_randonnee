@@ -4,7 +4,7 @@ Le Parc national des Écrins et le Parc national des Cévennes, entre autres, ut
 
 Il est nécessaire d'adapter cette vue selon la construction des données Geotrek de votre structure.
 
-Vue testée avec `PostgreSQL 10.17` / `PostGIS 2.4.3` / `unaccent 1.1` / `Geotrek-admin 2.62.0`
+Vue testée avec `Schéma de données 1.0.2` / `PostgreSQL 12.9` / `PostGIS 3.0.0` / `unaccent 1.1` / `Geotrek-admin 2.81.0`
 
 Un script shell `geotrek/export_geojson.sh` permet d'exporter les données de la vue `geotrek/v_treks_schema.sql` au format GeoJSON avec `ogr2ogr (GDAL v2.2.3)`.
 
