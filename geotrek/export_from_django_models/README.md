@@ -49,4 +49,3 @@ Le script crée une sélection des itinéraires en interrogeant le modèle Djang
 Pour chaque itinéraire de cette sélection, une boucle est lancée sur chaque champd du dictionnaire `django_to_schema` pour alimenter un dictionnaire `schema_treks` dont les champs correspondent au schéma (ordre, nom et valeurs). Plusieurs conditions permettent d'adapter le traitement à chaque catégorie de champ (numéraire, date, etc).
 
 La structure du JSON est ensuite créée, puis remplie avec le contenu du dictionnaire `schema_treks`, et enfin imprimée pour permettre son écriture dans un fichier JSON.
-
