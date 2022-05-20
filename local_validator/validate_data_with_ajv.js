@@ -25,18 +25,18 @@ for (let add_schema of add_schemas) {
 // Chargement du fichier principal du schéma
 const schema = require(schema_path);
 // Validation et chargement du schéma
-// Chargement et test de la validité du fichier de données
 try {
-  const validate = ajv.compile(schema);
-  test_data(require(data_path), validate);
+  var validate = ajv.compile(schema);
 } catch (error) {
-  console.error("Schéma invalide : \n", error.message)
+  throw "Schéma invalide : \n" + error.message;
 }
 
-function test_data(data, validate) {
-  // Execution du test de la validité des données
-  const valid = validate(data);
-
-  if (valid) console.log("Fichier de données valide !")
-  else console.error("Fichier de données invalide :\n" + ajv.errorsText(validate.errors, {separator: "\n"}))
-};
+// Test de la validité des données
+try {
+    const valid = validate(require(data_path));
+    if (valid) console.log("Fichier de données valide !")
+    else throw "Fichier de données invalide :\n" + ajv.errorsText(validate.errors, {separator: "\n"})
+} catch (error) {
+    console.log(error);
+    process.exit(1)
+}

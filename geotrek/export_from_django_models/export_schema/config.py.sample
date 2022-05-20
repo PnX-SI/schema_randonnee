@@ -1,0 +1,25 @@
+URL_ADMIN = 'geotrek-admin.cevennes-parcnational.net'
+URL_RANDO = 'gag-demo-rando.cevennes-parcnational.net'
+CONTACT = 'contact@openig.org'
+DEFAULT_LICENSE = 'CC-BY-SA-ND'
+
+PORTALS = []
+NAME_FILTER = ['®']
+SOURCE_FILTER = ['randonnée pédestre']
+
+db_cat_to_schema_cat = {
+    'route': {
+        'Boucle': 'boucle',
+        'Aller-retour': 'aller-retour',
+        'Itinérance': 'itinérance'
+    },
+    'practice': {
+        'Trail': 'trail',
+        'Sentiers de découverte': 'pédestre',
+        'Rando à pied': 'pédestre',
+        'A cheval': 'équestre',
+        'VTT': 'VTT'
+    },
+}
+
+topo_id_to_id_osm = {}
