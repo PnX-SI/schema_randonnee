@@ -3,7 +3,7 @@
 # depuis une base geotrek-admin ayant une vue v_treks_schema
 # et de valider les données générées
 
-export EXPORT_PATH="../.."
+EXPORT_PATH="../.."
 
 # ############################
 # Export des données de la base geotrek
@@ -22,3 +22,5 @@ if [ "$valid" != 0 ]; then
 else
     mv ${EXPORT_PATH}/itineraires_rando.json ${EXPORT_PATH}/itineraires_rando_export.json
 fi
+
+
