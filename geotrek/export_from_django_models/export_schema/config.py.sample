@@ -1,6 +1,6 @@
 URL_ADMIN = 'geotrek-admin.cevennes-parcnational.net'
-URL_RANDO = 'gag-demo-rando.cevennes-parcnational.net'
-CONTACT = 'contact@openig.org'
+URL_RANDO = 'destination.cevennes-parcnational.fr'
+CONTACT = 'contact@cevennes-parcnational.fr'
 DEFAULT_LICENSE = 'CC-BY-SA-ND'
 
 PORTALS = []
