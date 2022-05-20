@@ -1,8 +1,6 @@
 **/parameters.txt
 **/config.py
-itineraires_rando_export.json
-itineraires_rando_notvalid.json
-geotrek/export_with_SQL_view/itineraires_rando.geojson
+**/itineraires_rando*
 
 node_modules
 

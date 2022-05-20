@@ -9,7 +9,7 @@ Des scripts shell permettent d'exporter les données de la vue au format GeoJSON
 
 ### Avantages
  - accessible techniquement (SQL et script bash juste pour l'export)
- - des champs tels que `type_sol` et `pdipr_inscription` seront peut-être plus facilement calculables avec cette méthode
+ - des champs tels que `type_sol` et `pdipr_inscription` seront peut-être plus rapidement calculables avec cette méthode (requêtes en pur SQL au lieu de passer par un ORM)
 ### Inconvénients
  - la personnalisation se fait directement dans le fichier principal (la vue), complexifiant les mises à jour
  - tout se fait dans le même fichier, le rendant assez complexe à débugger et maintenir
@@ -28,4 +28,4 @@ Disponible dans le dossier `export_from_django_models`, ce script s'intègre à 
 
 ### Inconvénients
  - le langage Python peut être moins accessible
- - les champs tels que `type_sol` et `pdipr_inscription` (pas encore gérés par la vue SQL) sont peut-être moins facilement calculables avec cette méthode qu'avec l la vue SQL
+ - les champs tels que `type_sol` et `pdipr_inscription` (pas encore gérés par la vue SQL) sont peut-être moins rapidement calculables avec cette méthode qu'avec la vue SQL (ORM au lieu de pur SQL)
