@@ -14,6 +14,7 @@ geotrek import SerializerSchemaItinerairesRando > ${CURRENT_DIR}/${EXPORT_PATH}/
 # Validation des données exportées
 # Lancement du validateur
 cd ${CURRENT_DIR}/../../local_validator/
+nvm use
 node validate_data_with_ajv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json
 valid=$?
 

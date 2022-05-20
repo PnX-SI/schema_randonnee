@@ -4,12 +4,12 @@ Un script Node.js utilisant [ajv](https://ajv.js.org/) permet de valider le fich
 
 ### Prérequis
 
-- `Node.js 16.5.0`
-- `npm 7.20.1`
+- `Node.js 16.15.0`
+- `npm 8.5.5`
 
 ### Commandes
 
-Pour une installation automatique en utilisant le fichier `package-lock.json`, exécuter la commande  `npm install` dans le dossier `local_validator`.
+Pour une installation automatique des packages nécessaires, exécuter la commande  `npm install` dans le dossier `local_validator`.
 
 Pour une installation manuelle :
 ```
