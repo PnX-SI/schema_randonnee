@@ -21,17 +21,20 @@ Renseigner tous les paramètres :
  - `null_fields` : champs absents tel quels du modèle Django, et qui nécessiteraient un traitement plus poussé. En attendant, ces champs seront créés avec une valeur nulle
 
 # Utilisation
-Faire un lien du dossier `export_schema` à l'emplacement suivant : `/opt/geotrek-admin/var/conf/`
+Cloner le dépôt GitHub sur le serveur où est installé Geotrek-admin :
 ``` sh
-sudo ln -s geotrek/export_from_django_models/export_schema /opt/geotrek-admin/var/conf/
+git clone git@github.com:PnX-SI/schema_randonnee.git
+```
+
+Créer un lien symbolique du dossier `export_schema` à l'emplacement suivant : `/opt/geotrek-admin/var/conf/`, par exemple grâce à la commande suivante :
+``` sh
+sudo ln -s schema_randonnee/geotrek/export_from_django_models/export_schema /opt/geotrek-admin/var/conf/
 ```
 
 Ajouter la classe suivante au fichier `geotrek-admin/var/conf/parsers.py` :
 ``` python
     from export_schema.custom_parser import SerializerSchemaItinerairesRando
 ```
-
-Celle-ci est aussi disponible dans le fichier `export_schema/custom_parser.py`.
 
 Dans un terminal, lancer la commande `geotrek import SerializerSchemaItinerairesRando > itineraires_rando.json` pour exporter le résultat dans un fichier JSON. Cette commande est utilisable telle quelle dans une tâche cron.
 
@@ -40,6 +43,8 @@ Pour des tests de validité plus fluides des données exportées de Geotrek, l'e
 - la création d'un fichier `itineraires_rando.json` à la racine du répertoire `schema_randonnee` (paramètre modifiable dans le script bash)
 - l'exécution du script `local_validator/validate_data_with_ajv.js` sur `itineraires_rando.json`
 - si le fichier est conforme au schéma, il est renommé en `itineraires_rando_export.json`, et en `itineraires_rando_notvalid.json` s'il ne l'est pas.
+
+Pour rester à jour avec les évolutions du schéma et du processus d'export, il suffira ensuite de lancer `git fetch origin` et `git pull origin`. Le fichier `config.py` ne sera pas écrasé, et le lien symbolique vers le dossier `export_schema` ne sera pas cassé. Si une tâche automatique type `cron` est paramétrée, l'opération ne devrait pas engendrer de rupture de fonctionnement, sauf en cas de nouvelles versions du schéma ou du modèle de données Geotrek non rétro-compatibles.
 
 
 # Fonctionnement du script

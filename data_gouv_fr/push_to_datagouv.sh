@@ -1,4 +1,3 @@
-
 CURRENT_DIR=`dirname $0`
 . ${CURRENT_DIR}/settings.ini
 
@@ -7,7 +6,7 @@ API_URL='https://www.data.gouv.fr/api/1'
 FILE_NAME="itineraires_rando_export.json"
 
 
-# Publication sur etalab
+# Publication sur data.gouv.fr
 
 if [[ -f "${CURRENT_DIR}/../$FILE_NAME" ]]; then
   curl -H "Accept:application/json" \
