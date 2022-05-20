@@ -41,9 +41,6 @@ Pour des tests de validité plus fluides des données exportées de Geotrek, l'e
 - l'exécution du script `local_validator/validate_data_with_ajv.js` sur `itineraires_rando.json`
 - si le fichier est conforme au schéma, il est renommé en `itineraires_rando_export.json`, et en `itineraires_rando_notvalid.json` s'il ne l'est pas.
 
-Pour envoyer le fichier sur le site de data.gouv
-- copier le fichier `settings.ini.sample` en `settings.ini` et renseigner les paramètres de votre compte etalab
-- executer la commande `push_to_datagouv.sh`
 
 # Fonctionnement du script
 
@@ -52,3 +49,4 @@ Le script crée une sélection des itinéraires en interrogeant le modèle Djang
 Pour chaque itinéraire de cette sélection, une boucle est lancée sur chaque champd du dictionnaire `django_to_schema` pour alimenter un dictionnaire `schema_treks` dont les champs correspondent au schéma (ordre, nom et valeurs). Plusieurs conditions permettent d'adapter le traitement à chaque catégorie de champ (numéraire, date, etc).
 
 La structure du JSON est ensuite créée, puis remplie avec le contenu du dictionnaire `schema_treks`, et enfin imprimée pour permettre son écriture dans un fichier JSON.
+
