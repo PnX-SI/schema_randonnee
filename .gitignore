@@ -5,3 +5,5 @@ itineraires_rando_notvalid.json
 geotrek/export_with_SQL_view/itineraires_rando.geojson
 
 node_modules
+
+**/settings.ini
