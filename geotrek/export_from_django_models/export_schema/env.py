@@ -40,7 +40,7 @@ django_to_schema = {
     'geom': 'geom',
 }
 
-mtm_fields = {
+m2m_fields = {
     'source': 'name',
     'networks': 'network',
     'themes': 'label',
@@ -50,8 +50,6 @@ mtm_fields = {
 foreign_key_to_map = ['route', 'practice']
 
 null_fields = [
-    'type_sol',
     'pdipr_inscription',
     'pdipr_date_inscription',
 ]
-

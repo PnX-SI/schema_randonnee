@@ -6,12 +6,13 @@ from django.conf import settings
 from django.contrib.gis.geos import GEOSGeometry
 from geotrek.trekking.models import Trek
 
-from export_schema.config import (CONTACT, DEFAULT_LICENSE, NAME_FILTER,
-                                  PORTALS, SOURCE_FILTER, URL_ADMIN, URL_RANDO,
-                                  limit_data, db_cat_to_schema_cat, topo_id_to_id_osm)
-from export_schema.env import (django_to_schema, foreign_key_to_map, mtm_fields,
-                               null_fields)
-
+from export_schema.config import (CALCUL_TYPE_SOL, CONTACT,
+                                  DB_CAT_TO_SCHEMA_CAT, DEFAULT_LICENSE,
+                                  LIMIT_DATA, NAME_FILTER, PORTALS,
+                                  SOURCE_FILTER, TOPO_ID_TO_ID_OSM, URL_ADMIN,
+                                  URL_RANDO)
+from export_schema.env import (django_to_schema, foreign_key_to_map,
+                               m2m_fields, null_fields)
 
 django_treks = Trek.objects.filter(
     published=True,
@@ -54,26 +55,24 @@ def transform_attachments():
 
             attachments.append(attachment)
 
-        schema_trek['medias'] = attachments
+        return attachments
 
 
 def process_geom():
     geom = GEOSGeometry(getattr(t, django_field), settings.SRID)
     geom.transform(4326)
     if django_field == 'parking_location':
-        schema_trek[schema_field] = geom.wkt
+        return geom.wkt
     else:
-        schema_trek[schema_field] = json.loads(geom.json)
+        return json.loads(geom.json)
 
 
-def process_mtm():
-    mtm_objects = getattr(t, django_field).all()
-    label = mtm_fields[django_field]
-    mtm_values = [getattr(a, label) for a in mtm_objects]
-    if mtm_values:
-        schema_trek[schema_field] = ', '.join(mtm_values)
-    else:
-        schema_trek[schema_field] = None
+def process_m2m():
+    m2m_objects = getattr(t, django_field).all()
+    label = m2m_fields[django_field]
+    m2m_values = [getattr(a, label) for a in m2m_objects]
+    if m2m_values:
+        return ', '.join(m2m_values)
 
 
 def get_url():
@@ -84,52 +83,69 @@ def get_url():
                                  in unicodedata.normalize('NFD', name_replaced)
                                  if unicodedata.category(c) != 'Mn')
     name_lowered = name_unaccentuated.lower()
-    schema_trek['url'] = f"https://{URL_RANDO}/trek/{t.id}-{name_lowered}"
+
+    return f"https://{URL_RANDO}/trek/{t.id}-{name_lowered}"
 
 
 def get_cities_info(info):
     cities_info_list = [getattr(city, info) for city in t.published_cities]
-    schema_trek[schema_field] = ', '.join(cities_info_list)
+    return ', '.join(cities_info_list)
+
+
+def get_types_sol():
+    trek_paths = [agg.path for agg in t.aggregations.all()]
+    types_sols = []
+    for trek_path in trek_paths:
+        physical_edges_types = [agg.topo_object.physicaledge.name
+                                for agg in trek_path.aggregations.all()
+                                if agg.topo_object.kind == 'PHYSICALEDGE']
+        types_sols.extend(physical_edges_types)
+
+    if len(set(types_sols)) > 0:
+        return ', '.join(set(types_sols))
 
 
 schema_treks = []
 
-for t in django_treks[:limit_data]:
+for t in django_treks[:LIMIT_DATA]:
     schema_trek = {}
     for django_field, schema_field in django_to_schema.items():
-        if django_field in mtm_fields.keys():
-            process_mtm()
+        if django_field in m2m_fields.keys():
+            schema_trek[schema_field] = process_m2m()
 
         elif django_field.startswith('date'):
             schema_trek[schema_field] = str(getattr(t, django_field))[:10]
 
         elif django_field.startswith('cities'):
-            get_cities_info(django_field[-4:])
+            schema_trek[schema_field] = get_cities_info(django_field[-4:])
 
         elif django_field in ['geom', 'parking_location'] and getattr(t, django_field):
-            process_geom()
+            schema_trek[schema_field] = process_geom()
 
         elif django_field == 'attachments':
-            transform_attachments()
+            schema_trek['medias'] = transform_attachments()
 
         elif django_field == 'contact':
             schema_trek['contact'] = CONTACT
 
         elif django_field == 'url':
-            get_url()
+            schema_trek['url'] = get_url()
+
+        elif django_field == 'type_sol':
+            schema_trek['type_sol'] = get_types_sol() if CALCUL_TYPE_SOL else None
 
         elif django_field in null_fields:
             schema_trek[schema_field] = None
 
         elif django_field == 'id_osm':
-            if t.id in topo_id_to_id_osm:
-                schema_trek['id_osm'] = topo_id_to_id_osm[t.id]
+            if t.id in TOPO_ID_TO_ID_OSM:
+                schema_trek['id_osm'] = TOPO_ID_TO_ID_OSM[t.id]
             else:
                 schema_trek['id_osm'] = None
 
         elif django_field in foreign_key_to_map:
             old_value = str(getattr(t, django_field))
-            schema_trek[schema_field] = db_cat_to_schema_cat[django_field][old_value]
+            schema_trek[schema_field] = DB_CAT_TO_SCHEMA_CAT[django_field][old_value]
 
         elif django_field == 'id':
             schema_trek[schema_field] = str(getattr(t, django_field))
@@ -137,9 +153,9 @@ for t in django_treks[:limit_data]:
         elif isinstance(getattr(t, django_field), (int, float)):
             schema_trek[schema_field] = round(getattr(t, django_field))
 
-        elif getattr(t, django_field) == None:
+        elif getattr(t, django_field) is None:
             schema_trek[schema_field] = None
-            
+
         else:
             schema_trek[schema_field] = str(getattr(t, django_field))
 

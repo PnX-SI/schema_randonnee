@@ -7,7 +7,7 @@ PORTALS = []
 NAME_FILTER = ['®']
 SOURCE_FILTER = ['randonnée pédestre']
 
-db_cat_to_schema_cat = {
+DB_CAT_TO_SCHEMA_CAT = {
     'route': {
         'Boucle': 'boucle',
         'Aller-retour': 'aller-retour',
@@ -22,4 +22,8 @@ db_cat_to_schema_cat = {
     },
 }
 
-topo_id_to_id_osm = {}
+TOPO_ID_TO_ID_OSM = {}
+
+LIMIT_DATA = None
+
+CALCUL_TYPE_SOL = False

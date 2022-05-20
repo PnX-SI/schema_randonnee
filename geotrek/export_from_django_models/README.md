@@ -16,7 +16,7 @@ Renseigner tous les paramètres :
 
 ## Fichier `env.py`
  - `django_to_schema` : détermine l'ordre de traitement des champs, correspond à l'ordre défini dans le schéma. Met en correspondance nom des champs Django et nom des champs du schéma, pour les champs existant dans Django.
- - `mtm_fields` : recense les champs Django de type clef étrangère ManyToMany ou ManyToOne, qui nécessitent un traitement particulier, notamment grâce au nom du champ qui contient la valeur que l'on cherche à récupérer (name, network, label, id...)
+ - `m2m_fields` : recense les champs Django de type clef étrangère ManyToMany ou ManyToOne, qui nécessitent un traitement particulier, notamment grâce au nom du champ qui contient la valeur que l'on cherche à récupérer (name, network, label, id...)
  - `foreign_key_to_map` : recense les champs Django de type clef étrangère dont on souhaite modifier les valeurs grâce à la correspondance avec les listes de valeur issues du schéma
  - `null_fields` : champs absents tel quels du modèle Django, et qui nécessiteraient un traitement plus poussé. En attendant, ces champs seront créés avec une valeur nulle
 

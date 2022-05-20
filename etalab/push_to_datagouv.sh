@@ -17,4 +17,3 @@ if [[ -f "${CURRENT_DIR}/../$FILE_NAME" ]]; then
 else
   echo "${CURRENT_DIR}/../${FILE_NAME} does not exist."
 fi
-
