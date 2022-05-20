@@ -2,25 +2,26 @@
 # Script permettant d'exporter
 # depuis une base geotrek-admin ayant une vue v_treks_schema
 # et de valider les données générées
-
+CURRENT_DIR=`dirname $0`
 EXPORT_PATH="../.."
 
 # ############################
 # Export des données de la base geotrek
-geotrek import SerializerSchemaItinerairesRando > ${EXPORT_PATH}/itineraires_rando.json
+cd /opt/geotrek-admin/var/conf/
+geotrek import SerializerSchemaItinerairesRando > ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json
 
 # ########################
 # Validation des données exportées
 # Lancement du validateur
-cd ../../local_validator/
-node validate_data_with_ajv
+cd ${CURRENT_DIR}/../../local_validator/
+node validate_data_with_ajv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json
 valid=$?
-cd ../geotrek/export_from_django_models
+
 
 if [ "$valid" != 0 ]; then
-    mv ${EXPORT_PATH}/itineraires_rando.json ${EXPORT_PATH}/itineraires_rando_notvalid.json
+    mv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_notvalid.json
 else
-    mv ${EXPORT_PATH}/itineraires_rando.json ${EXPORT_PATH}/itineraires_rando_export.json
+    mv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_export.json
 fi
 
 

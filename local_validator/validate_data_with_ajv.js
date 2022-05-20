@@ -2,9 +2,14 @@
 // du schema
 // des données contenues dans le fichier itineraires_rando.json
 
+const args_file_path = process.argv.slice(2)[0];
+
 const schema_path = '../schema.json'
 const schemas_path = '../GeoJSON_schemas/'
-const data_path = '../itineraires_rando.json'
+let data_path = '../itineraires_rando.json'
+if (args_file_path) {
+  data_path = args_file_path
+}
 
 const Ajv = require("ajv");
 const addFormats = require("ajv-formats");
