@@ -21,28 +21,14 @@ Renseigner tous les paramètres :
  - `null_fields` : champs absents tel quels du modèle Django, et qui nécessiteraient un traitement plus poussé. En attendant, ces champs seront créés avec une valeur nulle
 
 # Utilisation
-Copier le dossier `export_schema` à l'emplacement suivant : `/opt/geotrek-admin/var/conf/`
+Faire un lien du dossier `export_schema` à l'emplacement suivant : `/opt/geotrek-admin/var/conf/`
+``` sh
+sudo ln -s geotrek/export_from_django_models/export_schema /opt/geotrek-admin/var/conf/
+```
 
 Ajouter la classe suivante au fichier `geotrek-admin/var/conf/parsers.py` :
 ``` python
-from geotrek.trekking.models import POIType
-
-
-class SerializerSchemaItinerairesRando(Parser):
-    url = 'just_so_its_not_none'
-    model = POIType  # Useless but shouldn't be None
-
-    def parse(self, filename=None, limit=None):
-        import importlib
-        from os.path import join
-
-        from django.conf import settings
-
-        # Execute export_schema/export.py as an imported module
-        module_path = join(settings.VAR_DIR, 'conf/export_schema/export.py')
-        spec = importlib.util.spec_from_file_location("export", module_path)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
+    from export_schema.custom_parser import SerializerSchemaItinerairesRando
 ```
 
 Celle-ci est aussi disponible dans le fichier `export_schema/custom_parser.py`.
@@ -54,6 +40,10 @@ Pour des tests de validité plus fluides des données exportées de Geotrek, l'e
 - la création d'un fichier `itineraires_rando.json` à la racine du répertoire `schema_randonnee` (paramètre modifiable dans le script bash)
 - l'exécution du script `local_validator/validate_data_with_ajv.js` sur `itineraires_rando.json`
 - si le fichier est conforme au schéma, il est renommé en `itineraires_rando_export.json`, et en `itineraires_rando_notvalid.json` s'il ne l'est pas.
+
+Pour envoyer le fichier sur le site de data.gouv
+- copier le fichier `settings.ini.sample` en `settings.ini` et renseigner les paramètres de votre compte etalab
+- executer la commande `push_to_datagouv.sh`
 
 # Fonctionnement du script
 
