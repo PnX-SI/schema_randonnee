@@ -8,7 +8,7 @@ from geotrek.trekking.models import Trek
 
 from export_schema.config import (CONTACT, DEFAULT_LICENSE, NAME_FILTER,
                                   PORTALS, SOURCE_FILTER, URL_ADMIN, URL_RANDO,
-                                  db_cat_to_schema_cat, topo_id_to_id_osm)
+                                  limit_data, db_cat_to_schema_cat, topo_id_to_id_osm)
 from export_schema.env import (django_to_schema, foreign_key_to_map, mtm_fields,
                                null_fields)
 
@@ -94,7 +94,7 @@ def get_cities_info(info):
 
 schema_treks = []
 
-for t in django_treks:
+for t in django_treks[:limit_data]:
     schema_trek = {}
     for django_field, schema_field in django_to_schema.items():
         if django_field in mtm_fields.keys():
@@ -137,6 +137,9 @@ for t in django_treks:
         elif isinstance(getattr(t, django_field), (int, float)):
             schema_trek[schema_field] = round(getattr(t, django_field))
 
+        elif getattr(t, django_field) == None:
+            schema_trek[schema_field] = None
+            
         else:
             schema_trek[schema_field] = str(getattr(t, django_field))
 
@@ -153,7 +156,8 @@ featurecollection = {
     "features": [],
 }
 
-for trek in schema_treks[:2]:
+
+for trek in schema_treks:
     feature = {
         "type": "Feature",
         "properties": {k: v for k, v in trek.items() if k != 'geom'},
@@ -161,6 +165,6 @@ for trek in schema_treks[:2]:
     }
     featurecollection["features"].append(feature)
 
-json_object = json.dumps(featurecollection, indent=4, ensure_ascii=False)
+json_object = json.dumps(featurecollection, ensure_ascii=False)
 
 print(json_object)

@@ -54,3 +54,4 @@ null_fields = [
     'pdipr_inscription',
     'pdipr_date_inscription',
 ]
+
