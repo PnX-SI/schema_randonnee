@@ -87,6 +87,11 @@ def get_url():
     schema_trek['url'] = f"https://{URL_RANDO}/trek/{t.id}-{name_lowered}"
 
 
+def get_cities_info(info):
+    cities_info_list = [getattr(city, info) for city in t.published_cities]
+    schema_trek[schema_field] = ', '.join(cities_info_list)
+
+
 schema_treks = []
 
 for t in django_treks:
@@ -97,6 +102,9 @@ for t in django_treks:
 
         elif django_field.startswith('date'):
             schema_trek[schema_field] = str(getattr(t, django_field))[:10]
+
+        elif django_field.startswith('cities'):
+            get_cities_info(django_field[-4:])
 
         elif django_field in ['geom', 'parking_location'] and getattr(t, django_field):
             process_geom()

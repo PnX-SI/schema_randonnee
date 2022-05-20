@@ -8,8 +8,8 @@ django_to_schema = {
     'name': 'nom_itineraire',
     'practice': 'pratique',
     'route': 'type_itineraire',
-    'communes_nom': 'communes_nom',
-    'communes_code': 'communes_code',
+    'cities_name': 'communes_nom',
+    'cities_code': 'communes_code',
     'departure': 'depart',
     'arrival': 'arrivee',
     'duration': 'duree',
@@ -50,8 +50,6 @@ mtm_fields = {
 foreign_key_to_map = ['route', 'practice']
 
 null_fields = [
-    'communes_nom',
-    'communes_code',
     'type_sol',
     'pdipr_inscription',
     'pdipr_date_inscription',
