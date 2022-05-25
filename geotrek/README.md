@@ -1,15 +1,31 @@
 # Geotrek
 
-Le Parc national des Écrins et le Parc national des Cévennes, entre autres, utilisent l'application [Geotrek](https://github.com/GeotrekCE) pour gérer leurs itinéraires de randonnée et les publier sur leur site internet. Une vue PostgreSQL (`v_treks_schema.sql`) est disponible dans le dossier `geotrek`. Elle permet de formater des itinéraires issus de Geotrek pour qu'ils soient directement compatibles avec le schéma de données.
+Le Parc national des Écrins et le Parc national des Cévennes, entre autres, utilisent l'application [Geotrek](https://github.com/GeotrekCE) pour gérer leurs itinéraires de randonnée et les publier sur leur site internet.
+Deux moyens sont proposés pour exporter les données depuis Geotrek dans un fichier conforme au schéma.
 
-Il est nécessaire d'adapter cette vue selon la construction des données Geotrek de votre structure.
+## Vue PostgreSQL
+Disponible dans le dossier `export_from_SQL_view` (`v_treks_schema.sql`), elle permet de formater des itinéraires issus de Geotrek pour qu'ils soient directement compatibles avec le schéma de données. Il est nécessaire de l'adapter selon la construction des données Geotrek de votre structure.
+Des scripts shell permettent d'exporter les données de la vue au format GeoJSON.
 
-Vue testée avec `Schéma de données 1.0.2` / `PostgreSQL 12.9` / `PostGIS 3.0.0` / `unaccent 1.1` / `Geotrek-admin 2.81.0`
+### Avantages
+ - accessible techniquement (SQL et script bash juste pour l'export)
+ - des champs tels que `type_sol` et `pdipr_inscription` seront peut-être plus rapidement calculables avec cette méthode (requêtes en pur SQL au lieu de passer par un ORM)
+### Inconvénients
+ - la personnalisation se fait directement dans le fichier principal (la vue), complexifiant les mises à jour
+ - tout se fait dans le même fichier, le rendant assez complexe à débugger et maintenir
+ - nécessite de stocker ses identifiants de connexion à la base de données en clair
+ - nécessite l'installation d'une extension tierce (unaccent)
 
-Un script shell `geotrek/export_geojson.sh` permet d'exporter les données de la vue `geotrek/v_treks_schema.sql` au format GeoJSON avec `ogr2ogr (GDAL v2.2.3)`.
+## Export via Django
 
-Pour des tests de validité plus fluides des données exportées de Geotrek, l'exécution du script `geotrek/export_and_validate.sh` permet :
+Disponible dans le dossier `export_from_django_models`, ce script s'intègre à Geotrek et utilise les modèles Django pour exporter les itinéraires depuis la base de données. Placé directement dans le contexte de l'application Geotrek-admin, il n'a pas besoin de paramètres de connexion à la base de données, et permet une personnalisation aisée.
 
-- l'exécution de `geotrek/export_geojson.sh`
-- la copie du fichier `itineraires_rando.geojson` et son renommage en `itineraires_rando.json`
-- l'exécution du script `local_validator/validate_data_with_ajv.js` sur `itineraires_rando.json` et l'affichage du résultat dans la console.
+### Avantages
+ - la personnalisation se fait dans un fichier à part et est beaucoup plus aisée à réaliser
+ - le script est mieux intégré à Geotrek
+ - le maintien du script est plus aisé car celui-ci est séparé en trois fichiers aux fonctions distinctes
+ - ne nécessite aucun module externe, tous les modules sont natifs de Python ou Django
+
+### Inconvénients
+ - le langage Python peut être moins accessible
+ - les champs tels que `type_sol` et `pdipr_inscription` (pas encore gérés par la vue SQL) sont peut-être moins rapidement calculables avec cette méthode qu'avec la vue SQL (ORM au lieu de pur SQL)

@@ -1,0 +1,29 @@
+URL_ADMIN = 'geotrek-admin.cevennes-parcnational.net'
+URL_RANDO = 'destination.cevennes-parcnational.fr'
+CONTACT = 'contact@cevennes-parcnational.fr'
+DEFAULT_LICENSE = 'CC-BY-SA-ND'
+
+PORTALS = []
+NAME_FILTER = ['®']
+SOURCE_FILTER = ['randonnée pédestre']
+
+DB_CAT_TO_SCHEMA_CAT = {
+    'route': {
+        'Boucle': 'boucle',
+        'Aller-retour': 'aller-retour',
+        'Itinérance': 'itinérance'
+    },
+    'practice': {
+        'Trail': 'trail',
+        'Sentiers de découverte': 'pédestre',
+        'Rando à pied': 'pédestre',
+        'A cheval': 'équestre',
+        'VTT': 'VTT'
+    },
+}
+
+TOPO_ID_TO_ID_OSM = {}
+
+LIMIT_DATA = None
+
+CALCUL_TYPE_SOL = False
