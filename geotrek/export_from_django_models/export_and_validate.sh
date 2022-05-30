@@ -8,7 +8,7 @@ EXPORT_PATH="../.."
 # ############################
 # Export des données de la base geotrek
 cd /opt/geotrek-admin/var/conf/
-geotrek import SerializerSchemaItinerairesRando > ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json
+/usr/sbin/geotrek import SerializerSchemaItinerairesRando > ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json
 
 # ########################
 # Validation des données exportées
@@ -19,7 +19,9 @@ node validate_data_with_ajv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json
 valid=$?
 
 if [ "$valid" != 0 ]; then
+    echo  "fichier exporté vers ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_not_valid.json"
     mv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_notvalid.json
 else
+    echo  "fichier exporté vers ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_export.json"
     mv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_export.json
 fi
