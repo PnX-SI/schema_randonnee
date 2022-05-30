@@ -3,7 +3,6 @@
 # depuis une base geotrek-admin ayant une vue v_treks_schema
 # et de valider les données générées
 CURRENT_DIR=$(dirname "$(realpath $0)")
-echo $CURRENT_DIR
 EXPORT_PATH="../.."
 
 # ############################
@@ -15,9 +14,9 @@ cd /opt/geotrek-admin/var/conf/
 # Validation des données exportées
 # Lancement du validateur
 cd ${CURRENT_DIR}/../../local_validator/
+nvm use
 node validate_data_with_ajv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json
 valid=$?
-
 
 if [ "$valid" != 0 ]; then
     echo  "fichier exporté vers ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_not_valid.json"
