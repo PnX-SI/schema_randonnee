@@ -3,5 +3,5 @@ API_KEY=CLE
 DATASET=CLE
 RESOURCE=CLE
 
-# Paramètres optionels : nom du fichier envoyé à data.gouv
-EXPORT_FILE_NAME=MONFICHIER
+# Paramètres optionnels : nom du fichier envoyé à data.gouv.fr
+EXPORT_FILE_NAME=MONFICHIER # ligne à supprimer si paramètre non utilisé

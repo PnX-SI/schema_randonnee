@@ -17,8 +17,6 @@ mv ${CURRENT_DIR}/../${FILE_NAME} ${FULL_FILE_PATH}
 
 # Publication sur data.gouv.fr
 
-
-
 if [ -f "${FULL_FILE_PATH}" ]; then
   curl -H "Accept:application/json" \
       -H "X-Api-Key:$API_KEY" \
