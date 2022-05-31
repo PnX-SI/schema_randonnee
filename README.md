@@ -77,8 +77,19 @@ Le script et sa documentation sont disponibles dans le dossier [`/local_validato
 
 ## Geotrek
 
-Si vous utilisez une base de données Geotrek, le dossier [`/geotrek`](https://github.com/PnX-SI/schema_randonnee/tree/master/geotrek) contient un script Python (`/geotrek/export_from_django_models`) et une vue SQL (`/geotrek/export_with_SQL_view`), soit deux méthodes permettant d'exporter les données dans un fichier JSON conforme au schéma, ainsi que des scripts pour automatiser et valider cet export.
+Si vous utilisez une base de données Geotrek, le dossier [`/geotrek`](https://github.com/PnX-SI/schema_randonnee/tree/master/geotrek) contient des ressources qui vous permettront d'exporter vos données dans un fichier JSON conforme au schéma, ainsi que des scripts pour automatiser et valider cet export et les publier sur le site data.gouv.fr
 
+### Export des données
+L'export des données peut se faire grâca à deux méthodes : 
+
+ * via une vue SQL : Le principe est de créer une vue dans la base de données de geotrek et d'exporter les données via ogr2ogr. La documentation complete de la mise en oeuvre est accessible ici : [geotrek/export_with_SQL_view](geotrek/export_with_SQL_view)
+ * via l'ajout d'une fonction à geotrek-admin: La documentation complete de la mise en oeuvre est accessible ici : [geotrek/export_from_django_models](geotrek/export_from_django_models)
+
+### Publication des données sur le site data.gouv.fr
+
+Pour mettre à jour le fichier de ressource d'un jeux de données sur le site data.gouv.fr. [Documentation complète](export-from-django/data_gouv_fr)
+
+ 
 ### Automatisation
 
 Exemple de tâche cron automatisant l'export et l'envoi des données vers le site data.gouv.fr :
