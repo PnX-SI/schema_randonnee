@@ -77,10 +77,11 @@ Le script et sa documentation sont disponibles dans le dossier [`/local_validato
 
 ## Geotrek
 
-Si vous utilisez une base de données Geotrek, le dossier [`/geotrek`](https://github.com/PnX-SI/schema_randonnee/tree/master/geotrek) contient une vue SQL permettant d'exporter les données conformes au schéma, ainsi qu'un script pour automatiser et valider cet export.
+Si vous utilisez une base de données Geotrek, le dossier [`/geotrek`](https://github.com/PnX-SI/schema_randonnee/tree/master/geotrek) contient un script Python (`/geotrek/export_from_django_models`) et une vue SQL (`/geotrek/export_with_SQL_view`), soit deux méthodes permettant d'exporter les données dans un fichier JSON conforme au schéma, ainsi que des scripts pour automatiser et valider cette exportation.
 
 ### Automatisation
-exemple de tache cron automatisant l'export et l'envoie des données vers le site data.gouv.fr
+
+Exemple de tâche cron automatisant l'exportation et l'envoi des données vers le site data.gouv.fr :
 
 ```sh
 0 0 * * * root (/MY_PATH/schema_randonnee/geotrek/export_from_django_models/export_and_validate.sh; /MY_PATH/schema_randonnee/data_gouv_fr/push_to_datagouv.sh; ) 2>&1 | tee /tmp/export_schema.log
