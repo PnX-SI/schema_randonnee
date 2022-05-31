@@ -1,0 +1,7 @@
+# Paramètres de téléversement data.gouv.fr
+API_KEY=CLE
+DATASET=CLE
+RESOURCE=CLE
+
+# Paramètres optionels : nom du fichier envoyé à data.gouv
+EXPORT_FILE_NAME=MONFICHIER
