@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ############################
 # Script permettant d'exporter
 # depuis une base geotrek-admin ayant une vue v_treks_schema
