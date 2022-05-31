@@ -1,3 +1,5 @@
+#!/bin/bash
+
 CURRENT_DIR=`dirname $0`
 . ${CURRENT_DIR}/settings.ini
 
@@ -8,7 +10,7 @@ FILE_NAME="itineraires_rando_export.json"
 
 # Publication sur data.gouv.fr
 
-if [[ -f "${CURRENT_DIR}/../$FILE_NAME" ]]; then
+if [ -f "${CURRENT_DIR}/../$FILE_NAME" ]; then
   curl -H "Accept:application/json" \
       -H "X-Api-Key:$API_KEY" \
       -F "file=@${CURRENT_DIR}/../${FILE_NAME}" \
