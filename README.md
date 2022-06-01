@@ -83,7 +83,7 @@ Si vous utilisez une base de données Geotrek, le dossier [`/geotrek`](https://g
 L'export des données peut se faire grâce à deux méthodes : 
 
  * via une vue SQL : Le principe est de créer une vue dans la base de données de geotrek et d'exporter les données via ogr2ogr. La documentation complète de la mise en œuvre est accessible ici : [geotrek/export_with_SQL_view](geotrek/export_with_SQL_view)
- * via l'ajout d'une fonction à geotrek-admin: La documentation complète de la mise en œuvre est accessible ici : [geotrek/export_from_django_models](geotrek/export_from_django_models)
+ * via l'ajout d'une fonction à geotrek-admin : La documentation complète de la mise en œuvre est accessible ici : [geotrek/export_from_django_models](geotrek/export_from_django_models)
 
 ### Publication des données sur le site data.gouv.fr
 
