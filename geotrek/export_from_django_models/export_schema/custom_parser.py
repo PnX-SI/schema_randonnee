@@ -3,7 +3,7 @@ from geotrek.trekking.models import POIType
 
 
 class SerializerSchemaItinerairesRando(Parser):
-    url = 'just_so_its_not_none' # Useless but shouldn't be None
+    url = 'just_so_its_not_none'  # Useless but shouldn't be None
     model = POIType  # Useless but shouldn't be None
 
     def parse(self, filename=None, limit=None):
