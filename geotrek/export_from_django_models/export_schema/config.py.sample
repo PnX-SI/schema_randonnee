@@ -1,29 +1,44 @@
+# Paramètres requis
 URL_ADMIN = 'geotrek-admin.cevennes-parcnational.net'
 URL_RANDO = 'destination.cevennes-parcnational.fr'
 CONTACT = 'contact@cevennes-parcnational.fr'
 DEFAULT_LICENSE = 'CC-BY-SA-ND'
 
+
+# Paramètres facultatifs
+
+# Filtres à laisser en tant que listes vides si non utilisés
 PORTALS = []
 NAME_FILTER = ['®']
 SOURCE_FILTER = ['randonnée pédestre']
 
+# Correspondance entre les catégories de la BDD Geotrek
+# et les valeurs autorisées par le schéma
+# pour les deux champs dont la liste des valeurs est contrainte
 DB_CAT_TO_SCHEMA_CAT = {
     'route': {
         'Boucle': 'boucle',
         'Aller-retour': 'aller-retour',
-        'Itinérance': 'itinérance'
+        'Itinérance': 'itinérance',
+        'Descente': 'aller simple'
     },
     'practice': {
         'Trail': 'trail',
         'Sentiers de découverte': 'pédestre',
         'Rando à pied': 'pédestre',
         'A cheval': 'équestre',
-        'VTT': 'VTT'
+        'VTT': 'VTT',
+        'SNorkeling': 'autre'
     },
 }
 
+# Correspondance entre le topo_object_id d'un itinéraire
+# et l'identifiant de la relation OpenStreetMap correspondante
 TOPO_ID_TO_ID_OSM = {}
 
-LIMIT_DATA = None
-
+# Renseignement du champ type_sol
 CALCUL_TYPE_SOL = False
+
+# En phase de test, renseigner un nombre entier
+# pour limiter le nombre d'itinéraires générés
+LIMIT_DATA = None
