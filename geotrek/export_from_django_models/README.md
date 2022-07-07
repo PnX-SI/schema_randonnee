@@ -6,9 +6,10 @@ Renseigner tous les paramètres :
  - `URL_RANDO` : URL du Geotrek-rando associé
  - `CONTACT` : adresse mél de contact de l'organisation publicatrice des données
  - `DEFAULT_LICENSE` : licence attribuée par défaut à tous les médias exportés
- - `PORTALS` : liste des portails dont on veut exporter les itinéraires (non requis)
- - `NAME_FILTER` : liste des chaînes de caractère utilisées pour filtrer les itinéraires par leur nom (par exemple `'®'` pour exclure tous les itinéraires dont le nom contient ce symbole) (non requis)
- - `SOURCE_FILTER` : liste des chaînes de caractère utilisées pour filtrer les itinéraires par leur source (non requis)
+ - `PORTALS_NAME` : liste des noms des portails dont on veut exporter les itinéraires
+ - `TREK_NAME_EXCLUDE` : liste des chaînes de caractère utilisées pour filtrer les itinéraires par leur nom (par exemple `'®'` pour exclure tous les itinéraires dont le nom contient ce symbole)
+ - `SOURCE_NAME_EXCLUDE` : liste des chaînes de caractère utilisées pour filtrer les itinéraires par leur source
+ - `PRACTICE_NAME_EXCLUDE` : liste des chaînes de caractère utilisées pour filtrer les itinéraires par leur pratique
  - `DB_CAT_TO_SCHEMA_CAT` : mise en correspondance des catégories de la base de données avec la liste des catégories autorisées par le schéma
  - `TOPO_ID_TO_ID_OSM` : mise en correspondance des identifiants des itinéraires avec l'identifiant de la relation OpenStreetMap correspondante (non requis)
  - `CALCUL_TYPE_SOL` : si `True`, active le calcul des types de voie (`physicaledge`) présents sur l'itinéraire et renseigne le champ `type_sol` du schéma avec la liste de ceux-ci. /!\ Par défaut, les types de voie dans Geotrek ont plutôt des valeurs comme "Piste" et "Sentier", ce qui ne correspond pas à la description du champ `type_sol`. Si, comme au Parc national des Cévennes, vous avez détourné cet usage pour stocker des revêtements ("Cailloux", "Herbe"), alors ce paramètre peut être pertinent. Désactivé par défaut car allonge énormément la génération du fichier JSON.
@@ -36,7 +37,7 @@ sudo ln -s schema_randonnee/geotrek/export_from_django_models/export_schema /opt
 
 Ajouter la classe suivante au fichier `geotrek-admin/var/conf/parsers.py` :
 ``` python
-    from export_schema.custom_parser import SerializerSchemaItinerairesRando
+from export_schema.custom_parser import SerializerSchemaItinerairesRando
 ```
 
 Dans un terminal, lancer la commande `geotrek import SerializerSchemaItinerairesRando > itineraires_rando.json` pour exporter le résultat dans un fichier JSON. Cette commande est utilisable telle quelle dans une tâche cron.

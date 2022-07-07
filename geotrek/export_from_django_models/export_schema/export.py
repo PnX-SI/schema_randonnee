@@ -8,9 +8,10 @@ from geotrek.trekking.models import Trek
 
 from export_schema.config import (CALCUL_TYPE_SOL, CONTACT,
                                   DB_CAT_TO_SCHEMA_CAT, DEFAULT_LICENSE,
-                                  LIMIT_DATA, NAME_FILTER, PORTALS,
-                                  SOURCE_FILTER, TOPO_ID_TO_ID_OSM, URL_ADMIN,
-                                  URL_RANDO)
+                                  LIMIT_DATA, PORTALS_NAME,
+                                  PRACTICE_NAME_EXCLUDE, SOURCE_NAME_EXCLUDE,
+                                  TOPO_ID_TO_ID_OSM, TREK_NAME_EXCLUDE,
+                                  URL_ADMIN, URL_RANDO)
 from export_schema.env import (django_to_schema, foreign_key_to_map,
                                m2m_fields, null_fields)
 
@@ -24,12 +25,14 @@ django_treks = Trek.objects.filter(
     description__isnull=False,
 )
 
-if PORTALS:
-    django_treks = django_treks.filter(portal__name__in=PORTALS)
-for filter in NAME_FILTER:
+if PORTALS_NAME:
+    django_treks = django_treks.filter(portal__name__in=PORTALS_NAME)
+for filter in TREK_NAME_EXCLUDE:
     django_treks = django_treks.exclude(name__icontains=filter)
-for filter in SOURCE_FILTER:
+for filter in SOURCE_NAME_EXCLUDE:
     django_treks = django_treks.exclude(source__name__icontains=filter)
+for filter in PRACTICE_NAME_EXCLUDE:
+    django_treks = django_treks.exclude(practice__name__icontains=filter)
 
 
 def transform_attachments():
