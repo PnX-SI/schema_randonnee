@@ -30,7 +30,7 @@ Cloner le dépôt GitHub sur le serveur où est installé Geotrek-admin, puis cr
 sudo ln -s /PATH/TO/FOLDER/schema_randonnee/geotrek/export_from_django_models/export_schema /opt/geotrek-admin/var/conf/
 ```
 
-Ajouter la classe suivante au fichier `geotrek-admin/var/conf/parsers.py` :
+Copier la ligne suivante en haut du fichier `geotrek-admin/var/conf/parsers.py` :
 ``` python
 from export_schema.custom_parser import SerializerSchemaItinerairesRando
 ```
