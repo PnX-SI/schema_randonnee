@@ -27,7 +27,7 @@ Renseigner tous les paramètres :
 # Utilisation
 Cloner le dépôt GitHub sur le serveur où est installé Geotrek-admin, puis créer un lien symbolique du dossier `export_schema` à l'emplacement suivant : `/opt/geotrek-admin/var/conf/`, par exemple grâce à la commande suivante :
 ``` sh
-sudo ln -s schema_randonnee/geotrek/export_from_django_models/export_schema /opt/geotrek-admin/var/conf/
+sudo ln -s /PATH/TO/FOLDER/schema_randonnee/geotrek/export_from_django_models/export_schema /opt/geotrek-admin/var/conf/
 ```
 
 Ajouter la classe suivante au fichier `geotrek-admin/var/conf/parsers.py` :
