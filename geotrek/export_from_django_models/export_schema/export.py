@@ -25,6 +25,8 @@ django_treks = Trek.objects.filter(
     description__isnull=False,
 )
 
+# print(django_treks)
+
 if PORTALS_NAME:
     django_treks = django_treks.filter(portal__name__in=PORTALS_NAME)
 for filter in TREK_NAME_EXCLUDE:
@@ -34,7 +36,8 @@ for filter in SOURCE_NAME_EXCLUDE:
 for filter in PRACTICE_NAME_EXCLUDE:
     django_treks = django_treks.exclude(practice__name__icontains=filter)
 
-
+# print(django_treks)
+    
 def transform_attachments():
     if t.attachments:
         attachments = []
@@ -163,7 +166,8 @@ for t in django_treks[:LIMIT_DATA]:
             schema_trek[schema_field] = str(getattr(t, django_field))
 
     schema_treks.append(schema_trek)
-
+    
+# print(schema_treks)
 
 featurecollection = {
     "type": "FeatureCollection",
