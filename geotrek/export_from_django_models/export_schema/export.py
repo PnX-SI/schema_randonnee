@@ -76,7 +76,7 @@ def process_geom():
 def process_m2m():
     m2m_objects = getattr(t, django_field).all()
     label = m2m_fields[django_field]
-    m2m_values = [getattr(a, label) for a in m2m_objects]
+    m2m_values = [str(getattr(a, label)) for a in m2m_objects]
     if m2m_values:
         return ', '.join(m2m_values)
 
