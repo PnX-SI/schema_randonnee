@@ -43,7 +43,7 @@ Pour des tests de validité plus fluides des données exportées de Geotrek, l'e
 - l'exécution du script `local_validator/validate_data_with_ajv.js` sur `itineraires_rando.json`
 - si le fichier est conforme au schéma, il est renommé en `itineraires_rando_export.json`, et en `itineraires_rando_notvalid.json` s'il ne l'est pas.
 
-Pour rester à jour avec les évolutions du schéma et du processus d'export, il suffira ensuite de lancer `git fetch origin` et `git pull origin`. Le fichier `config.py` ne sera pas écrasé, et le lien symbolique vers le dossier `export_schema` ne sera pas cassé. Si une tâche automatique type `cron` est paramétrée, l'opération ne devrait pas engendrer de rupture de fonctionnement, sauf en cas de nouvelles versions du schéma ou du modèle de données Geotrek non rétro-compatibles.
+Pour rester à jour avec les évolutions du schéma et du processus d'export, il suffira ensuite de lancer `git pull origin`. Le fichier `config.py` ne sera pas écrasé, et le lien symbolique vers le dossier `export_schema` ne sera pas cassé. Si une tâche automatique type `cron` est paramétrée, l'opération ne devrait pas engendrer de rupture de fonctionnement, sauf en cas de nouvelles versions du schéma ou du modèle de données Geotrek non rétro-compatibles.
 
 
 # Fonctionnement du script
