@@ -25,12 +25,7 @@ Renseigner tous les paramètres :
  - `null_fields` : champs absents tel quels du modèle Django, et qui nécessiteraient un traitement plus poussé. En attendant, ces champs seront créés avec une valeur nulle
 
 # Utilisation
-Cloner le dépôt GitHub sur le serveur où est installé Geotrek-admin :
-``` sh
-git clone git@github.com:PnX-SI/schema_randonnee.git
-```
-
-Créer un lien symbolique du dossier `export_schema` à l'emplacement suivant : `/opt/geotrek-admin/var/conf/`, par exemple grâce à la commande suivante :
+Cloner le dépôt GitHub sur le serveur où est installé Geotrek-admin, puis créer un lien symbolique du dossier `export_schema` à l'emplacement suivant : `/opt/geotrek-admin/var/conf/`, par exemple grâce à la commande suivante :
 ``` sh
 sudo ln -s schema_randonnee/geotrek/export_from_django_models/export_schema /opt/geotrek-admin/var/conf/
 ```
@@ -40,7 +35,7 @@ Ajouter la classe suivante au fichier `geotrek-admin/var/conf/parsers.py` :
 from export_schema.custom_parser import SerializerSchemaItinerairesRando
 ```
 
-Dans un terminal, lancer la commande `geotrek import SerializerSchemaItinerairesRando > itineraires_rando.json` pour exporter le résultat dans un fichier JSON. Cette commande est utilisable telle quelle dans une tâche cron.
+Dans un terminal, lancer la commande `geotrek import SerializerSchemaItinerairesRando > /path/to/folder/itineraires_rando.json` pour exporter le résultat dans un fichier JSON. Cette commande est utilisable telle quelle dans une tâche cron.
 
 Pour des tests de validité plus fluides des données exportées de Geotrek, l'exécution du script `export_and_validate.sh` permet :
 - l'exécution de `geotrek import SerializerSchemaItinerairesRando`
