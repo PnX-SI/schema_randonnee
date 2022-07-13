@@ -1,27 +1,3 @@
-name: Validate JSON
-
-on:
-  push:
-    paths:
-      - 'schema.json'
-      - 'exemple-valide.json'
-
-jobs:
-  validate_json:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checking out repo
-        uses: actions/checkout@v3
-      - name: build the schema and validate the data
-        uses: pnx-si/jsonschema_validator@v1.0.0
-        id: validation
-        with:
-          main_schema_path: ${{ github.workspace }}/schema.json
-          additional_schemas_dir: ${{ github.workspace }}/GeoJSON_schemas/
-          data_path: ${{ github.workspace }}/exemple-valide.json
-      - name: print the results
-        run: echo "${{ steps.validation.outputs.validity }}"
-
 name: Vérification du respect des spécifications
 
 on:
