@@ -2,13 +2,13 @@
 
 ############################
 # Script permettant d'exporter
-# depuis une base geotrek-admin ayant une vue v_treks_schema
+# depuis une base Geotrek-admin
 # et de valider les données générées
 CURRENT_DIR=$(dirname "$(realpath $0)")
 EXPORT_PATH="../.."
 
 # ############################
-# Export des données de la base geotrek
+# Export des données de la base Geotrek
 cd /opt/geotrek-admin/var/conf/
 /usr/sbin/geotrek import SerializerSchemaItinerairesRando > ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json
 
