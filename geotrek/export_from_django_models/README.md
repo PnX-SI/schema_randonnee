@@ -35,7 +35,7 @@ Copier la ligne suivante en haut du fichier `geotrek-admin/var/conf/parsers.py` 
 from export_schema.custom_parser import SerializerSchemaItinerairesRando
 ```
 
-Dans un terminal, lancer la commande `geotrek import SerializerSchemaItinerairesRando > /path/to/folder/itineraires_rando.json` pour exporter le résultat dans un fichier JSON. Cette commande est utilisable telle quelle dans une tâche cron.
+Lancer la commande `geotrek import SerializerSchemaItinerairesRando > /path/to/folder/itineraires_rando.json` dans le dossier `/opt/geotrek-admin/var/conf/` pour exporter le résultat dans un fichier JSON. Cette commande est utilisable telle quelle dans une tâche cron. 
 
 Pour des tests de validité plus fluides des données exportées de Geotrek, l'exécution du script `export_and_validate.sh` permet :
 - l'exécution de `geotrek import SerializerSchemaItinerairesRando`
