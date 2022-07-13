@@ -1,0 +1,2 @@
+DATA_PATH = '../itineraires_rando.json'
+SCHEMA_PATH = '../schema.json'

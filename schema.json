@@ -36,14 +36,6 @@
   "lastModified": "2021-10-11",
   "version": "1.0.2",
   "definitions": {
-    "GeoJSON_LineString": {
-      "$id": "linestring",
-      "$ref": "https://geojson.org/schema/LineString.json"
-    },
-    "GeoJSON_MultiLineString": {
-      "$id": "multilinestring",
-      "$ref": "https://geojson.org/schema/MultiLineString.json"
-    },
     "properties_randonnee": {
       "$id": "properties_randonnee",
       "type": "object",
@@ -449,14 +441,37 @@
             "$ref": "properties_randonnee"
           },
           "geometry": {
-            "oneOf": [
-              {
-                "$ref": "linestring"
+            "type": "object",
+            "required": [
+              "type",
+              "coordinates"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "LineString"
+                ]
               },
-              {
-                "$ref": "multilinestring"
+              "coordinates": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              },
+              "bbox": {
+                "type": "array",
+                "minItems": 4,
+                "items": {
+                  "type": "number"
+                }
               }
-            ]
+            }
           },
           "bbox": {
             "type": "array",

@@ -2,6 +2,6 @@
 **/config.py
 **/itineraires_rando*
 
-node_modules
+**/venv/
 
 **/settings.ini

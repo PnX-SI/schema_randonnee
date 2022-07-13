@@ -16,8 +16,8 @@ cd /opt/geotrek-admin/var/conf/
 # Validation des données exportées
 # Lancement du validateur
 cd ${CURRENT_DIR}/../../local_validator/
-nvm use
-node validate_data_with_ajv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json
+source venv/bin/activate
+python3 validate_data_with_jsonschema.py
 valid=$?
 
 if [ "$valid" != 0 ]; then
