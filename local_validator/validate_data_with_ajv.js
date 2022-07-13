@@ -1,12 +1,13 @@
 // Script permettant la validation :
-// du schema
-// des données contenues dans le fichier itineraires_rando.json
+// - du schéma
+// - des données contenues dans le fichier référencé dans la variable data_path
 
 const args_file_path = process.argv.slice(2)[0];
 
 const schema_path = '../schema.json'
 const schemas_path = '../GeoJSON_schemas/'
 let data_path = '../itineraires_rando.json'
+
 if (args_file_path) {
   data_path = args_file_path
 }
