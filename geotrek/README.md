@@ -20,6 +20,8 @@ Des scripts shell permettent d'exporter les données de la vue au format GeoJSON
 
 Disponible dans le dossier `export_from_django_models`, ce script s'intègre à Geotrek et utilise les modèles Django pour exporter les itinéraires depuis la base de données. Placé directement dans le contexte de l'application Geotrek-admin, il n'a pas besoin de paramètres de connexion à la base de données, et permet une personnalisation aisée.
 
+La procédure de mise en place est décrite [ici](export_from_django_models).
+
 ### Avantages
  - la personnalisation se fait dans un fichier à part et est beaucoup plus aisée à réaliser
  - le script est mieux intégré à Geotrek
