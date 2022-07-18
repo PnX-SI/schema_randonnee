@@ -76,9 +76,9 @@ Deux attributs ont des valeurs contraintes :
 
 ## Validateur
 
-Un script Node.js permet de valider le fichier `itineraires_rando.json` exporté.
+Un script Python permet de valider le fichier `itineraires_rando.json` exporté.
 
-Le script et sa documentation sont disponibles dans le dossier [`/local_validator`](/local_validator/)
+Le script et sa documentation sont disponibles dans le dossier [`/tools/2_validate_data`](/tools/2_validate_data)
 
 ## Geotrek
 

@@ -1,4 +1,4 @@
-# Fonctionnement
+# Fonctionnement (non maintenu)
 
 Vue testée avec `Schéma de données 1.0.2` / `PostgreSQL 12.9` / `PostGIS 3.0.0` / `unaccent 1.1` / `Geotrek-admin 2.81.0`
 
