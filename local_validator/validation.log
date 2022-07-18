@@ -1,0 +1,10 @@
+Lun 18 jul 2022 10:22:27 CEST
+Lun 18 jul 2022 10:22:59 CEST
+Lun 18 jul 2022 10:23:52 CEST
+Lun 18 jul 2022 10:26:58 CEST
+Fichier de données non valide :
+[0], altitude_max: '759' is not of type 'integer', 'null' - (Sentier de Coudoulous)
+[4], arrivee: None is not of type 'string' - (Le tour du Lempezou (à VTT))
+[5], communes_code: 30227 is not of type 'string', 'null' - (Serre du bois de la ville)
+[5], id_local: 42389 is not of type 'string' - (Serre du bois de la ville)
+\n

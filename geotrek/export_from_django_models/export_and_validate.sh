@@ -17,7 +17,9 @@ cd /opt/geotrek-admin/var/conf/
 # Lancement du validateur
 cd ${CURRENT_DIR}/../../local_validator/
 source venv/bin/activate
-python3 validate_data_with_jsonschema.py
+date >> validation.log
+python3 validate_data_with_jsonschema.py >> validation.log
+echo "\n" >> validation.log
 valid=$?
 
 if [ "$valid" != 0 ]; then
