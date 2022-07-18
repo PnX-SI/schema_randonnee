@@ -23,13 +23,12 @@ if [ "$EXPORT_GEOTREK_APP" = true ] ; then
   sudo ln -s ${CURRENT_DIR}/../1_export_geotrek_app/export_schema /opt/geotrek-admin/var/conf/
 
   # Ajout du parser à Geotrek
-  sudo su
-  echo "" >> /opt/geotrek-admin/var/conf/parsers.py
-  echo "# Serializer export schema" >> /opt/geotrek-admin/var/conf/parsers.py
-  echo "from export_schema.custom_parser import SerializerSchemaItinerairesRando" >> /opt/geotrek-admin/var/conf/parsers.py
-  echo "" >> /opt/geotrek-admin/var/conf/parsers.py
-  exit
+  echo "" | sudo tee -a /opt/geotrek-admin/var/conf/parsers.py
+  echo "# Serializer export schema" | sudo tee -a /opt/geotrek-admin/var/conf/parsers.py
+  echo "from export_schema.custom_parser import SerializerSchemaItinerairesRando" | sudo tee -a /opt/geotrek-admin/var/conf/parsers.py
+  echo "" | sudo tee -a /opt/geotrek-admin/var/conf/parsers.py
 fi
+
 
 
 ###################################

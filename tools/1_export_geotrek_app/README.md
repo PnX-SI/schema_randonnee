@@ -31,8 +31,7 @@ Aucune intervention manuelle n'est nécessaire sur ce fichier. Voilà cependant 
 # Utilisation
 Le lancement de l'export se fait via le script (../all_export_validate_publish/install.sh), instructions disponibles ici : (../all_export_validate_publish/README.md).
 
-Pour rester à jour avec les évolutions du schéma et du processus d'export, il suffira ensuite de lancer `git pull origin`. Le fichier `config.py` ne sera pas écrasé, et le lien symbolique vers le dossier `export_schema` ne sera pas cassé. Si une tâche automatique type `cron` est paramétrée, l'opération ne devrait pas engendrer de rupture de fonctionnement, sauf en cas de nouvelles versions du schéma ou du modèle de données Geotrek non rétro-compatibles.
-
+Pour rester à jour avec les évolutions du schéma et du processus d'export, il suffira ensuite de lancer `git pull origin`. Le fichier `config.py` ne sera pas écrasé, et le lien symbolique vers le dossier `export_schema` ne sera pas cassé. Si une tâche automatique type `cron` est paramétrée, l'opération ne devrait pas engendrer de rupture de fonctionnement, sauf en cas de nouvelles versions du schéma ou du modèle de données Geotrek non rétro-compatibles.s
 
 # Fonctionnement du script
 

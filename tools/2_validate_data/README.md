@@ -10,7 +10,7 @@ Renseigner les paramètres suivants si besoin :
  - `SCHEMA_PATH` : le chemin relatif du schéma contre lequel valider le fichier (par défaut `../../schema.json`, soit la racine du dépôt)
 
 ### Fonctionnement
-Le script [](validate.sh) active l'environnement virtuel Python, exécute le script Python de validation, puis renomme en `itineraires_rando_export.json` le fichier s'il est conforme au schéma, ou en `itineraires_rando_notvalid.json` s'il ne l'est pas. Ce script shell ne fonctionne que si `itineraires_rando.json` existe à la racine du dépôt local.
+Le script [](validate.sh) active l'environnement virtuel Python, exécute le script Python de validation (qui utilise la librairie [jsonschema](https://python-jsonschema.readthedocs.io/en/stable/)), puis renomme en `itineraires_rando_export.json` le fichier s'il est conforme au schéma, ou en `itineraires_rando_notvalid.json` s'il ne l'est pas. Ce script shell ne fonctionne que si `itineraires_rando.json` existe à la racine du dépôt local.
 Un fichier de log avec le résultat de la validation est créé dans le dossier `2_validate_data`.
 
 Pour valider un fichier ayant un nom personnalisé ou bien ne se trouvant pas à la racine, il faut modifier le fichier de configuration et lancer directement le script Python en ayant activé l'environnement virtuel. Aucun log ne sera créé.
