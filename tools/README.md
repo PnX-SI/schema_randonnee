@@ -49,19 +49,32 @@ Des scripts shell permettent d'exporter les données de la vue au format GeoJSON
 
 # Publication
 
-# Installation
+La publication des données, correspond au téléversement du fichier exporté sur une plateformme de données ouverte. Nous avons choisi d'implémenter la publication sur la plateformme de l'étalab data.gouv.
 
-## Installation des modules
+En amont de la publication il faut avoir sur la plateformme data.gouv avoir créer un compte et un jeu de données. La documentation est accessible en ligne : [https://doc.data.gouv.fr/]
 
-### Export geotrek app
 
-### Export geotrek views
+# Installation globale
 
-### Validation des données
+### Prérequis
 
-### Publication des données
+ * Python3
 
-## Installation globale
+```shell
+ apt install python3 python3-venv
+```
 
 ### Configuration
-Chaque dossier posède son propre fichier de configuration. Il faut les créer en fonction des modules que vous souhaitez activer.
+Chaque dossier posède son propre fichier de configuration. Il faut les créer et les modifier en fonction des modules que vous souhaitez activer.
+
+
+```shell
+# Fichier de configuration globale permettant d'activer les modules
+cp all_export_validate_publish/settings.ini.sample all_export_validate_publish/settings.ini
+# Configuration de l'export des données depuis l'application geotrek
+cp 1_export_geotrek_app/export_schema/config.py.sample config.py
+# Validation des données exportées
+cp 2_validate_data/config.py.sample 2_validate_data/config.py
+# Publication des données sur la plateformme data gouv
+cp 3_publish_data_gouv_fr/settings.ini.sample 3_publish_data_gouv_fr/settings.ini
+```
