@@ -1,3 +1,4 @@
+import sys
 import json
 import jsonschema
 from config import DATA_PATH, SCHEMA_PATH
@@ -18,6 +19,6 @@ if len(errors) > 0:
     for error in errors:
         nom_itineraire = (instance["features"][error.path[1]]["properties"]["nom_itineraire"])
         print(f"[{error.path[1]}], {error.path[3]}: {error.message} - ({nom_itineraire})")
-        #print(list(error.schema_path), error.message, sep=", ")
+    sys.exit(1)
 else:
     print("Fichier de données valide !")
