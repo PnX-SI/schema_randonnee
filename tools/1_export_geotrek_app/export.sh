@@ -22,5 +22,6 @@ then
     echo "Fichier non valide et exporté vers $CURRENT_DIR/$EXPORT_PATH/itineraires_rando_not_valid.json"
     exit 1
 else
+  echo "Le fichier de données a été exporté vers $CURRENT_DIR/$EXPORT_PATH/itineraires_rando.json""
   exit 0
 fi
