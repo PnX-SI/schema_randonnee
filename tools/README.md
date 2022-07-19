@@ -89,8 +89,6 @@ Un fichier de configuration globale permet d'activer les modules à installer, e
 cp all_export_validate_publish/settings.ini.sample all_export_validate_publish/settings.ini
 ```
 
-**Configuration de chaque module**
-
 Paramètres:
 
 | Nom                 | Valeur          |  Description                                                   |
@@ -106,16 +104,19 @@ Paramètres:
 Les étapes d'export et de publication possèdent leur propre fichier de configuration. Il faut les créer et les modifier à partir des fichiers examples `.sample` en fonction des modules que vous souhaitez activer.
 
 
-Configuration de l'export des données depuis l'application geotrek :
+ * Configuration de l'export des données depuis l'application geotrek :
 ```shell
 cp 1_export_geotrek_app/export_schema/config.py.sample config.py
 ```
+Documentation complètes des paramètres : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
 
-Configuration de la publication des données sur la plateformme data.gouv :
+
+ * Configuration de la publication des données sur la plateformme data.gouv :
 ```shell
 cp 3_publish_data_gouv_fr/settings.ini.sample 3_publish_data_gouv_fr/settings.ini
 ```
 
+Documentation complètes des paramètres : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
 ## Installation
 
 ## Utilisation du script global
