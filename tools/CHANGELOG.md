@@ -1,7 +1,7 @@
 # Changelog
 
 
-## Version 1.0.3 (unreleased)
+## Version 1.0.3 (2022-07-19)
 
  * Validation des données en python
  * Réorganisation des outils annexes au schéma. Tout est centralisé dans le dossier `tools`

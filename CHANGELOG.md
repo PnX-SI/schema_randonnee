@@ -1,7 +1,7 @@
 # Changelog
 
 
-## Version 1.0.3 (unreleased)
+## Version 1.0.3 (2022-07-19)
 
  * Suppression du support de MultiLineString
  * Intégration du standard LineString dans le fichier schéma
