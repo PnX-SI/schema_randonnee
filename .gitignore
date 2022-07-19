@@ -1,9 +1,9 @@
 **/parameters.txt
+**/settings.ini
 **/config.py
+
 **/itineraires_rando*
 **/*.log
 
 **/venv/
 **/__pycache__
-
-**/settings.ini
