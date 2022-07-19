@@ -7,6 +7,3 @@ VALIDATE=true
 # Activation du module de publication des données sur data.gouv
 #   value = true/false
 PUBLISH_DATA_GOUV=true
-# Suppression des logs a chaque export
-#   value = true/false
-CLEAN_LOG=true

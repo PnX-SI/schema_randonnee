@@ -96,7 +96,6 @@ Paramètres:
 | EXPORT_GEOTREK_APP  |  true/false     |  Activation du module d'export des données depuis geotrek      |
 | VALIDATE            |  true/false     |  Activation du module de validation des données                |
 | PUBLISH_DATA_GOUV   |  true/false     |  Activation du module de publication des données sur data.gouv |
-| CLEAN_LOG           |  true/false     |  Nettoyage du fichier de log a chaque utilisation du script    |
 
 
 **Configuration de chaque module**
@@ -138,4 +137,9 @@ Il est possible de configurer la table des crons pour qu'il s'exécute automatiq
 ```sh
 # Exemple : tous les lundis à 5 heures du matin
 0 5 * * 1 root /MY_PATH/schema_randonnee/tools/all_export_validate_publish/export_validate_and_publish.sh
+```
+
+Le logging n'est pas proposé nativement, mais chacun des scripts comporte tous les `echo` et `print` nécessaires pour un logging de qualité. Exemple :
+```sh
+0 5 * * 1 root /MY_PATH/schema_randonnee/tools/all_export_validate_publish/export_validate_and_publish.sh >> /MY_PATH/schema_randonnee/tools/generated_data/export_validate_publish.log
 ```

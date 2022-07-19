@@ -12,13 +12,14 @@ FILE_PATH="${CURRENT_DIR}/../generated_data/${FILE_NAME}"
 
 # Publication sur data.gouv.fr
 
-if [ -f "$FILE_PATH" ]; then
+if [ -f "${FILE_PATH}" ]; then
   curl -H "Accept:application/json" \
       -H "X-Api-Key:$API_KEY" \
-      -F "file=@$FILE_PATH" \
-      -X POST $API_URL/datasets/$DATASET/resources/$RESOURCE/upload/
+      -F "file=@${FILE_PATH}" \
+      -X POST ${API_URL}/datasets/${DATASET}/resources/${RESOURCE}/upload/
+  echo "Le push a été réalisé"
   exit 0
 else
-  echo "$FILE_PATH does not exist."
+  echo "${FILE_PATH} does not exist."
   exit 1
 fi
