@@ -1,6 +1,9 @@
 # Activation du module d'export des données depuis geotrek
+#   value = true/false
 EXPORT_GEOTREK_APP=true
 # Activation du module de validation des données
+#   value = true/false
 VALIDATE=true
 # Activation du module de publication des données sur data.gouv
+#   value = true/false
 PUBLISH_DATA_GOUV=true

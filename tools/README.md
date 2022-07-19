@@ -82,15 +82,27 @@ Pour effectuer cette étape, se référer à la documentation spécifique : [3_p
 ## Configuration
 
 **Activation des modules**
-@TODO
-Fichier de configuration settings.ini
 
-Fichier de configuration globale permettant d'activer les modules
+Un fichier de configuration globale permet d'activer les modules à installer, executer
+
 ```shell
 cp all_export_validate_publish/settings.ini.sample all_export_validate_publish/settings.ini
 ```
 
+<<<<<<< HEAD
 **Configuration de chaque module**
+=======
+Paramètres:
+
+| Nom                 | Valeur          |  Description                                                   |
+| :------------------ |:--------------- | :------------------------------------------------------------- |
+| EXPORT_GEOTREK_APP  |  true/false     |  Activation du module d'export des données depuis geotrek      |
+| VALIDATE            |  true/false     |  Activation du module de validation des données                |
+| PUBLISH_DATA_GOUV   |  true/false     |  Activation du module de publication des données sur data.gouv |
+
+
+**Configuration de chaque modules**
+>>>>>>> Documentation
 
 Les étapes d'export et de publication possèdent leur propre fichier de configuration. Il faut les créer et les modifier à partir des fichiers examples `.sample` en fonction des modules que vous souhaitez activer.
 
