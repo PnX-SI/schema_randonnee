@@ -5,7 +5,7 @@ set -e
 CURRENT_DIR=$(dirname "$(realpath $0)")
 GENERATED_DATA_DIR="${CURRENT_DIR}/../generated_data"
 
-. ./settings.ini
+. ${CURRENT_DIR}/settings.ini
 
 stop () {
     echo "${1}" 1>&2
