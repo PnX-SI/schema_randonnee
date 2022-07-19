@@ -89,9 +89,8 @@ Un fichier de configuration globale permet d'activer les modules à installer, e
 cp all_export_validate_publish/settings.ini.sample all_export_validate_publish/settings.ini
 ```
 
-<<<<<<< HEAD
 **Configuration de chaque module**
-=======
+
 Paramètres:
 
 | Nom                 | Valeur          |  Description                                                   |
@@ -101,8 +100,8 @@ Paramètres:
 | PUBLISH_DATA_GOUV   |  true/false     |  Activation du module de publication des données sur data.gouv |
 
 
-**Configuration de chaque modules**
->>>>>>> Documentation
+**Configuration de chaque module**
+
 
 Les étapes d'export et de publication possèdent leur propre fichier de configuration. Il faut les créer et les modifier à partir des fichiers examples `.sample` en fonction des modules que vous souhaitez activer.
 
