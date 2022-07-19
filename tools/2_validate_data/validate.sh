@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 CURRENT_DIR=$(dirname "$(realpath $0)")
 GENERATED_DATA_DIR="${CURRENT_DIR}/../generated_data"
 

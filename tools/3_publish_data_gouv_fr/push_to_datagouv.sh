@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 CURRENT_DIR=`dirname $0`
 . ${CURRENT_DIR}/settings.ini
