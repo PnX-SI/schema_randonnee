@@ -9,7 +9,7 @@ Actuellement, deux implémentations sont disponibles dans ce dépôt pour l'expo
 
 Les différentes étapes sont implémentées et utilisables de façon indépendante et le dossier `all_export_validate_publish` contient des scripts et instructions pour les combiner.
 
-Une procédure d'installation globale est disponible en bas de ce document : [procédure d'installation](#Installation).
+Une procédure d'installation globale est disponible en bas de ce document : [procédure d'installation](#Installation globale). Elle permet d'installer les outils voulus (export, validation, publication). Elle est accompagnée d'un script permettant d'enchainer toutes les étapes activées, de l'export jusqu'à la publication.
 
 
 # Export des données depuis Geotrek
@@ -44,13 +44,15 @@ Des scripts shell permettent d'exporter les données de la vue au format GeoJSON
  - nécessite de stocker ses identifiants de connexion à la base de données en clair
  - nécessite l'installation d'une extension tierce (`unaccent`)
 
-Pour effectuer cette étape, se référer à la documentation spécifique : [](./1_export_geotrek_app/README.md) ou [](./1_export_geotrek_SQL_view/README.md)
+Pour effectuer cette étape, se référer à la documentation spécifique :
+  * Export via l'application geotrek : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
+  * Export via une vue SQL : [1_export_geotrek_SQL_view/README.md](./1_export_geotrek_SQL_view/README.md)
 
 # Validation
 
-L'étape de validation d'un fichier de données contre le schéma avant sa publication en ligne est nécessaire pour s'assurer de sa conformité. Le script [](./2_validate_data/validate.sh) permet de valider un fichier JSON contre le schéma [](../schema.json).
+L'étape de validation d'un fichier de données permet de vérifier la conformité de celui-ci par rapport au schéma avant sa publication en ligne. Cette étape est nécessaire pour assurer la qualité de la donnée publiée.
 
-Pour effectuer cette étape, se référer à la documentation spécifique : [](./2_validate_data/README.md)
+Pour effectuer cette étape, se référer à la documentation spécifique : [2_validate_data/README.md](./2_validate_data/README.md)
 
 
 
@@ -58,12 +60,17 @@ Pour effectuer cette étape, se référer à la documentation spécifique : [](.
 
 La publication des données correspond au téléversement du fichier exporté sur une plateforme de donnée ouverte. Nous avons choisi d'implémenter la publication sur la plateforme d'Etalab data.gouv.fr
 
-En amont de la publication il faut avoir créé sur la plateformme data.gouv un compte et un jeu de données. La documentation est accessible en ligne : [https://doc.data.gouv.fr/]
+En amont de la publication il faut avoir créé sur la plateformme data.gouv un compte et un jeu de données. La documentation est accessible en ligne : https://doc.data.gouv.fr/
+
+
+
+Pour effectuer cette étape, se référer à la documentation spécifique : [3_publish_data_gouv_fr/README.md](./3_publish_data_gouv_fr/README.md)
 
 
 # Installation globale
 
-### Prérequis
+
+## Prérequis
 
  * Python3
 
@@ -71,7 +78,14 @@ En amont de la publication il faut avoir créé sur la plateformme data.gouv un 
  apt install python3 python3-venv
 ```
 
-### Configuration
+## Configuration
+
+**Activation des modules**
+@TODO
+Fichier de configuration settings.ini
+
+**Configuration de chaque modules**
+
 Chaque dossier possède son propre fichier de configuration. Il faut les créer et les modifier en fonction des modules que vous souhaitez activer.
 
 
@@ -85,3 +99,7 @@ cp 2_validate_data/config.py.sample 2_validate_data/config.py
 # Publication des données sur la plateformme data gouv
 cp 3_publish_data_gouv_fr/settings.ini.sample 3_publish_data_gouv_fr/settings.ini
 ```
+
+## Installation
+
+## Utilisation du script global
