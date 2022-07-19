@@ -96,6 +96,7 @@ Paramètres:
 | EXPORT_GEOTREK_APP  |  true/false     |  Activation du module d'export des données depuis geotrek      |
 | VALIDATE            |  true/false     |  Activation du module de validation des données                |
 | PUBLISH_DATA_GOUV   |  true/false     |  Activation du module de publication des données sur data.gouv |
+| CLEAN_LOG           |  true/false     |  Nettoyage du fichier de log a chaque utilisation du script    |
 
 
 **Configuration de chaque module**
@@ -119,4 +120,15 @@ cp 3_publish_data_gouv_fr/settings.ini.sample 3_publish_data_gouv_fr/settings.in
 Documentation complètes des paramètres : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
 ## Installation
 
+Après avoir modifié les fichiers de configuration il faut executer la commande suivante : `./install.sh`
+
 ## Utilisation du script global
+
+Le script global s'execute en utilisant en root avec  la commande suivante :  `sudo ./export_validate_and_publish.sh`
+
+Il est possible de configurer la table des crons pour qu'il s'éxécute automatiquement
+
+```sh
+# Exemple : tous les jours à 5 heures du matin
+0 5 * * 1 root /MY_PATH/schema_randonnee/tools/all_export_validate_publish/export_validate_and_publish.sh
+```
