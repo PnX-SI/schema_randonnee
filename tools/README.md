@@ -107,26 +107,33 @@ Les étapes d'export et de publication possèdent leur propre fichier de configu
 
  * Configuration de l'export des données depuis l'application geotrek :
 ```shell
-cp 1_export_geotrek_app/export_schema/config.py.sample config.py
+cp 1_export_geotrek_app/export_schema/config.py.sample 1_export_geotrek_app/export_schema/config.py
 ```
-Documentation complètes des paramètres : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
+Documentation complète des paramètres : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
 
 
- * Configuration de la publication des données sur la plateformme data.gouv :
+ * Configuration de la publication des données sur la plateforme data.gouv :
 ```shell
 cp 3_publish_data_gouv_fr/settings.ini.sample 3_publish_data_gouv_fr/settings.ini
 ```
 
-Documentation complètes des paramètres : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
+Documentation complète des paramètres : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
 ## Installation
 
-Après avoir modifié les fichiers de configuration il faut executer la commande suivante : `./install.sh`
+Après avoir modifié les fichiers de configuration il faut exécuter la commande suivante :
+``` shell
+cd all_export_validate_publish
+./install.sh
+```
 
 ## Utilisation du script global
 
-Le script global s'execute en utilisant en root avec  la commande suivante :  `sudo ./export_validate_and_publish.sh`
+Le script global s'exécute en utilisateur `root` avec la commande suivante :
+``` shell
+sudo ./export_validate_and_publish.sh
+```
 
-Il est possible de configurer la table des crons pour qu'il s'éxécute automatiquement :
+Il est possible de configurer la table des crons pour qu'il s'exécute automatiquement :
 
 ```sh
 # Exemple : tous les lundis à 5 heures du matin
