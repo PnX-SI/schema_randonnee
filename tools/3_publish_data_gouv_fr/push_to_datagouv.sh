@@ -14,8 +14,8 @@ FILE_NAME="itineraires_rando_export.json"
 if [ -f "${CURRENT_DIR}/../$FILE_NAME" ]; then
   curl -H "Accept:application/json" \
       -H "X-Api-Key:$API_KEY" \
-      -F "file=@${CURRENT_DIR}/../${FILE_NAME}" \
+      -F "file=@${CURRENT_DIR}/generated_data/${FILE_NAME}" \
       -X POST $API_URL/datasets/$DATASET/resources/$RESOURCE/upload/
 else
-  echo "${CURRENT_DIR}/../${FILE_NAME} does not exist."
+  echo "${CURRENT_DIR}/generated_data/${FILE_NAME} does not exist."
 fi
