@@ -1,5 +1,5 @@
 {
-  "$id": "https://github.com/PnX-SI/schema_randonnee/raw/v1.0.3/schema.json",
+  "$id": "https://github.com/PnX-SI/schema_randonnee/raw/v1.1.0/schema.json",
   "$schema": "http://json-schema.org/draft-07/schema",
   "title": "Itinéraires de randonnée",
   "description": "Spécification du fichier d'échange relatif aux itinéraires de randonnée",
@@ -23,7 +23,7 @@
     {
       "title": "Fichier valide (JSON)",
       "name": "exemple-valide.json",
-      "path": "https://github.com/PnX-SI/schema_randonnee/raw/v1.0.3/exemple-valide.json"
+      "path": "https://github.com/PnX-SI/schema_randonnee/raw/v1.1.0/exemple-valide.json"
     }
   ],
   "sources": [
