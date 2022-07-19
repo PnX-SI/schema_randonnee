@@ -9,7 +9,8 @@ Actuellement, deux implémentations sont disponibles dans ce dépôt pour l'expo
 
 Les différentes étapes sont implémentées et utilisables de façon indépendante et le dossier `all_export_validate_publish` contient des scripts et instructions pour les combiner.
 
-Une procédure d'installation globale est disponible en bas de ce document : [procédure d'installation](#Installation globale). Elle permet d'installer les outils voulus (export, validation, publication). Elle est accompagnée d'un script permettant d'enchainer toutes les étapes activées, de l'export jusqu'à la publication.
+Une procédure d'installation globale est disponible en bas de ce document : [procédure d'installation](#installation-globale). Elle permet d'installer les outils voulus (export, validation, publication). Elle est accompagnée d'un script permettant d'enchainer toutes les étapes activées, de l'export jusqu'à la publication. 
+Pour l'utiliser se référer à la documentation d'[utilisation du script global](#utilisation-du-script-global)
 
 
 # Export des données depuis Geotrek
