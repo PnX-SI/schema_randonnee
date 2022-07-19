@@ -126,9 +126,9 @@ Après avoir modifié les fichiers de configuration il faut executer la commande
 
 Le script global s'execute en utilisant en root avec  la commande suivante :  `sudo ./export_validate_and_publish.sh`
 
-Il est possible de configurer la table des crons pour qu'il s'éxécute automatiquement
+Il est possible de configurer la table des crons pour qu'il s'éxécute automatiquement :
 
 ```sh
-# Exemple : tous les jours à 5 heures du matin
+# Exemple : tous les lundis à 5 heures du matin
 0 5 * * 1 root /MY_PATH/schema_randonnee/tools/all_export_validate_publish/export_validate_and_publish.sh
 ```
