@@ -20,4 +20,7 @@ then
     echo "Le fichier est vide, un problème est survenu lors de l'export depuis Geotrek"
     mv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_notvalid.json
     echo "Fichier non valide et exporté vers ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_not_valid.json"
+    exit 1
+else
+  exit 0
 fi

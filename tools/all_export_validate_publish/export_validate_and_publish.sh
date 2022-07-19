@@ -19,6 +19,10 @@ func () {
     fi
 }
 
+if [ "$CLEAN_LOG" = true ]; then
+  > $CURRENT_DIR/../generated_data/validation.log
+fi
+
 # Run scripts if activated
 if [ "$EXPORT_GEOTREK_APP" = true ] ; then
   echo "Export data"
