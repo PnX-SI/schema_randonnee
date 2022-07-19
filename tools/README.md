@@ -15,7 +15,11 @@ Pour l'utiliser, se référer à la documentation d'[utilisation du script globa
 
 # Export des données depuis Geotrek
 
-Deux moyens sont proposés pour exporter les données depuis Geotrek dans un fichier conforme au schéma :
+Deux moyens sont proposés pour exporter les données depuis Geotrek dans un fichier conforme au schéma.
+Pour effectuer cette étape, se référer à la documentation spécifique :
+  * Export via l'application geotrek : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
+  * Export via une vue SQL : [1_export_geotrek_SQL_view/README.md](./1_export_geotrek_SQL_view/README.md)
+Les avantages et inconvénients des deux méthodes sont décrits ci-dessous :
 
 ## Export via l'application Geotrek
 
@@ -45,10 +49,6 @@ Des scripts shell permettent d'exporter les données de la vue au format GeoJSON
  - nécessite de stocker ses identifiants de connexion à la base de données en clair
  - nécessite l'installation d'une extension tierce (`unaccent`)
 
-Pour effectuer cette étape, se référer à la documentation spécifique :
-  * Export via l'application geotrek : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
-  * Export via une vue SQL : [1_export_geotrek_SQL_view/README.md](./1_export_geotrek_SQL_view/README.md)
-
 # Validation
 
 L'étape de validation d'un fichier de données permet de vérifier la conformité de celui-ci par rapport au schéma avant sa publication en ligne. Cette étape est nécessaire pour assurer la qualité de la donnée publiée.
@@ -61,7 +61,7 @@ Pour effectuer cette étape, se référer à la documentation spécifique : [2_v
 
 La publication des données correspond au téléversement du fichier exporté sur une plateforme de donnée ouverte. Nous avons choisi d'implémenter la publication sur la plateforme d'Etalab data.gouv.fr
 
-En amont de la publication il faut avoir créé sur la plateformme data.gouv un compte et un jeu de données. La documentation est accessible en ligne : https://doc.data.gouv.fr/
+En amont de la publication il faut avoir créé sur la plateforme data.gouv un compte et un jeu de données. La documentation est accessible en ligne : https://doc.data.gouv.fr/
 
 
 

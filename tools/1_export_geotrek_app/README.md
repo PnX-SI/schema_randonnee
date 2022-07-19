@@ -1,10 +1,10 @@
 # Installation
 
-La procédure d'installation est intégrée au script `all_export_validate_publish/install.sh`. Les instructions sont disponibles ici : (../README.md#Installation globale)
+La procédure d'installation de ce module est intégrée au script [`all_export_validate_publish/install.sh`](../all_export_validate_publish/install.sh). Les instructions sont disponibles ici : [../README.md#installation-globale](../README.md#installation-globale)
 
 # Configuration
 
-Si ce n'est pas déjà fait, copier le fichier `config.py.sample` en `config.py`.
+Si ce n'est pas déjà fait, copier le fichier [`export_schema/config.py.sample`](./export_schema/config.py.sample) en `config.py`.
 
 ## Fichier `config.py`
 Renseigner tous les paramètres :
@@ -29,9 +29,9 @@ Aucune intervention manuelle n'est nécessaire sur ce fichier. Voilà cependant 
  - `null_fields` : champs absents tel quels du modèle Django, et qui nécessiteraient un traitement plus poussé. En attendant, ces champs seront créés avec une valeur nulle
 
 # Utilisation
-Le lancement de l'export se fait via le script (../all_export_validate_publish/install.sh), instructions disponibles ici : (../all_export_validate_publish/README.md).
+Le lancement de l'export se fait via le script [all_export_validate_publish/export_validate_and_publish.sh](../all_export_validate_publish/export_validate_and_publish.sh), instructions disponibles ici : [all_export_validate_publish/README.md](../README.md#utilisation-du-script-global).
 
-Pour rester à jour avec les évolutions du schéma et du processus d'export, il suffira ensuite de lancer `git pull origin`. Le fichier `config.py` ne sera pas écrasé, et le lien symbolique vers le dossier `export_schema` ne sera pas cassé. Si une tâche automatique type `cron` est paramétrée, l'opération ne devrait pas engendrer de rupture de fonctionnement, sauf en cas de nouvelles versions du schéma ou du modèle de données Geotrek non rétro-compatibles.s
+Pour rester à jour avec les évolutions du schéma et du processus d'export, il suffira ensuite de lancer `git pull origin`. Le fichier `config.py` ne sera pas écrasé, et le lien symbolique créé automatiquement dans `/opt/geotrek-admin/var/conf/` vers le dossier `export_schema` ne sera pas cassé. Si une tâche automatique type `cron` est paramétrée, l'opération de mise à jour du dépôt local ne devrait pas engendrer de rupture de fonctionnement, sauf en cas de nouvelles versions du schéma ou du modèle de données Geotrek non rétro-compatibles.
 
 # Fonctionnement du script
 
