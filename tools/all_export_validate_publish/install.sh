@@ -14,8 +14,8 @@ CURRENT_DIR=$(dirname "$(realpath $0)")
 if [ "$EXPORT_GEOTREK_APP" = true ] ; then
   if [ ! -f ${CURRENT_DIR}/../1_export_geotrek_app/export_schema/config.py ]
   then
-      echo "Le fichier 1_export_geotrek_app/export_schema/config.py n'existe pas"
-      exit
+    echo "Le fichier 1_export_geotrek_app/export_schema/config.py n'existe pas"
+    exit
   fi
 
   echo "Installation de la procédure d'export des données depuis Geotrek avec l'application Geotrek"

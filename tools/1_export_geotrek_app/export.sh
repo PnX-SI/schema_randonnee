@@ -15,10 +15,10 @@ cd /opt/geotrek-admin/var/conf/
 
 if ! [ -s ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json ]
 then
-    echo "Le fichier est vide, un problème est survenu lors de l'export depuis Geotrek"
-    mv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_notvalid.json
-    echo "Fichier non valide et exporté vers tools/generated_data/itineraires_rando_not_valid.json"
-    exit 1
+  echo "Le fichier est vide, un problème est survenu lors de l'export depuis Geotrek"
+  mv ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando_notvalid.json
+  echo "Fichier non valide et exporté vers tools/generated_data/itineraires_rando_not_valid.json"
+  exit 1
 else
   echo "Le fichier de données a été exporté vers tools/generated_data/itineraires_rando.json"
   exit 0

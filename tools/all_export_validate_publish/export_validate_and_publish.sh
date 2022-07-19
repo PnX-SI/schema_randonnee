@@ -7,16 +7,17 @@ CURRENT_DIR=$(dirname "$(realpath $0)")
 . ${CURRENT_DIR}/settings.ini
 
 stop () {
-    echo "${1}" 1>&2
-    exit 1
+  echo "${1}" 1>&2
+  exit 1
 }
 
 func () {
-    if $1; then
-        echo "  ... done"
-    else
-        stop "  ... something went wrong"
-    fi
+  if $1; then
+    echo "  ... done"
+  else
+    echo "  ... something went wrong!"
+    stop
+  fi
 }
 
 date
