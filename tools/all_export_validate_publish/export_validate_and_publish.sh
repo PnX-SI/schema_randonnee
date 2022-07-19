@@ -16,6 +16,7 @@ func () {
     echo "  ... done"
   else
     echo "  ... something went wrong!"
+    echo ""
     stop
   fi
 }
