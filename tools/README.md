@@ -9,7 +9,7 @@ Actuellement, deux implémentations sont disponibles dans ce dépôt pour l'expo
 
 Les différentes étapes sont implémentées et utilisables de façon indépendante et le dossier `all_export_validate_publish` contient des scripts et instructions pour les combiner.
 
-Une procédure d'installation globale est disponible en bas de ce document : [procédure d'installation](#installation-globale). Elle permet d'installer les outils voulus (export, validation, publication). Elle est accompagnée d'un script permettant d'enchainer toutes les étapes activées, de l'export jusqu'à la publication. 
+Une procédure d'installation globale est disponible en bas de ce document : [procédure d'installation](#installation-globale). Elle permet d'installer les outils voulus (export, validation, publication). Elle est accompagnée d'un script permettant d'enchainer toutes les étapes activées, de l'export jusqu'à la publication.
 Pour l'utiliser se référer à la documentation d'[utilisation du script global](#utilisation-du-script-global)
 
 
@@ -85,19 +85,28 @@ Pour effectuer cette étape, se référer à la documentation spécifique : [3_p
 @TODO
 Fichier de configuration settings.ini
 
+Fichier de configuration globale permettant d'activer les modules
+```shell
+cp all_export_validate_publish/settings.ini.sample all_export_validate_publish/settings.ini
+```
+
 **Configuration de chaque modules**
 
 Chaque dossier possède son propre fichier de configuration. Il faut les créer et les modifier en fonction des modules que vous souhaitez activer.
 
 
+Configuration de l'export des données depuis l'application geotrek
 ```shell
-# Fichier de configuration globale permettant d'activer les modules
-cp all_export_validate_publish/settings.ini.sample all_export_validate_publish/settings.ini
-# Configuration de l'export des données depuis l'application geotrek
 cp 1_export_geotrek_app/export_schema/config.py.sample config.py
-# Validation des données exportées
+```
+
+Configuration de la validation des données exportées
+```shell
 cp 2_validate_data/config.py.sample 2_validate_data/config.py
-# Publication des données sur la plateformme data gouv
+```
+
+Configuration de la publication des données sur la plateformme data gouv
+```shell
 cp 3_publish_data_gouv_fr/settings.ini.sample 3_publish_data_gouv_fr/settings.ini
 ```
 
