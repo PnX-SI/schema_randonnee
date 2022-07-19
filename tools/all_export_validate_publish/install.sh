@@ -2,7 +2,6 @@
 
 CURRENT_DIR=$(dirname "$(realpath $0)")
 
-
 . ./settings.ini
 
 ###################################
@@ -38,12 +37,6 @@ fi
 # Préparation de l'opération de validation d'un fichier de données
 
 if [ "$VALIDATE" = true ] ; then
-  if [ ! -f ${CURRENT_DIR}/../2_validate_data/config.py ]
-  then
-      echo "Le fichier 2_validate_data/config.py n'existe pas"
-      exit
-  fi
-
   echo "Installation de la procédure de validation des données exportées"
   cd ../2_validate_data
   python3 -m venv venv

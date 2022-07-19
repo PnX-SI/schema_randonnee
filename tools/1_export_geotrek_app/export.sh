@@ -5,7 +5,7 @@
 # depuis une base Geotrek-admin
 # et de valider les données générées
 CURRENT_DIR=$(dirname "$(realpath $0)")
-EXPORT_PATH="../.."
+EXPORT_PATH="../generated_data"
 
 # ############################
 # Export des données de la base Geotrek

@@ -1,13 +1,12 @@
 import sys
 import json
 import jsonschema
-from config import DATA_PATH, SCHEMA_PATH
 
 
-with open(SCHEMA_PATH, 'r') as schema_file:
+with open('../../schema.json', 'r') as schema_file:
     schema = json.load(schema_file)
 
-with open(DATA_PATH, 'r') as instance_file:
+with open('../generated_data/itineraires_rando.json', 'r') as instance_file:
     instance = json.load(instance_file)
 
 validator = jsonschema.Draft7Validator(schema)
