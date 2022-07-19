@@ -7,10 +7,8 @@ GENERATED_DATA_DIR="${CURRENT_DIR}/../generated_data"
 # Lancement du validateur
 cd ${CURRENT_DIR}
 source venv/bin/activate
-date
 python3 validate_data_with_jsonschema.py
 valid=$?
-echo ""
 
 if [ "$valid" = 0 ]; then
     mv ${GENERATED_DATA_DIR}/itineraires_rando.json ${GENERATED_DATA_DIR}/itineraires_rando_export.json
@@ -20,5 +18,3 @@ else
     echo "Fichier non valide et exporté vers tools/generated_data/itineraires_rando_not_valid.json"
     echo "Voir tools/generated_data/validation.log pour plus de détails"
 fi
-
-echo ""

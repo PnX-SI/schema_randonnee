@@ -13,8 +13,6 @@ EXPORT_PATH="../generated_data"
 cd /opt/geotrek-admin/var/conf/
 /usr/sbin/geotrek import SerializerSchemaItinerairesRando > ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json
 
-date
-
 if ! [ -s ${CURRENT_DIR}/${EXPORT_PATH}/itineraires_rando.json ]
 then
     echo "Le fichier est vide, un problème est survenu lors de l'export depuis Geotrek"
