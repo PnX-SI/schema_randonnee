@@ -117,7 +117,7 @@ Documentation complète des paramètres : [1_export_geotrek_app/README.md](./1_e
 cp 3_publish_data_gouv_fr/settings.ini.sample 3_publish_data_gouv_fr/settings.ini
 ```
 
-Documentation complète des paramètres : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
+Documentation complète des paramètres : [3_publish_data_gouv_fr/README.md](./3_publish_data_gouv_fr/README.md)
 ## Installation
 
 Après avoir modifié les fichiers de configuration il faut exécuter la commande suivante :
