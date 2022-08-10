@@ -84,7 +84,7 @@ Pour effectuer cette étape, se référer à la documentation spécifique : [3_p
 
 **Activation des modules**
 
-Un fichier de configuration globale permet d'activer les modules à installer, executer
+Un fichier de configuration globale permet d'activer les modules à installer, exécuter dans le dossier `tools`la commande suivante :
 
 ```shell
 cp all_export_validate_publish/settings.ini.sample all_export_validate_publish/settings.ini
