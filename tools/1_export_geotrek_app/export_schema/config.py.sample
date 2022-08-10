@@ -3,7 +3,7 @@
 URL_ADMIN = 'geotrek-admin.cevennes-parcnational.net'
 URL_RANDO = 'destination.cevennes-parcnational.fr'
 CONTACT = 'contact@cevennes-parcnational.fr'
-DEFAULT_LICENSE = 'CC-BY-SA-ND'
+DEFAULT_LICENSE = 'CC-BY-ND'
 
 # Correspondance entre les catégories de la BDD Geotrek
 # et les valeurs autorisées par le schéma
