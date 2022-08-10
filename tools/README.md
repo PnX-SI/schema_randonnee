@@ -74,10 +74,10 @@ Pour effectuer cette étape, se référer à la documentation spécifique : [3_p
 
 ## Prérequis
 
- * Python3
+ * Python 3.8
 
 ```shell
- apt install python3 python3-venv
+ apt install python3.8 python3-venv
 ```
 
 ## Configuration
