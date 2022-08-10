@@ -82,7 +82,7 @@ Le script et sa documentation sont disponibles dans le dossier [`/tools/2_valida
 
 ## Geotrek
 
-Si vous utilisez une base de données Geotrek, deux méthodes sont proposées pour exporter vos données de manière conforme au schéma, ainsi que pour automatiser cet export et la publication sur data.gouv.fr. Les deux méthodes sont décrites dans le dossier [`/geotrek`](/geotrek).
+Si vous utilisez une base de données Geotrek, deux méthodes sont proposées pour exporter vos données de manière conforme au schéma, ainsi que pour automatiser cet export et la publication sur data.gouv.fr. Les deux méthodes sont décrites dans le dossier [`/tools`](/tools).
 
 ## Remerciements
 
