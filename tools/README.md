@@ -18,7 +18,8 @@ Pour l'utiliser, se référer à la documentation d'[utilisation du script globa
 Deux moyens sont proposés pour exporter les données depuis Geotrek dans un fichier conforme au schéma.
 Pour effectuer cette étape, se référer à la documentation spécifique :
   * Export via l'application geotrek : [1_export_geotrek_app/README.md](./1_export_geotrek_app/README.md)
-  * Export via une vue SQL : [1_export_geotrek_SQL_view/README.md](./1_export_geotrek_SQL_view/README.md)
+  * Export via une vue SQL : [1_export_geotrek_SQL_view/README.md](./1_export_geotrek_SQL_view/README.md) (non maintenu)
+  
 Les avantages et inconvénients des deux méthodes sont décrits ci-dessous :
 
 ## Export via l'application Geotrek
