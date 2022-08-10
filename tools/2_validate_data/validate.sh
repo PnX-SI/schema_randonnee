@@ -7,7 +7,7 @@ GENERATED_DATA_DIR="${CURRENT_DIR}/../generated_data"
 # Lancement du validateur
 cd ${CURRENT_DIR}
 source venv/bin/activate
-python3 validate_data_with_jsonschema.py
+python3.8 validate_data_with_jsonschema.py
 valid=$?
 
 if [ "$valid" = 0 ]; then
