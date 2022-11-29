@@ -24,7 +24,7 @@ Les avantages et inconvénients des deux méthodes sont décrits ci-dessous :
 
 ## Export via l'application Geotrek
 
-Disponible dans le dossier [](./1_export_geotrek_app), ce script s'intègre à Geotrek et utilise les modèles Django pour exporter les itinéraires depuis la base de données. Placé directement dans le contexte de l'application Geotrek-admin, il n'a pas besoin de paramètres de connexion à la base de données, et permet une personnalisation aisée.
+Disponible dans le dossier [./1_export_geotrek_app](./1_export_geotrek_app), ce script s'intègre à Geotrek et utilise les modèles Django pour exporter les itinéraires depuis la base de données. Placé directement dans le contexte de l'application Geotrek-admin, il n'a pas besoin de paramètres de connexion à la base de données, et permet une personnalisation aisée.
 
 ### Avantages
  - la personnalisation se fait dans un fichier à part et est beaucoup plus aisée à réaliser
