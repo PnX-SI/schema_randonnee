@@ -22,9 +22,9 @@ Les différents documents et compte-rendus des ateliers du groupe de travail son
 
 ## Schéma
 
-Schéma au format [JSON Schema](https://json-schema.org/), version [`draft-07`](https://json-schema.org/specification-links.html#draft-7) disponible [ici](schema.json).
+Schéma au format [JSON Schema](https://json-schema.org/), version [`draft-07`](https://json-schema.org/specification-links.html#draft-7) disponible [ici](https://github.com/PnX-SI/schema_randonnee/schema.json).
 
-Un fichier d'exemple valide avec 10 itinéraires de randonnée est disponible [ici](exemple-valide.json). L'intégralité des champs du premier itinéraire sont renseignés en guise d'exemple exhaustif.
+Un fichier d'exemple valide avec 10 itinéraires de randonnée est disponible [ici](https://github.com/PnX-SI/schema_randonnee/exemple-valide.json). L'intégralité des champs du premier itinéraire sont renseignés en guise d'exemple exhaustif.
 
 ## Attributs
 
@@ -78,11 +78,11 @@ Deux attributs ont des valeurs contraintes :
 
 Un script Python permet de valider le fichier `itineraires_rando.json` exporté.
 
-Le script et sa documentation sont disponibles dans le dossier [`/tools/2_validate_data`](/tools/2_validate_data)
+Le script et sa documentation sont disponibles dans le dossier [`/tools/2_validate_data`](https://github.com/PnX-SI/schema_randonnee/tools/2_validate_data)
 
 ## Geotrek
 
-Si vous utilisez une base de données Geotrek, deux méthodes sont proposées pour exporter vos données de manière conforme au schéma, ainsi que pour automatiser cet export et la publication sur data.gouv.fr. Les deux méthodes sont décrites dans le dossier [`/tools`](/tools).
+Si vous utilisez une base de données Geotrek, deux méthodes sont proposées pour exporter vos données de manière conforme au schéma, ainsi que pour automatiser cet export et la publication sur data.gouv.fr. Les deux méthodes sont décrites dans le dossier [`/tools`](https://github.com/PnX-SI/schema_randonnee/tools).
 
 ## Remerciements
 
