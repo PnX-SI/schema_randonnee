@@ -118,6 +118,7 @@ cp 3_publish_data_gouv_fr/settings.ini.sample 3_publish_data_gouv_fr/settings.in
 ```
 
 Documentation complète des paramètres : [3_publish_data_gouv_fr/README.md](./3_publish_data_gouv_fr/README.md)
+
 ## Installation
 
 Après avoir modifié les fichiers de configuration il faut exécuter la commande suivante :
