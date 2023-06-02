@@ -5,6 +5,7 @@ on:
     paths:
       - 'schema.json'
       - 'exemple-valide.json'
+      - 'tools/2_validate_data/requirements.txt'
 
 jobs:
   validate_json:
