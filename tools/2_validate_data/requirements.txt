@@ -2,4 +2,4 @@ attrs==23.1.0
 importlib-resources==6.0.0
 jsonschema==4.18.2
 pyrsistent==0.19.3
-zipp==3.15.0
+zipp==3.16.1
