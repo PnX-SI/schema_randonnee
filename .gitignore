@@ -1,7 +1,9 @@
 **/parameters.txt
-**/config.py
-**/itineraires_rando*
-
-node_modules
-
 **/settings.ini
+**/config.py
+
+**/itineraires_rando*
+**/*.log
+
+**/venv/
+**/__pycache__

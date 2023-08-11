@@ -3,7 +3,7 @@
 URL_ADMIN = 'geotrek-admin.cevennes-parcnational.net'
 URL_RANDO = 'destination.cevennes-parcnational.fr'
 CONTACT = 'contact@cevennes-parcnational.fr'
-DEFAULT_LICENSE = 'CC-BY-SA-ND'
+DEFAULT_LICENSE = 'CC-BY-ND'
 
 # Correspondance entre les catégories de la BDD Geotrek
 # et les valeurs autorisées par le schéma
@@ -36,7 +36,7 @@ PRACTICE_NAME_EXCLUDE = ['Nom de pratique à exclure']
 
 # Correspondance entre le topo_object_id d'un itinéraire
 # et l'identifiant de la relation OpenStreetMap correspondante
-TOPO_ID_TO_ID_OSM = {99999999: 13716496}
+TOPO_ID_TO_ID_OSM = {99999999: 13716496} # exemple d'association entre topo_object_id et identifiant OSMs
 
 # Renseignement du champ type_sol
 CALCUL_TYPE_SOL = False

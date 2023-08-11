@@ -1,5 +1,15 @@
 # Changelog
 
+
+## Version 1.1.0 (2022-07-19)
+
+ * Suppression du support de MultiLineString
+ * Intégration du standard LineString dans le fichier schéma
+
+**⚠️ Notes de version**
+
+Les données en MultiLineString ne seront plus compatibles avec cette version du schéma.
+
 ## Version 1.0.2 (2021-10-11)
 
 - Changement du nom du schéma en "Itinéraires de randonnées"

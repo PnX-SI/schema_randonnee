@@ -1,11 +1,11 @@
 version: 2
 updates:
 
-  # Enable version updates for npm
-  - package-ecosystem: "npm"
-    # Look for `package.json` and `lock` files in the `root` directory
-    directory: "/local_validator"
-    # Check the npm registry for updates every week
+  # Enable version updates for pip
+  - package-ecosystem: "pip"
+    # Look for `requirements.txt` in the `root` directory
+    directory: "/tools/2_validate_data"
+    # Check the pip registry for updates every week
     schedule:
       interval: "weekly"
 
