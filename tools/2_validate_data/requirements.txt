@@ -1,4 +1,4 @@
-attrs==24.2.0
+attrs==24.3.0
 importlib-resources==6.4.5
 jsonschema==4.23.0
 pyrsistent==0.20.0
